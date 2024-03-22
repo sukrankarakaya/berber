@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <div>
     
-    home
+   
     
-       <div className="">
+       {/* <div className="">
         <Navbar />
       </div>
       <div className="">
@@ -17,7 +17,7 @@ const Home = () => {
       </div>
       <div className="">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

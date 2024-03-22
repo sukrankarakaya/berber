@@ -2,17 +2,30 @@ import React, { useState } from "react";
 import WelcomeImg from "/public/Image/berber.jpg";
 import { Link } from "react-router-dom";
 import LoginModal from "../Components/LoginModal";
+import RegisterModal from "../Components/RegisterModal";
 
 const WelcomePage = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showREgisterModal, setShowRegisterModal] = useState(false);
+
 
   const handleLoginClick = () => {
-    setShowModal(true);
+    setShowLoginModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowLoginModal(false);
   };
+
+  const handleRegisterClick = () => {
+    setShowRegisterModal(true);
+  };
+
+  const handleRegisterCloseModal = () => {
+    setShowRegisterModal(false);
+  };
+
+  
 
   return (
     <div>
@@ -35,7 +48,7 @@ const WelcomePage = () => {
                   Giriş Yap
                 </button>
 
-                <button className=" w-96 h-16 border border-white  bg-black text-white rounded-[50px] hover:bg-black bg-opacity-75 ">
+                <button onClick={handleRegisterClick} className=" w-96 h-16 border border-white  bg-black text-white rounded-[50px] hover:bg-black bg-opacity-75 ">
                   Kayıt Ol
                 </button>
                
@@ -45,7 +58,11 @@ const WelcomePage = () => {
           </div>
         </div>
       </div>
-      {showModal && <LoginModal onClose={handleCloseModal} />}
+      {showLoginModal && <LoginModal onClose={handleCloseModal} />}
+      {showREgisterModal && <RegisterModal onClose={handleRegisterCloseModal} />}
+
+
+
     </div>
   );
 };
