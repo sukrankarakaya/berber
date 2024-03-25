@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import LoginModal from "./LoginModal";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { IoIosArrowUp, IoMdArrowDropup } from "react-icons/io";
+import {  IoMdArrowDropup } from "react-icons/io";
 
 const BarberRegisterForm = () => {
   const formik = useFormik({
