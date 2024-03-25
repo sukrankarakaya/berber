@@ -1,7 +1,10 @@
 import React from "react";
+<<<<<<< HEAD
 import Navbar from "./Navbar";
 import berber from '/public/Image/berber.jpg'
 import Footer from "./Footer";
+=======
+>>>>>>> cd7970532b8afaabd34ba20a5050babdb49080af
 const Home = () => {
   return (
     <div>

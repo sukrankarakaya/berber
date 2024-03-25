@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import WelcomeImg from "/public/Image/berber.jpg";
 import classNames from "classnames";
-import RegisterForm from "./RegisterForm";
+import CustomerRegisterForm from "./CustomerRegisterForm";
+import BarberRegisterForm from "./BarberRegisterForm";
 
 const RegisterModal = () => {
   const [berber, setBerber] = useState(false);
@@ -16,9 +17,9 @@ const RegisterModal = () => {
         />
       </div>
 
-      <div className=" flex flex-col gap-8 z-10 w-[500px] h-[600px] bg-light  rounded-2xl items-center pt-16  right-6 mr-8 ">
+      <div className=" flex flex-col gap-16 z-10 w-[650px] h-[700px] bg-light  rounded-2xl items-center pt-8  right-6 mr-8 ">
         <h1 className=" text-3xl top-0 text-secondary pt-10">Kayıt Ol</h1>
-        <div className="flex flex-col justify-center  items-center   gap-3   w-[400px] h-[300px]  ">
+        <div className="flex flex-col justify-center  items-center   gap-4   w-[400px] h-[300px]  ">
           <div className=" w-80 ">
             <div className=" flex flex-row  ">
               <button
@@ -49,7 +50,9 @@ const RegisterModal = () => {
               </button>
             </div>
           </div>
-          <RegisterForm />
+          <div className=" flex mt-16 ">
+            {berber ?  <BarberRegisterForm />:<CustomerRegisterForm /> }
+          </div>{" "}
         </div>
       </div>
     </div>

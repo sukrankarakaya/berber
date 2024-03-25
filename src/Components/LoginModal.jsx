@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import WelcomeImg from "/public/Image/berber.jpg";
-import LoginForm from "./LoginForm";
 import classNames from "classnames";
+import CustomerLoginForm from "./CustomerLoginForm";
+import BerberLoginForm from "./BerberLoginForm";
 const LoginModal = () => {
   const [berber, setBerber] = useState(false);
   return (
@@ -48,7 +49,7 @@ const LoginModal = () => {
               </button>
             </div>
           </div>
-          <LoginForm />
+          {berber ?<CustomerLoginForm/>: <BerberLoginForm/>}
         </div>
       </div>
     </div>
