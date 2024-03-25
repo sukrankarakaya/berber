@@ -10,7 +10,7 @@ const CustomerLoginForm = () => {
     initialValues: {
       username: "",
       password: "",
-      
+
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Kullanıcı adı gerekli"),
@@ -35,7 +35,7 @@ const CustomerLoginForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.username}
-                className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                className="w-[300px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Kullanıcı Adı"
               />
               {formik.touched.username && formik.errors.username ? (
@@ -54,7 +54,7 @@ const CustomerLoginForm = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  className="w-[300px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Şifre"
                 />{" "}
                 {formik.touched.password && formik.errors.password ? (
