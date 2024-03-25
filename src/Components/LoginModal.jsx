@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 import WelcomeImg from "/public/Image/berber.jpg";
-import LoginForm from "./LoginForm";
 import classNames from "classnames";
+import CustomerLoginForm from "./CustomerLoginForm";
+import BerberLoginForm from "./BerberLoginForm";
 const LoginModal = () => {
   const [berber, setBerber] = useState(false);
+
+
+
   return (
     <div className="absolute top-0 flex flex-col w-full h-full justify-center items-end bg-black bg-opacity-55 ">
       <div className="absolute w-full h-screen  bg-custom-bg bg-cover bg-no-repeat bg-center bg-black bg-opacity-55  ">
@@ -19,15 +23,15 @@ const LoginModal = () => {
         <h1 className=" text-3xl top-0 text-secondary pt-10">Giriş Yap</h1>
         <div className="flex flex-col justify-center  items-center   gap-3   w-[400px] h-[300px]  ">
           <div className=" w-80 ">
-            <div className=" flex flex-row  ">
+            <div className="  flex flex-row  gap-5 text-lg text-secondary    ">
               <button
                 onClick={() => {
                   setBerber(false);
                 }}
                 className={classNames(
-                  "w-40 flex  items-center justify-center text-secondary ",
+                  "w-40 flex  items-center justify-center hover:opacity-80  ",
                   {
-                    "font-bold border-b-2 border-secondary": berber === false,
+                    "font-bold border-b-2 border-secondary hover:opacity-100": berber === false,
                   }
                 )}
               >
@@ -38,9 +42,9 @@ const LoginModal = () => {
                   setBerber(true);
                 }}
                 className={classNames(
-                  "w-40 flex items-center justify-center text-secondary ",
+                  "w-40 flex items-center justify-center  hover:opacity-80",
                   {
-                    "font-bold border-b-2 border-secondary": berber === true,
+                    "font-bold border-b-2 border-secondary hover:opacity-100": berber === true,
                   }
                 )}
               >
@@ -48,7 +52,8 @@ const LoginModal = () => {
               </button>
             </div>
           </div>
-          <LoginForm />
+         
+          {berber ? <CustomerLoginForm /> : <BerberLoginForm />}
         </div>
       </div>
     </div>
