@@ -45,7 +45,7 @@ const BarberRegisterForm = () => {
           className="flex flex-col gap-4 w-full items-center justify-center z-20"
         >
           <div className="flex flex-row gap-4 py-5">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -144,7 +144,7 @@ const BarberRegisterForm = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
