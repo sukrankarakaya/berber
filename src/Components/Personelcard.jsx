@@ -3,7 +3,7 @@ import insan from '../assets/insan.jpg';
 
 const Personelcard = () => {
   return (
-    <div className="w-auto h-auto py-5 bg-black flex justify-center gap-5 overflow-x-hidden rounded-sm">
+    <div className="w-auto h-auto py-5 bg-black flex justify-center gap-5 overflow-x-hidden rounded-b-lg">
       <div className="box-wrapper">
         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
