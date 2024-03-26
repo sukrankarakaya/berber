@@ -54,7 +54,7 @@ const CustomerRegisterForm = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.username}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
-                  placeholder="Kullanıcı Adı"
+                  placeholder="İsim Soyisim"
                 />
                 {formik.touched.username && formik.errors.username ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
