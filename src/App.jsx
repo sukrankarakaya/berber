@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import WelcomePage from "./Layout/WelcomePage";
-import Home from "./Components/Home";
+import Homeberber from "./Components/Homeberber";
 import LoginModal from "./Components/LoginModal";
 import RegisterModal from "./Components/RegisterModal";
 
@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/homeberber" element={<Homeberber />} />
         <Route path="/login" element={<LoginModal />} />
         <Route path="/register" element={<RegisterModal />} />
 
