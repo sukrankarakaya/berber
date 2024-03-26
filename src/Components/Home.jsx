@@ -1,31 +1,20 @@
 import React from "react";
 import Navbar from "./Navbar";
-import berber from '/public/Image/berber.jpg'
 import Footer from "./Footer";
+import BarberCard from "./BarberCard";
 const Home = () => {
   return (
-    <div>
-    <div>
-      <Navbar/>
-    </div>
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <img src={berber} alt="" className="" />
-   <Footer />
-       {/* <div className="">
-        <Navbar />
+    <div className="bg-light p-8 min-h-screen">
+      <div className="berber-cards flex flex-col justify-end  pl-50">
+        <div className=" grid grid-cols-2 gap-4 p-2 justify-center items-center ">
+          <BarberCard />
+          <BarberCard />
+          <BarberCard />
+          <BarberCard />
+          <BarberCard />
+          <BarberCard />
+        </div>
       </div>
-      <div className="">
-        <Dashboard />
-      </div>
-      <div className="">
-        <Footer />
-      </div> */}
     </div>
   );
 };
