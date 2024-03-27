@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -6,11 +7,15 @@ import BarberCard from "./BarberCard";
 import BestBarbers from "./BestBarbers";
 import { RxExternalLink } from "react-icons/rx";
 import Search from "./Search";
+=======
+import React from 'react'
+>>>>>>> efe958d53904d47e95f961ae5b8ad14ff5ce9fe7
 
 const Home = () => {
 
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col ">
       <Navbar />{" "}
       <div className="flex flex-col gap-8  py-28 min-h-screen bg-light items-center ">
@@ -51,8 +56,12 @@ const Home = () => {
         <div className="flex"> <button className=" flex flex-row justify-center items-center gap-3 text-xl text-slate-50 w-48 h-16 rounded-xl bg-secondary hover:bg-opacity-95  hover:text-slate-100">Hepsini Gör <RxExternalLink fontSize={25} /> </button></div>
       </div>
       <Footer />
+=======
+    <div>
+      
+>>>>>>> efe958d53904d47e95f961ae5b8ad14ff5ce9fe7
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

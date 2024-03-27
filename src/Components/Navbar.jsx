@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../Components/Logo';
 import Dropdown from './Dropdown';
-import Konum from './Konum';
+import Location from './Location';
 
 
 const Navbar = () => {
@@ -15,18 +15,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-black opacity-85 w-full fixed top-0 z-10'>
-      <div className='h-1/5 flex flex-row justify-between items-center pt-4 pb-2'>
+    <div className='bg-black opacity-45 w-full fixed top-0 z-10 '>
+      <div className='h-1/5 flex flex-row justify-between items-center mx-auto px-32  py-3'>
         {/* Sol taraftaki bileşenler */}
-        <div className="flex items-center pl-6">
+        <div className="flex items-center ">
           <Logo />
         </div>
         {/* Ortadaki boşluk */}
-        <Konum/>
+        <Location/>
         {/* Sağ taraftaki bileşenler */}
-        <div className="flex items-center pr-6">
+        <div className="flex items-center ">
           {/* Logo ve dropdown arasındaki kutu */}
-          <div className="w-6 h-6 mx-2"></div>
+          <div className="w-6 h-6 "></div>
           {/* Dropdown */}
           <Dropdown />
         </div>
