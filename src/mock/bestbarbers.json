@@ -1,0 +1,28 @@
+[
+    {
+      "id": 1,
+      "name": " Alana Barbershop - Haircut massage & Spa",
+      "rating": 4.5,
+      "location": "New York, NY"
+    },
+    {
+      "id": 2,
+      "name": "Twinsky Monkey Barber & Men Stuff",
+      "rating": 4.8,
+      "location": "Los Angeles, CA"
+    },
+    {
+      "id": 3,
+      "name": "Barberman - Haircut styling & massage",
+      "rating": 4.2,
+      "location": "Chicago, IL"
+    },
+    {
+      "id": 4,
+      "name": "Barberman - Haircut styling & massage",
+      "rating": 4.2,
+      "location": "Chicago, IL"
+    }
+    
+  ]
+  
