@@ -1,16 +1,20 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import WelcomePage from "./Layout/WelcomePage";
-import Homeberber from "./Components/Homeberber";
-import LoginModal from "./Components/LoginModal";
-import RegisterModal from "./Components/RegisterModal";
+import LoginModal from "./Components/Login/LoginModal";
+
+import Home from "./Components/Customer/Home";
+import HomeBarber from "./Components/Barber/HomeBarber";
+import RegisterModal from "./Components/Register/RegisterModal";
 
 function App() {
   return (
     <div className="font-quicksand">
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-        <Route path="/homeberber" element={<Homeberber />} />
+        <Route path="/homeberber" element={<HomeBarber />} />
+        <Route path="/home" element={<Home />} />
+
         <Route path="/login" element={<LoginModal />} />
         <Route path="/register" element={<RegisterModal />} />
 

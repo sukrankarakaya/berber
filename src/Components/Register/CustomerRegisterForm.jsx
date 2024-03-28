@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginModal from "./LoginModal";
+import LoginModal from "../Login/LoginModal";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";

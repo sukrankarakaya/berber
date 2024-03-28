@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import bestBarbers from "../mock/bestbarbers.json";
+import bestBarbers from "../../mock/bestbarbers.json";
 import barber2 from "/public/Image/barber2.jpg";
 
 const BestBarbers = () => {

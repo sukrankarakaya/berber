@@ -3,7 +3,7 @@ import berber2 from "/public/Image/barber2.jpg";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-import bestBarber from "../mock/bestbarbers.json";
+import bestBarber from "../../mock/bestbarbers.json";
 
 const BarberCard = () => {
   return (

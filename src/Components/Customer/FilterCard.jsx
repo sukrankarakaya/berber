@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ServicesSelect from "../Utilse/ServicesSelect";
-import CitySelect from "../Utilse/CitySelect";
-import RatingBar from "../Utilse/RatingBar ";
+import ServicesSelect from "../../Utilse/ServicesSelect";
+import CitySelect from "../../Utilse/CitySelect";
+import RatingBar from "../../Utilse/RatingBar ";
 
 const FilterCard = () => {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import insan from '../assets/insan.jpg';
+import insan from '../../assets/insan.jpg';
 
 const Personelcard = () => {
   return (

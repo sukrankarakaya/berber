@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import WelcomeImg from "/public/Image/berber.jpg";
 import { Link } from "react-router-dom";
-import LoginModal from "../Components/LoginModal";
-import RegisterModal from "../Components/RegisterModal";
+import LoginModal from "../Components/Login/LoginModal";
+import RegisterModal from "../Components/Register/RegisterModal";
 
 const WelcomePage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);

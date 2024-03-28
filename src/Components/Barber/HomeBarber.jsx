@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "./Navbar";
-import berber from '/public/Image/berber.jpg'
-import Footer from "./Footer";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 import Berberdashboard from './Barberdashboard';
-const Home = () => {
+const HomeBarber = () => {
   return (
     <div>
     <div>
@@ -21,4 +20,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeBarber;
