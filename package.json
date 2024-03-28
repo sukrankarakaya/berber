@@ -11,13 +11,20 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
+<<<<<<< HEAD
+    "flowbite-react": "^0.7.5",
+=======
     "flowbite": "^2.3.0",
+>>>>>>> efe958d53904d47e95f961ae5b8ad14ff5ce9fe7
     "formik": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.3",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -7,7 +7,7 @@ import RegisterModal from "./Components/RegisterModal";
 
 function App() {
   return (
-    <>
+    <div className="font-quicksand">
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/homebarber" element={<Homebarber />} />
@@ -16,7 +16,7 @@ function App() {
 
         <Route path="*" element="" />
       </Routes>
-    </>
+    </div>
   );
 }
 
