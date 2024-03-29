@@ -4,12 +4,15 @@ import { BsFillStarFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 import bestBarber from "../../mock/bestbarbers.json";
+import { Link } from "react-router-dom";
 
 const BarberCard = () => {
   return (
-    <div className=" grid grid-cols-2 gap-4 gap-x-12 ">
+    <div className=" grid grid-cols-2 gap-5 gap-x-12 ">
       {bestBarber.map((barber) => (
-        <div className="flex flex-row p-2  rounded-xl w-[480px] h-36 border border-secondary text-gray-700 hover:bg-[#d8d5d2] hover:border-2 ">
+        <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">
+           
+        <div className="flex flex-row p-2  rounded-xl w-[550px] h-36 border border-secondary text-gray-700 hover:bg-[#d8d5d2] hover:border-2 ">
           <div className=" ">
             <img src={berber2} alt="" className="w-32 h-full rounded-xl" />
           </div>
@@ -26,6 +29,7 @@ const BarberCard = () => {
             </div>
           </div>
         </div>
+        </Link>
       ))}
     </div>
   );

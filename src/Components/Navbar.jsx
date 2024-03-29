@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-black opacity-45 w-full fixed top-0 z-10 '>
+    <div className='bg-secondary items-center w-full fixed top-0 z-10 px-11'>
       <div className='h-1/5 flex flex-row justify-between items-center mx-auto px-32  py-3'>
         {/* Sol taraftaki bileşenler */}
         <div className="flex items-center ">

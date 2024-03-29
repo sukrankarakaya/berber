@@ -1,20 +1,19 @@
-
 const StarRating = ({ selected = false, onSelect }) => (
-  <svg
-    onClick={onSelect}
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-8 w-8 text-gray-300 ${selected ? "text-yellow-400" : ""}`}
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
-    <path
-      fillRule="evenodd"
-      d="M10 0l2.04 6.221H18l-5.5 3.78 2.041 6.222L10 14.764 5.459 16.223 7.5 9.001 2 5.221h5.96L10 0z"
-      clipRule="evenodd"
-    />
-  </svg>
+  <div className="p-1">
+    <svg
+      onClick={onSelect}
+      xmlns="http://www.w3.org/2000/svg"
+      className={`h-8 w-8 text-gray-300 ${selected ? "text-yellow-400" : ""}`}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </div>
 );
-
-
 
 export default StarRating;
