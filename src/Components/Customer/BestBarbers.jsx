@@ -6,6 +6,7 @@ import { BsFillStarFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import bestBarbers from "../../mock/bestbarbers.json";
 import barber2 from "/public/Image/barber2.jpg";
+import { Link } from "react-router-dom";
 
 const BestBarbers = () => {
   const settings = {
@@ -29,7 +30,7 @@ const BestBarbers = () => {
 
   return (
   
-    <div className="w-full h-full overflow-hidden relative ">
+    <div className="w-full h-full overflow-hidden relative   ">
     <style>
       {`
         /* Sol ok */
@@ -53,7 +54,7 @@ const BestBarbers = () => {
 
         /* Sağ ok */
         .slick-next {
-          right: 25px; 
+          right: 40px; 
           z-index: 1; 
           background-color: transparent; 
           border: none; 
@@ -69,12 +70,14 @@ const BestBarbers = () => {
 
       `}
     </style>
-  <Slider {...settings} className="w-[1000px] h-auto flex flex-row p-5  bg-slate-50  rounded-xl">
+  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5  bg-slate-50 border-2 rounded-xl">
 
       {bestBarbers.map((barber) => (
-        <div key={barber.id} className="flex  flex-row p-6 h-[400px]    text-gray-700 rounded-xl">
-          <div className="flex flex-col gap-4 ">
-            <img src={barber2} alt={barber.name} className="h-64 rounded-xl" />
+        <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">
+           
+        <div key={barber.id} className="flex  flex-row  h-[450px]    text-gray-700 rounded-xl">
+          <div className="flex flex-col gap-4 p-8">
+            <img src={barber2} alt={barber.name} className="h-72 w-[500px] rounded-xl" />
             <div className="flex flex-col gap-3 px-3">
               <h1 className="font-bold text-xl">{barber.name}</h1>
               <div className="flex items-center gap-1">
@@ -88,6 +91,7 @@ const BestBarbers = () => {
             </div>
           </div>
         </div>
+        </Link>
       ))}
     </Slider>
     </div>

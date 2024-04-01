@@ -40,9 +40,9 @@ const WelcomePage = () => {
           <div className="flex flex-col  justify-center items-center ">
             <div className=" absolute  flex flex-col  top-72 items-center ">
               {/* <img src={Logo} alt="" className="w-24 h-24 " /> */}
-              <div className="flex flex-col w-[800px] gap-4 items-center ">
+              <div className="flex flex-col w-[900px] gap-4 items-center ">
                 <h1 className=" text-5xl  leading-normal text-white">
-                  Randevunuzu saniyeler içinde ayırtın.
+                  <Link to="/home">Randevunuzu saniyeler içinde ayırtın.</Link>
                 </h1>
                 <button onClick={handleLoginClick} className=" w-96 h-16 border bg-black text-white rounded-[50px] hover:bg-black bg-opacity-85 ">
                   Giriş Yap

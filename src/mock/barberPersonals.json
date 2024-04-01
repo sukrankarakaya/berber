@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "name": "Ahmet Yılmaz",
+      "photo": "../../public/Image/personal1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Mehmet Demir",
+       "photo": "../../public/Image/personal2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Ayşe Kaya", 
+      "photo": "../../public/Image/personal3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Fatma Çelik",
+       "photo": "../../public/Image/personal1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Mustafa Öz", 
+      "photo": "../../public/Image/personal2.jpg"
+    }
+   
+  ]
+  
