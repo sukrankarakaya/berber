@@ -12,7 +12,7 @@ const BarberCard = () => {
       {bestBarber.map((barber) => (
         <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">
            
-        <div className="flex flex-row p-2  rounded-xl w-[550px] h-36 border border-secondary text-gray-700 hover:bg-[#d8d5d2] hover:border-2 ">
+        <div className="flex flex-row p-2  rounded-xl w-[550px] h-36 border border-secondary text-gray-700 hover:bg-gray hover:border-2 ">
           <div className=" ">
             <img src={berber2} alt="" className="w-32 h-full rounded-xl" />
           </div>

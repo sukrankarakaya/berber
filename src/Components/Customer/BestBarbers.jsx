@@ -70,7 +70,7 @@ const BestBarbers = () => {
 
       `}
     </style>
-  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5  bg-slate-50 border-2 rounded-xl">
+  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5  bg-slate-50 border-2 border-slate-200 rounded-xl">
 
       {bestBarbers.map((barber) => (
         <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">

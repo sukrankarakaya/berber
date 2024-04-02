@@ -9,6 +9,7 @@ import AllBarber from "./Components/Customer/AllBarber";
 import Dashboard from "./Layout/Dashboard";
 import BarberDetails from "./Components/Customer/BarberDetails";
 import CustomerAppointments from "./Components/Customer/CustomerAppointments";
+import ProfileCustomer from "./Components/Customer/ProfileCustomer";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/home/all/:id" element={<BarberDetails/>} />
         <Route path="/home/:id" element={<BarberDetails/>} />
         <Route path="/myappointment" element={<CustomerAppointments/>}/>
+        <Route path="/profile" element={<ProfileCustomer/>}/>
+
 
 
        

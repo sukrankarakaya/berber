@@ -67,11 +67,11 @@ const Icon = ({ userId }) => {
             d="m1 1 4 4 4-4"
           />
         </svg>
-      </button>
+      </button> 
       {isOpen && (
         <div ref={dropdownRef} className="absolute z-10 mt-2 w-32  bg-white rounded-md shadow-lg">
-          <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
-          <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</a>
+          <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
+          <a href="/myappointment" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</a>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</a>
           <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
         </div>
