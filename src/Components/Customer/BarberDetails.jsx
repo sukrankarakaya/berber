@@ -7,6 +7,7 @@ import { CiPhone } from "react-icons/ci";
 import { PiMapPinLineThin } from "react-icons/pi";
 import ServicesCard from "./ServicesCard";
 import PersonelCard from "./PersonelCard";
+import NavbarCustomer from "./NavbarCustomer";
 const BarberDetails = () => {
   //   const { barberId } = useParams();
 
@@ -21,9 +22,9 @@ const BarberDetails = () => {
   ];
   return (
     <div className="bg-light">
-      <Navbar />
+      <NavbarCustomer />
       <div className="flex flex-col pt-24 px-44  ">
-        <div className="w-[1050px] bg-white border-2 rounded-lg p-3">
+        <div className="w-[1050px] bg-white border-2 border-slate-200 rounded-lg p-3">
           <h1 className=" text-2xl font-bold">
             Barberman - Haircut styling & massage
           </h1>
