@@ -52,11 +52,11 @@ const Timecard = () => {
 
   return (
   
-    <div className="max-w-max flex flex-col">
-      <h5 className="w-full rounded-t-lg text-base font-semibold bg-secondary md:text-xl dark:text-white py-2 pl-2">
+    <div className="max-w-max flex flex-col bg-white">
+      <h5 className="w-full rounded-t-lg text-base font-semibold bg-white md:text-xl text-gray-800 p-6">
         Saatler
       </h5>
-      <div className="grid grid-cols-4 px-2 py-2 gap-2 text-sm text-left rtl:text-right border-4 border-secondary">
+      <div className="grid grid-cols-4 py-5 px-2  gap-2 text-sm ">
         {dividedHours.map((row, rowIndex) => (
           <React.Fragment key={rowIndex}>
             {row.map((hour, columnIndex) => (

@@ -1,42 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import services from "../../mock/services.json"
+import servicesData from "../../mock/services.json";
 
 const Services = () => {
-    const [serviceslist, setServicesList] = useState([]);
+    const [servicesList, setServicesList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(5);
 
     useEffect(() => {
-        const takedata = async () => {
-            try {
-                const response = await fetch('services.json');
-                const data = await response.json();
-                setServicesList(data);
-            } catch (error) {
-                console.error('Hizmet verileri alınırken hata oluştu:', error);
-            }
-        };
-
-        takedata();
+        setServicesList(servicesData);
     }, []);
 
+    const totalPages = Math.ceil(servicesList.length / itemsPerPage);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = servicesList.slice(indexOfFirstItem, indexOfLastItem);
+
     return (
-        <div className='w-3/5 flex flex-col'>
-            <div className='w-auto dark:bg-gray-900 h-auto rounded-t-lg'>
-                <h1 className='text-white py-3 px-3 text-2xl'>Hizmetler</h1>
-            </div>
-            <div className='w-auto  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 h-auto flex flex-row justify-around py-3'>
-                <p>Hizmet Adı</p>
-                <p>Fiyatı</p>
-            </div>
-            {services.map((hizmet, index) => (
-                <div key={index} className='h-auto py-2 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 justify-around flex flex-row text-white'>
-                    <p>{hizmet.name}</p>
-                    <p>{hizmet.price}</p>
+        <div className='p-6 bg-white shadow-md rounded-md'>
+            <h1 className='text-xl font-semibold text-gray-800 mb-4'>Hizmetler</h1>
+            <div className='overflow-x-auto'>
+                <table className='w-full table-auto'>
+                    <thead>
+                        <tr className='bg-gray-100'>
+                        <th className='px-4 py-2 text-left'>Hizmet Adı</th>
+<th className='px-4 py-2 text-right'>Fiyatı</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+    {currentItems.map((hizmet, index) => (
+        <tr key={index} className='border-b'>
+            <td className='px-4 py-2 text-left'>{hizmet.name}</td>
+            <td className='px-4 py-2 text-right'>{hizmet.price}</td>
+        </tr>
+    ))}
+</tbody>
+
+                </table>
+                <div className='flex justify-center mt-8'>
+                    <button onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} className='rounded-lg text-black border-black border-2 py-2 px-4 dark:hover:bg-gray-600 mr-2'>Önceki Sayfa</button>
+                    <button onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages} className='rounded-lg text-black border-black border-2 py-2 px-4 dark:hover:bg-gray-600'>Sonraki Sayfa</button>
                 </div>
-            ))}
-            <div className='h-auto py-2 dark bg-gray-800 justify-around flex flex-row '>
-                <button className='text-white border-2 py-2 px-4 dark:hover:bg-gray-600'>Sil</button>
-                <button className='text-white border-2 py-2 px-4 dark:hover:bg-gray-600'>AYRINTILAR ÖNEMLİ</button>
-                <button className='text-white border-2 py-2 px-4 dark:hover:bg-gray-600'>Ekle</button>
             </div>
         </div>
     );

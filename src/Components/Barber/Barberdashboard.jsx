@@ -13,13 +13,10 @@ const Berberdashboard = () => {
       </div>
       <div className='max-w-screen-xl w-screen mx-auto pt-10 flex flex-row gap-2 justify-between'>
          <Timecard/>
-         <Services/>
-       
-      </div>
-      <div className='max-w-screen-xl w-screen mx-auto pt-10'>
-        <h1 className='text-white bg-slate-900 pl-6 py-3 text-2xl rounded-t-lg'>Personellerimiz</h1>
       <Personelcard/>
+         <Services/>
       </div>
+     
     </div>
   );
 };

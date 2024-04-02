@@ -12,11 +12,35 @@
         "price": "10000"
     },
     {
-        "name": "damat traşı",
-        "price": "10000"
+        "name": "fön",
+        "price": "10"
+    },
+    {
+        "name": "maske",
+        "price": "310"
+    },
+    {
+        "name": "saç kesimi",
+        "price": "150"
+    },
+    {
+        "name": "sakal kesimi",
+        "price": "50"
     },
     {
         "name": "damat traşı",
         "price": "10000"
+    },
+    {
+        "name": "fön",
+        "price": "10"
+    },
+    {
+        "name": "maske",
+        "price": "210"
     }
+
+    
+
+    
 ]
