@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeAppointment } from "../../Store/appointmentSlice ";
 
-const CancellationModal = ({ isOpen, onCancel, onClose }) => {
+const CancellationModal = ({id, isOpen,  onClose}) => {
+
   if (!isOpen) return null;
-
+  const dispatch = useDispatch();
   const handleCancel = () => {
-    // İptal işlemi gerçekleştirildiğinde yapılacak işlemle
     
+    dispatch(removeAppointment(id));
+   
+    onClose()
     onCancel();
+    
   };
 
   const handleClose = () => {

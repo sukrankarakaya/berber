@@ -3,7 +3,6 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../../public/Image/Logo.png';
 import Dropdown from '../Dropdown';
 import Location from '../Location';
 

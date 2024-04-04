@@ -5,14 +5,19 @@ import { CiEdit } from "react-icons/ci";
 import user from "/public/Image/user.jpg";
 import { FaStar } from "react-icons/fa6";
 import EditProfileModal from "./EditProfileModal";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { RxExternalLink } from "react-icons/rx";
 
 const ProfileCustomer = () => {
+  const appointments = useSelector((state) => state.appointments.appointments);
+
+  const [visibleCards, setVisibleCards] = useState(3);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userDetails, setUserDetails] = useState({
     name: "Şükran ",
-    surname:"Karakaya",
+    surname: "Karakaya",
     email: "sukrankrky184@gmail.com",
-    
   });
 
   const toggleModal = () => {
@@ -85,7 +90,7 @@ const ProfileCustomer = () => {
           />
         </div>
 
-        <div className="flex flex-col w-1/3 h-96  gap-5 p-5  border border-secondary rounded-lg ">
+        <div className="flex flex-col w-1/3 h-96  gap-3 p-5  border border-secondary rounded-lg ">
           <label
             htmlFor=""
             className=" flex flex-row text-2xl font-bold  justify-start items-start "
@@ -93,63 +98,31 @@ const ProfileCustomer = () => {
             Randevularım
           </label>
 
-          <div className=" flex flex-col  h-20 p-2 gap-2 border  border-secondary rounded-md">
-            <p className=" text-md  font-bold ">
-              Barberman - Haircut styling & massage
-            </p>
-            <div className="flex gap-4 items-center ">
-              <p className=" text-md  "> Fön</p>
-              <p className=" text-md  font-bold "> 150 ₺ </p>
-              <div className="flex flex-row gap-1 items-center">
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
+          {appointments.slice(0, visibleCards).map((appointment) => (
+            <div className=" flex flex-col  h-20 p-2 gap-2 border  border-secondary rounded-md">
+              <p className=" text-md  font-bold ">{appointment.barberName}</p>
+              <div className="flex gap-4 items-center ">
+                <p className=" text-md  "> Fön</p>
+                <p className=" text-md  font-bold "> 150 ₺ </p>
+                <div className="flex flex-row gap-1 items-center">
+                  <FaStar color="#F9BE0A" />
+                  <FaStar color="#F9BE0A" />
+                  <FaStar color="#F9BE0A" />
+                  <FaStar color="#F9BE0A" />
 
-                <label htmlFor="" className="pl-2">
-                  4.5
-                </label>
+                  <label htmlFor="" className="pl-2">
+                    4.5
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className=" flex flex-col  h-20 p-2 gap-2 border  border-secondary rounded-md">
-            <p className=" text-md  font-bold ">
-              Barberman - Haircut styling & massage
-            </p>
-            <div className="flex gap-4 items-center ">
-              <p className=" text-md  "> Fön</p>
-              <p className=" text-md  font-bold "> 150 ₺ </p>
-              <div className="flex flex-row gap-1 items-center">
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-
-                <label htmlFor="" className="pl-2">
-                  4.5
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className=" flex flex-col  h-20 p-2 gap-2 border  border-secondary rounded-md">
-            <p className=" text-md  font-bold ">
-              Barberman - Haircut styling & massage
-            </p>
-            <div className="flex gap-4 items-center ">
-              <p className=" text-md  "> Fön</p>
-              <p className=" text-md  font-bold "> 150 ₺ </p>
-              <div className="flex flex-row gap-1 items-center">
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-                <FaStar color="#F9BE0A" />
-
-                <label htmlFor="" className="pl-2">
-                  4.5
-                </label>
-              </div>
-            </div>
+          ))}
+          <div className="flex justify-end">
+          {appointments.length > visibleCards && (
+            <Link to="/myappointment">
+              <button className="flex flex-row  justify-center items-center gap-3 bg-secondary text-white hover:bg-opacity-95 rounded-md w-auto h-18 p-3 " >Tümünü Gör <RxExternalLink fontSize={20} /> </button>
+            </Link>
+          )}
           </div>
         </div>
       </div>

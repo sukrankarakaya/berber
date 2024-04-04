@@ -15,7 +15,6 @@ const PersonelCard = () => {
             className="h-40 w-56  rounded-lg p-2"
           />
           <label htmlFor="" className="text-xl font-semibold">
-            {" "}
             {person.name}
           </label>
         </div>

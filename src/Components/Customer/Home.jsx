@@ -1,5 +1,4 @@
-import React from "react"; // Sadece bir kere import edilmeli
-import Navbar from "../Navbar";
+import React from "react"; 
 import Footer from "../Footer";
 import Dashboard from "../../Layout/Dashboard";
 import NavbarCustomer from "./NavbarCustomer";

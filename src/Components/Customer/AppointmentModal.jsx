@@ -1,7 +1,9 @@
-// Modal.js
+
 import classNames from "classnames";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addAppointment } from "../../Store/appointmentSlice ";
 
 const AppointmentModal = ({ isOpen, onClose, service, barberName }) => {
   if (!isOpen) return null;
@@ -22,7 +24,6 @@ const AppointmentModal = ({ isOpen, onClose, service, barberName }) => {
     let month = today.getMonth() + 1; // JavaScript'te ay endeksi 0'dan başlar, bu yüzden 1 ekliyoruz
     let day = today.getDate();
 
-    // Ay ve gün tek haneli ise önlerine sıfır ekleyerek iki haneli olmasını sağlarız
     if (month < 10) {
       month = `0${month}`;
     }
@@ -68,11 +69,24 @@ const AppointmentModal = ({ isOpen, onClose, service, barberName }) => {
     setActiveIndex(index);
   };
 
+  const dispatch = useDispatch();
+
   const handleReservation = () => {
     if (activeIndex !== null) {
+      const newAppointment = {
+        service:service,
+        barberName:barberName,
+        date:selectedDate,
+        time: watches[activeIndex].time,
+        status:"Beklemede"
+      };
+
+      dispatch(addAppointment(newAppointment));
+
+      console.log(newAppointment);
       onClose();
     } else {
-      alert("Lütfen bir saat seçin!");
+      alert('Lütfen bir saat seçin!');
     }
   };
   return (

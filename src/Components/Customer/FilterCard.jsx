@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import ServicesSelect from "../../Utilse/ServicesSelect";
-import CitySelect from "../../Utilse/CitySelect";
-import RatingBar from "../../Utilse/RatingBar ";
-import PriceRange from "../../Utilse/PriceRange";
+import ServicesSelect from "../../Utils/ServicesSelect";
+import CitySelect from "../../Utils/CitySelect";
+import RatingBar from "../../Utils/RatingBar ";
+import PriceRange from "../../Utils/PriceRange";
 
 const FilterCard = () => {
   const [selectedStars, setSelectedStars] = useState(0);
