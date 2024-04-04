@@ -52,7 +52,7 @@ const Timecard = () => {
 
   return (
   
-    <div className="max-w-max flex flex-col bg-white">
+    <div className="max-w-max flex flex-col border-2 border-black rounded-lg bg-white">
       <h5 className="w-full rounded-t-lg text-base font-semibold bg-white md:text-xl text-gray-800 p-6">
         Saatler
       </h5>
@@ -62,8 +62,8 @@ const Timecard = () => {
             {row.map((hour, columnIndex) => (
               <div
                 key={columnIndex}
-                className={`px-6 py-4 text-white ${
-                  availability[hour] ? 'bg-red-500' : 'bg-green-500'
+                className={`px-6 py-4 text-black border-2 border-black rounded-lg ${
+                  !availability[hour] ? 'bg-transparent' : 'bg-primary text-white'
                 }`}
               >
                 {hour}

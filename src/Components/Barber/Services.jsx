@@ -16,7 +16,7 @@ const Services = () => {
     const currentItems = servicesList.slice(indexOfFirstItem, indexOfLastItem);
 
     return (
-        <div className='p-6 bg-white shadow-md rounded-md'>
+        <div className='p-6 bg-white border-2 border-black shadow-md rounded-md'>
             <h1 className='text-xl font-semibold text-gray-800 mb-4'>Hizmetler</h1>
             <div className='overflow-x-auto'>
                 <table className='w-full table-auto'>

@@ -19,16 +19,17 @@ const Personelcard = () => {
       <div className="w-auto h-auto  bg-white flex justify-center gap-5 overflow-x-hidden ">
         {personal.length > 0 && (
           <div key={currentPage} className="box-wrapper">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+            <div className="max-w-sm bg-white border-2 border-black rounded-lg shadow ">
               <a href="#">
                 <img className="rounded-t-lg" src={personal[currentPage].image} alt={personal[currentPage].name} />
               </a>
-              <div className="text-gray-800 text-2xl p-5 flex justify-center">
+              <div className="text-gray-800 text-2xl pt-14 p-5 flex justify-center">
+              
                 <h1>{personal[currentPage].name}</h1>
               </div>
               <div className='h-auto py-2 justify-around flex flex-row '>
-        <button onClick={goToPreviousPage} className='text-gray-800 border-2 py-5 px-4 border-black rounded-lg dark:hover:bg-gray-600'>Önceki Sayfa</button>
-        <button onClick={goToNextPage} className='text-gray-800 border-2 py-5 px-4 border-black rounded-lg dark:hover:bg-gray-600'>Sonraki Sayfa</button>
+        <button onClick={goToPreviousPage} className='text-gray-800 border-2 py-2 mb-2 px-4 border-black rounded-lg dark:hover:bg-gray-600'>Önceki Sayfa</button>
+        <button onClick={goToNextPage} className='text-gray-800 border-2 py-2 mb-2 px-4 border-black rounded-lg dark:hover:bg-gray-600'>Sonraki Sayfa</button>
       </div>
             </div>
           </div>

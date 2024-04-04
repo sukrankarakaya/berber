@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import person from '../assets/person.png';
+import person from '../../assets/person.png';
 
 const Icon = ({ userId }) => {
   const [userData, setUserData] = useState(null);
@@ -51,7 +51,7 @@ const Icon = ({ userId }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" />
-        <span>{userData?.name || 'EMRE'}</span>
+        <span>{userData?.name || 'Şükran'}</span>
         <svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
@@ -70,7 +70,7 @@ const Icon = ({ userId }) => {
       </button> 
       {isOpen && (
         <div ref={dropdownRef} className="absolute z-10 mt-2 w-32  bg-white rounded-md shadow-lg">
-          <a href="/berberprofil" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
+          <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
           <a href="/myappointment" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</a>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</a>
           <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
