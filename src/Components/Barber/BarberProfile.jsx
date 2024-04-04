@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from "../Navbar";
+import Navbar from "./Navbar";
 import Footer from "../Footer";
 import { BsFillStarFill } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";

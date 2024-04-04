@@ -80,5 +80,3 @@ const Icon = ({ userId }) => {
     </div>
   );
 };
-
-export default Icon;

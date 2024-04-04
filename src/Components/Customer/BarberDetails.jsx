@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../Navbar";
+import Navbar from "../Barber/Navbar";
 import Footer from "../Footer";
 import { useParams } from "react-router-dom";
 import BestBarbers from "./BestBarbers";
