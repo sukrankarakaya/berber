@@ -1,0 +1,82 @@
+[
+    {
+      "id": 1,
+      "name": "Barber 1",
+      "location": "Location 1",
+      "rating": 4.5,
+      "photo": "../../public/Image/barber1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Barber 2",
+      "location": "Location 2",
+      "rating": 4.8,
+      "photo": "../../public/Image/barber2.jpg"
+
+    },
+    {
+      "id": 3,
+      "name": "Barber 3",
+      "location": "Location 3",
+      "rating": 4.2,   
+      "photo": "../../public/Image/barber3.jpg"
+
+    },
+    {
+      "id": 4,
+      "name": "Barber 4",
+      "location": "Location 4",
+      "rating": 4.9,
+      "photo": "../../public/Image/barber4.jpg"
+
+    },
+    {
+      "id": 5,
+      "name": "Barber 5",
+      "location": "Location 5",
+      "rating": 4.7,
+      "photo": "../../public/Image/barber1.jpg"
+
+    },
+    {
+      "id": 6,
+      "name": "Barber 6",
+      "location": "Location 6",
+      "rating": 4.4,
+      "photo": "../../public/Image/barber2.jpg"
+
+    },
+    {
+      "id": 7,
+      "name": "Barber 7",
+      "location": "Location 7",
+      "rating": 4.6,
+      "photo": "../../public/Image/barber3.jpg"
+
+    },
+    {
+      "id": 8,
+      "name": "Barber 8",
+      "location": "Location 8",
+      "rating": 4.3,
+      "photo": "../../public/Image/barber4.jpg"
+
+    },
+    {
+      "id": 9,
+      "name": "Barber 9",
+      "location": "Location 9",
+      "rating": 4.1,
+      "photo": "../../public/Image/barber1.jpg"
+
+    },
+    {
+      "id": 10,
+      "name": "Barber 10",
+      "location": "Location 10",
+      "rating": 4.0,
+      "photo": "../../public/Image/barber2.jpg"
+
+    }
+  ]
+  

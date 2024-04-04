@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import Berberdashboard from './Barberdashboard';
 const HomeBarber = () => {
   return (
-    <div>
+    <div className="bg-light">
     <div>
       <Navbar/>
     </div>
