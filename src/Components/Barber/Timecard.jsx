@@ -62,7 +62,7 @@ const Timecard = () => {
             {row.map((hour, columnIndex) => (
               <div
                 key={columnIndex}
-                className={`px-6 py-4 text-black border-2 border-black rounded-lg ${
+                className={`px-4 py-4 mx-auto text-black border-2 border-black rounded-lg ${
                   !availability[hour] ? 'bg-transparent' : 'bg-primary text-white'
                 }`}
               >
