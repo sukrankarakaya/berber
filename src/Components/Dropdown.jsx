@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import person from '../assets/person.png';
 
 const Icon = ({ userId }) => {
@@ -70,7 +70,7 @@ const Icon = ({ userId }) => {
       </button> 
       {isOpen && (
         <div ref={dropdownRef} className="absolute z-10 mt-2 w-32  bg-white rounded-md shadow-lg">
-          <a href="/berberprofil" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
+          <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
           <a href="/myappointment" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</a>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</a>
           <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>

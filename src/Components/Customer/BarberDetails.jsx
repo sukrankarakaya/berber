@@ -9,7 +9,6 @@ import ServicesCard from "./ServicesCard";
 import PersonelCard from "./PersonelCard";
 import NavbarCustomer from "./NavbarCustomer";
 const BarberDetails = () => {
-  //   const { barberId } = useParams();
 
   const workingHours = [
     { day: "Pazartesi", hours: "08:30 - 20:00" },
@@ -73,7 +72,6 @@ const BarberDetails = () => {
                 <div className="flex flex-row items-center gap-2 ">
                   <table className="w-[590px]  ">
                     <tbody>
-                      {/* Her gün için bir satır oluşturuyoruz */}
                       {workingHours.map(({ day, hours }, index) => (
                         <tr key={index} className="  ">
                           <td className=" w-44 p-1 border-b border-secondary ">
