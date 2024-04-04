@@ -1,6 +1,0 @@
-@Barber_HostAddress = http://localhost:5252
-
-GET {{Barber_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
