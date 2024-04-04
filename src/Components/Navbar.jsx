@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../Components/Logo';
-import Dropdown from './Dropdown';
+import Dropdown from './DropdownCustomer';
 import Location from './Location';
 
 
