@@ -70,8 +70,9 @@ const Icon = ({ userId }) => {
       </button> 
       {isOpen && (
         <div ref={dropdownRef} className="absolute z-10 mt-2 w-32  bg-white rounded-md shadow-lg">
-          <a href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</a>
-          <a href="/myappointment" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</a>
+         <Link to="/profile"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</p></Link>
+
+         <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</p></Link>
           <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</a>
           <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
         </div>
