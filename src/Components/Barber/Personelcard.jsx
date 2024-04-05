@@ -36,7 +36,7 @@ const Personelcard = () => {
           <div key={currentPage} className="box-wrapper max-w-lg">
             <div className="bg-white border-2 border-black rounded-lg shadow">
               <a href="#">
-                <div style={{ width: '100%', height: '250px', overflow: 'hidden' }}>
+                <div style={{ width: '100%', height: '300px', overflow: 'hidden' }}>
                   <img className="rounded-t-lg" src={personal[currentPage].image} alt={personal[currentPage].name} style={{ width: '100%', height: 'auto' }} />
                 </div>
               </a>

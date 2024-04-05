@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import  location  from '../assets/location.png';
+import location from '../assets/location.png';
 
 const Konum = () => {
   const [userLocation, setUserLocation] = useState('');
@@ -21,9 +21,11 @@ const Konum = () => {
   }, []);
 
   return (
-    <div className="bg-white w-auto p-3 h-10 border border-black rounded-md flex  items-center">
-     <img src={location} alt="" />
-      <span className="text-black">{userLocation}</span>
+    <div className="flex justify-center"> {/* Değişiklik burada */}
+      <div className="bg-white w-auto p-3 h-10 border border-black rounded-md flex items-center">
+        <img src={location} alt="" />
+        <span className="text-black">{userLocation}</span>
+      </div>
     </div>
   );
 };

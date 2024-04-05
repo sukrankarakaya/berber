@@ -20,27 +20,27 @@
         "price": "310"
     },
     {
-        "name": "saç kesimi",
+        "name": "manikür",
+        "price": "80"
+    },
+    {
+        "name": "pedikür",
+        "price": "90"
+    },
+    {
+        "name": "kaş tasarımı",
+        "price": "70"
+    },
+    {
+        "name": "cilt bakımı",
+        "price": "200"
+    },
+    {
+        "name": "güzellik masajı",
         "price": "150"
     },
     {
-        "name": "sakal kesimi",
-        "price": "50"
-    },
-    {
-        "name": "damat traşı",
-        "price": "10000"
-    },
-    {
-        "name": "fön",
-        "price": "10"
-    },
-    {
-        "name": "maske",
-        "price": "210"
+        "name": "saç boyama",
+        "price": "250"
     }
-
-    
-
-    
 ]
