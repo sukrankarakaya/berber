@@ -2,9 +2,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoCustomer from '../Customer/LogoCustomer';
-import DropdownCustomer from '../Customer/DropdownCustomer';
 import LocationCustomer from '../Customer/LocationCustomer';
-
+import DropdownCustomer from "../Customer/DropdownCustomer"
 
 const NavbarCustomer= () => {
   const navigate = useNavigate();
@@ -22,8 +21,7 @@ const NavbarCustomer= () => {
         <LocationCustomer/>
         <div className="flex items-center ">
           <div className="w-6 h-6 "></div>
-          
-          <DropdownCustomer />
+          <DropdownCustomer/>
         </div>
       </div>
     </div>

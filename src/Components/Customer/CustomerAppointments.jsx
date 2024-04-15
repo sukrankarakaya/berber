@@ -13,7 +13,7 @@ console.log(appointments);
 
   return (
     <div className="flex flex-col bg-light ">
-      <NavbarCustomer />
+      
 
       <div className="flex flex-col mt-28 justify-center ">
         <label htmlFor="" className="text-2xl font-bold px-24 py-4">
@@ -37,7 +37,7 @@ console.log(appointments);
       </div>
 
       <div className=" flex flex-col mt-16"></div>
-      <Footer />
+     
     </div>
   );
 };

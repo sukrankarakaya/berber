@@ -7,7 +7,6 @@ import NavbarCustomer from "./NavbarCustomer";
 const AllBarber = () => {
   return (
     <div>
-      <NavbarCustomer/>
       <div className="flex flex-col ">
         <div className="flex flex-col gap-8 py-28 min-h-screen bg-light items-center">
           <Search />
@@ -16,7 +15,6 @@ const AllBarber = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
