@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
+import { registerBarber } from "../../Store/barberRegistrationSlice";
 
 const BarberRegisterForm = () => {
+  const dispatch = useDispatch();
+  const registrationStatus = useSelector(state => state.barberRegistration);
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -19,25 +24,17 @@ const BarberRegisterForm = () => {
       taxNumber: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Kullanıcı adı gerekli"),
-      businessName: Yup.string().required("İşletme adı gerekli"),
-      phone: Yup.string().required("Telefon numarası gerekli"),
-      email: Yup.string()
-        .email("Geçersiz email adresi")
-        .required("Email gerekli"),
-      password: Yup.string().required("Şifre gerekli"),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref("password"), null], "Şifreler eşleşmiyor")
-        .required("Şifrenin tekrarı gerekli"),
-      city: Yup.string().required("Şehir gerekli"),
-      district: Yup.string().required("İlçe gerekli"),
-      street: Yup.string().required("Sokak/Cadde gerekli"),
-      buildingNumber: Yup.string().required("Bina numarası gerekli"),
-      doorNumber: Yup.string().required("Kat/Kapı numarası gerekli"),
-      taxNumber: Yup.string().required("Verigi numarası gerekli"),
+      // Validation schema...
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      try {
+        await dispatch(registerBarber(values)).unwrap();
+        // Kayıt başarılı olduğunda yapılacak işlemler
+        console.log("Berber başarıyla kaydedildi!");
+      } catch (error) {
+        // Kayıt sırasında hata oluştuğunda yapılacak işlemler
+        console.error("Berber kaydedilirken bir hata oluştu:", error);
+      }
     },
   });
   return (
