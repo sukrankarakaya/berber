@@ -73,7 +73,7 @@ const BestBarbers = () => {
   <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5  bg-slate-50 border-2 border-slate-200 rounded-xl">
 
       {bestBarbers.map((barber) => (
-        <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">
+        <Link to={`/${barber.id}`} key={barber.id} className="bg-transparent">
            
         <div key={barber.id} className="flex  flex-row  h-[450px]    text-gray-700 rounded-xl">
           <div className="flex flex-col gap-4 p-8">

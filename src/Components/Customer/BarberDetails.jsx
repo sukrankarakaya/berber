@@ -21,7 +21,6 @@ const BarberDetails = () => {
   ];
   return (
     <div className="bg-light">
-      <NavbarCustomer />
       <div className="flex flex-col pt-24 px-44  ">
         <div className="w-[1050px] bg-white border-2 border-slate-200 rounded-lg p-3">
           <h1 className=" text-2xl font-bold">
@@ -113,7 +112,6 @@ const BarberDetails = () => {
 
       </div>
 
-      <Footer />
     </div>
   );
 };

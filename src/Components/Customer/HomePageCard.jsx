@@ -2,10 +2,15 @@ import React from "react";
 import BarberCard from "./BarberCard";
 import BestBarbers from "./BestBarbers";
 import { RxExternalLink } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import Search from "./Search";
 
 const HomePageCard = () => {
   return (
+
+    <div className="flex flex-col gap-8 py-28 min-h-screen bg-light items-center">
+      <Search />
+       
     <div className="felx justify-center items-center w-[1200px]  ">
       <div className="flex flex-row gap-16">
         <div className="flex flex-col gap-4 w-full">
@@ -38,6 +43,8 @@ const HomePageCard = () => {
           </button>
         </Link>
       </div>
+    </div>
+  
     </div>
   );
 };
