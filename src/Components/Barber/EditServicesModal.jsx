@@ -1,5 +1,5 @@
-// EditProfileModal.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import personal from "../../mock/services.json";
 
 const EditProfileModal = ({
   isOpen,
@@ -8,25 +8,25 @@ const EditProfileModal = ({
   updateUserDetails,
 }) => {
   const [editedDetails, setEditedDetails] = useState(userDetails);
+  const [serviceOptions, setServiceOptions] = useState([]);
+
+  useEffect(() => {
+    // Fetch service options from JSON file
+    setServiceOptions(personal.map(person => person.name));
+  }, []);
 
   const handleInputChange = (e) => {
     if (e.target.type === 'file') {
-      // Dosya seçiciden gelen dosya bilgisini al
       const file = e.target.files[0];
-      // Dosyayı okumak için FileReader kullan
       const reader = new FileReader();
-      // Dosya okunduğunda yapılacak işlemi belirle
       reader.onloadend = () => {
-        // FileReader'dan gelen veriyi state'e ayarla
         setEditedDetails({
           ...editedDetails,
           photo: reader.result,
         });
       };
-      // Dosyayı oku
       reader.readAsDataURL(file);
     } else {
-      // Dosya seçiciden başka bir inputtan gelen değerleri al
       setEditedDetails({
         ...editedDetails,
         [e.target.name]: e.target.value,
@@ -36,18 +36,14 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Güncellenmiş detayları kontrol et
-    if (editedDetails.name.trim() === "" || editedDetails.surname.trim() === "") {
-      alert("Lütfen isim ve soyisim alanlarını doldurun.");
+    if (!editedDetails || !editedDetails.serviceName || !editedDetails.price) {
+      alert("Lütfen tüm alanları doldurun.");
     } else {
-      // Güncellenmiş detayları ana bileşene ileterek kullanıcı bilgilerini güncelle
       updateUserDetails(editedDetails);
       onClose();
-      // Başarılı güncelleme mesajını göster
       alert("Bilgileriniz başarıyla güncellendi.");
     }
   };
-  
 
   if (!isOpen) {
     return null;
@@ -60,28 +56,23 @@ const EditProfileModal = ({
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             Bilgilerimi Düzenle
           </h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-3">
-            <input
-              type="text"
-              name="name"
-              placeholder="İsim"
-              value={editedDetails.name || ""}
-              onChange={handleInputChange}
-              className="mt-2  p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none"
-            />
-            <input
-              type="text"
-              name="surname"
-              placeholder="Soyisim"
-              value={editedDetails.surname || ""}
+          <form onSubmit={handleSubmit} className=" flex flex-col gap-3 p-3">
+            <select
+              name="serviceName"
+              value={editedDetails?.serviceName || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none"
-            />
-            {/* Dosya seçici alanı */}
+            >
+              <option value="">Hizmet Seçiniz</option>
+              {serviceOptions.map((option, index) => (
+                <option key={index} value={option}>{option}</option>
+              ))}
+            </select>
             <input
-              type="file"
-              name="photo"
-              accept="image/*" // Sadece resim dosyalarını kabul et
+              type="text"
+              name="price"
+              placeholder="Fiyatı"
+              value={editedDetails?.price || ""}
               onChange={handleInputChange}
               className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none"
             />

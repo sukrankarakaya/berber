@@ -13,6 +13,7 @@ import Dashboard from "./Layout/Dashboard";
 import HomePageCard from "./Components/Customer/HomePageCard";
 
 
+
 function App() {
   return (
     <div className="font-quicksand">
@@ -42,6 +43,7 @@ function App() {
         <Route path="/profile" element={<ProfileCustomer/>}/> */}
         <Route path="*" element="" />
       </Routes>
+      
     </div>
   );
 }

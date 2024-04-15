@@ -17,35 +17,32 @@ const BarberProfile = () => {
   }, []);
 
   return (
-    <div className='bg-light min-h-screen'>
+    <div className='bg-light min-h-screen flex flex-col'>
       <Navbar />
       <div className='pt-24 pb-8 px-4'>
         {barberData && (
-          <div className='max-w-4xl mx-auto border-2 border-black bg-white rounded-lg overflow-hidden shadow-lg'>
-            <img src={barberData.photo} alt={barberData.name} className='w-full h-auto' />
-            <div className='px-6 py-4 '>
-              <h1 className='text-3xl font-bold mb-2'>{barberData.name}</h1>
-              <div className='flex items-center mb-4'>
-                <BsFillStarFill className='text-yellow-600' />
-                <p className='ml-2'>{barberData.rating}</p>
+          <div className=' mx-auto'>
+            {/* berber için */}
+            <div className='grid grid-cols-3 gap-8'>
+              <div className='bg-white border-2 border-black rounded-lg overflow-hidden shadow-lg'>
+                <img src={barberData.photo} alt={barberData.name} className='w-full h-auto' />
+                <div className='px-6 py-4 '>
+                  <h1 className='text-3xl font-bold mb-2'>{barberData.name}</h1>
+                  <div className='flex items-center mb-4'>
+                    <BsFillStarFill className='text-yellow-600' />
+                    <p className='ml-2'>{barberData.rating}</p>
+                  </div>
+                  <div className='flex items-center'>
+                    <FaMapMarkerAlt className='text-red-600' />
+                    <p className='ml-2'>{barberData.location}</p>
+                  </div>
+                </div>
               </div>
-              <div className='flex items-center'>
-                <FaMapMarkerAlt className='text-red-600' />
-                <p className='ml-2'>{barberData.location}</p>
-              </div>
+              <Personelcard />
+              <Services />
             </div>
           </div>
         )}
-      </div>
-      <div className='max-w-4xl mx-auto justify-around flex flex-wrap pb-10'>
-        <div className='flex justify-between gap-8 w-full'>
-          <div className='w-1/2'>
-            <Personelcard />
-          </div>
-          <div className='w-1/2'>
-            <Services />
-          </div>
-        </div>
       </div>
       <Footer />
     </div>
