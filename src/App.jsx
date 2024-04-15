@@ -12,6 +12,7 @@ import ProfileCustomer from "./Components/Customer/ProfileCustomer";
 import BarberProfile from "./Components/Barber/BarberProfile"
 
 
+
 function App() {
   return (
     <div className="font-quicksand">
@@ -35,6 +36,7 @@ function App() {
        
         <Route path="*" element="" />
       </Routes>
+      
     </div>
   );
 }
