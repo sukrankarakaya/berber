@@ -22,10 +22,30 @@ const BarberRegisterForm = () => {
       confirmPassword: "",
       businessName: "",
       taxNumber: "",
+      doorNumber:"",
+      buildingNumber:"",
     },
     validationSchema: Yup.object({
-      // Validation schema...
+      username: Yup.string().required("Kullanıcı adı gerekli"),
+      businessName: Yup.string().required("İşletme adı gerekli"),
+      taxNumber: Yup.string().required("Vergi numarası gerekli"),
+      phone: Yup.string().required("Telefon numarası gerekli"),
+      email: Yup.string()
+        .email("Geçersiz email adresi")
+        .required("Email gerekli"),
+      password: Yup.string().required("Şifre gerekli"),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Şifreler eşleşmiyor")
+        .required("Şifrenin tekrarı gerekli"),
+      city: Yup.string().required("Şehir gerekli"),
+      district: Yup.string().required("İlçe gerekli"),
+      street: Yup.string().required("Sokak/Cadde gerekli"),
+      buildingNumber: Yup.string().required("Bina numarası gerekli"),
+      doorNumber: Yup.string().required("Kat/Kapı numarası gerekli"),
     }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
     onSubmit: async (values) => {
       try {
         await dispatch(registerBarber(values)).unwrap();
@@ -253,8 +273,7 @@ const BarberRegisterForm = () => {
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Bina No"
                 />
-                {formik.touched.buildingNumber &&
-                formik.errors.buildingNumber ? (
+                {formik.touched.buildingNumber && formik.errors.buildingNumber ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
