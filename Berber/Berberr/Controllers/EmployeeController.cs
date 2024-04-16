@@ -1,0 +1,48 @@
+﻿using Barber.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+/*
+namespace Barber.Controllers
+{
+    
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
+    {
+        private readonly BarberDbContext _context;
+
+        public EmployeeController(BarberDbContext context)
+        {
+            _context = context;
+        }
+        [HttpGet("get - employees")]
+        public IActionResult GetEmployees()
+        {
+            try
+            {
+                var employees = _context.Employees.ToList();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Hata: " + ex.Message);
+            }
+        }
+
+        [HttpPost("create - employees")]
+        public IActionResult EmployeeCreate([FromBody] Employees employeeData)
+        {
+            if(employeeData == null)
+            {
+                return BadRequest("Geçersiz veri: EmployeeCreate verisi boş.");
+            }
+            try
+            {
+                var newEmployee = new Employees
+                {
+                    
+                };
+            }
+        }
+    }
+}
+    */
