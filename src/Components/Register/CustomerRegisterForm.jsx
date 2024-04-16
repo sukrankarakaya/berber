@@ -4,8 +4,15 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoIosArrowUp, IoMdArrowDropup } from "react-icons/io";
+import { useDispatch } from "react-redux";
 
 const CustomerRegisterForm = () => {
+
+  const dispatch = useDispatch();
+
+
+
+  
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -35,7 +42,23 @@ const CustomerRegisterForm = () => {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+     
+      
     },
+
+    onSubmit: async (values) => {
+      try {
+        await dispatch(registerCustomer(values)).unwrap();
+        console.log("Müşteri kaydedildi!");
+      } catch (error) {
+        console.error("Müşteri kaydedilirken bir hata oluştu:", error);
+      }
+    },
+
+
+
+
+
   });
   return (
     <div className="flex flex-col justify-center  items-center gap-3  w-[400px] h-[300px]">
