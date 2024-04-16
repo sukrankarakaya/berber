@@ -1,8 +1,7 @@
-// barberRegistrationSlice.js
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// API'ye bağlanmak için bir Async Thunk oluşturuyoruz
 export const registerBarber = createAsyncThunk(
   "barberRegistration/register",
   async (userData, thunkAPI) => {

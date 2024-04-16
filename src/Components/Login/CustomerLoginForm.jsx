@@ -15,6 +15,8 @@ const CustomerLoginForm = () => {
     validationSchema: Yup.object({
       username: Yup.string().required("Kullanıcı adı gerekli"),
       password: Yup.string().required("Şifre gerekli"),
+
+      
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -77,7 +79,7 @@ const CustomerLoginForm = () => {
           </form>
         </div>
         <label htmlFor="" className="hover:border-b  flex">
-          Şifremi Unuttum?{" "}
+          Şifremi Unuttum?
           <Link to="/register">
             <button className="text-secondary pl-3"> Kayıt Ol</button>
           </Link>

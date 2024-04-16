@@ -14,7 +14,7 @@ const Dashboard = () => {
       <NavbarCustomer/>
      
       
-      <Outlet />
+       <Outlet />
        <Footer/>
     </div>
   );
