@@ -1,0 +1,7 @@
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.csproj.AssemblyReference.cache
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.AssemblyInfoInputs.cache
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.AssemblyInfo.cs
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.csproj.CoreCompileInputs.cache
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ucark\OneDrive\Masaüstü\Berber\Berberr\Berberr\obj\Debug\net8.0\Berberr.MvcApplicationPartsAssemblyInfo.cache
