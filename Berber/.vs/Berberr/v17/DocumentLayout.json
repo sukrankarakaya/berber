@@ -1,18 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ucark\\Desktop\\Berber\\",
+  "WorkspaceRootPath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\berber\\berberr\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\berberortak\\berber\\berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\barberdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\berber\\berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\desktop\\berber\\berberr\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|c:\\users\\ucark\\onedrive\\belgeler\\github\\berberortak\\berber\\berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907C618C-F7E8-43C7-AD02-B5A8A8B199BB}|Berberr\\Barber.csproj|solutionrelative:berberr\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,40 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Program.cs",
-              "RelativeDocumentMoniker": "Berberr\\Program.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Program.cs",
-              "RelativeToolTip": "Berberr\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "BarberDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\BarberDbContext.cs",
+              "RelativeDocumentMoniker": "Berberr\\BarberDbContext.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\BarberDbContext.cs",
+              "RelativeToolTip": "Berberr\\BarberDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-16T07:24:02.007Z",
+              "WhenOpened": "2024-04-16T08:55:03.768Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Startup.cs",
-              "RelativeDocumentMoniker": "Berberr\\Startup.cs",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Startup.cs",
-              "RelativeToolTip": "Berberr\\Startup.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAqwCAAAAAzAAAA",
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Berberr\\Controllers\\EmployeeController.cs",
+              "ToolTip": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Berberr\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAgwC8AAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-16T07:07:14.167Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\appsettings.json",
-              "RelativeDocumentMoniker": "Berberr\\appsettings.json",
-              "ToolTip": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\appsettings.json",
-              "RelativeToolTip": "Berberr\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-16T06:34:17.788Z",
+              "WhenOpened": "2024-04-16T08:48:30.564Z",
               "EditorCaption": ""
             }
           ]

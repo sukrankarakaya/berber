@@ -3179,11 +3179,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Barber.csproj",
+      "projectUniqueName": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\Barber.csproj",
       "projectName": "Barber",
-      "projectPath": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\Barber.csproj",
+      "projectPath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\Barber.csproj",
       "packagesPath": "C:\\Users\\ucark\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ucark\\Desktop\\Berber\\Berberr\\obj\\",
+      "outputPath": "C:\\Users\\ucark\\OneDrive\\Belgeler\\GitHub\\berberOrtak\\Berber\\Berberr\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ucark\\AppData\\Roaming\\NuGet\\NuGet.Config",
