@@ -11,7 +11,7 @@ namespace Barber.BarberDB
             _context = context;
         }
 
-        public void AddEmployee(string name, string lastName, string picture)
+        public void AddEmployee(string name, string lastName, byte[] picture)
         {
             var newEmployee = new Employees
             {
