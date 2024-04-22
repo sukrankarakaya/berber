@@ -1,35 +1,55 @@
-import React, { useState } from "react";
-import LoginModal from "../Login/LoginModal";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { IoIosArrowUp, IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropup } from "react-icons/io";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { getCustomer ,postCustomer} from "../../Services/Customer/customerRegisterServices";
+
+
 
 const CustomerRegisterForm = () => {
+  // const {data:post, error, isLoading }=useGetPostIdQuery(1)
+  //console.log(post , error,isLoading);
 
   const dispatch = useDispatch();
 
+  const [data, setData] = useState("");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
 
+        const response = await getCustomer(); // dispatch(getCustomer()) değil
+        setData(response.data);
+        console.log("Customers fetched:", response);
+      } catch (error) {
+        console.error("hata", error);
+      }
+    };
+    fetchData();
+  }, []);
   
+
+
   const formik = useFormik({
     initialValues: {
-      username: '',
-        city: '',
-        district: '',
-        street: '',
-        phone: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+      userName: "",
+      city: "",
+      district: "",
+      street: "",
+      phone: "",
+      mail: "",
+      password: "",
+      confirmPassword: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Kullanıcı adı gerekli"),
+      userName: Yup.string().required("Kullanıcı adı gerekli"),
       phone: Yup.string().required("Telefon numarası gerekli"),
-      email: Yup.string()
-        .email("Geçersiz email adresi")
-        .required("Email gerekli"),
+      mail: Yup.string()
+        .email("Geçersiz mail adresi")
+        .required("mail gerekli"),
       password: Yup.string().required("Şifre gerekli"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Şifreler eşleşmiyor")
@@ -37,29 +57,25 @@ const CustomerRegisterForm = () => {
       city: Yup.string().required("Şehir gerekli"),
       district: Yup.string().required("İlçe gerekli"),
       street: Yup.string().required("Sokak/Cadde gerekli"),
-      buildingNumber: Yup.string().required("Bina numarası gerekli"),
-      doorNumber: Yup.string().required("Kat/Kapı numarası gerekli"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-     
-      
-    },
-
     onSubmit: async (values) => {
+     
+      // alert(JSON.stringify(formData, null, 2));
+      
       try {
-        await dispatch(registerCustomer(values)).unwrap();
-        console.log("Müşteri kaydedildi!");
+        const response = await postCustomer(values);
+        console.log("Customer created:", response);
+        // Success message to the user
       } catch (error) {
-        console.error("Müşteri kaydedilirken bir hata oluştu:", error);
+        console.error("Error creating customer:", error);
+        // Error message to the user
       }
     },
-
-
-
-
-
+    
   });
+
+  // console.log("dirty", formik.dirty, "errors", formik.errors, "isValid", formik.isValid)
+
   return (
     <div className="flex flex-col justify-center  items-center gap-3  w-[400px] h-[300px]">
       <div className="flex flex-col p-3 ">
@@ -72,38 +88,38 @@ const CustomerRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="username"
+                  name="userName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.username}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  value={formik.values.userName}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary-50 border-2 border-secondary bg-transparent"
                   placeholder="Kullanıcı Adı"
                 />
-                {formik.touched.username && formik.errors.username ? (
+                {formik.touched.userName && formik.errors.userName ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.username}
+                      {formik.errors.userName}
                     </div>
                   </div>
                 ) : null}
               </div>
-              
+
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="email"
+                  name="mail"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.email}
+                  value={formik.values.mail}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="E-Mail"
                 />{" "}
-                {formik.touched.email && formik.errors.email ? (
+                {formik.touched.mail && formik.errors.mail ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.email}
+                      {formik.errors.mail}
                     </div>
                   </div>
                 ) : null}
@@ -150,7 +166,7 @@ const CustomerRegisterForm = () => {
             </div>
 
             <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
                 <input
                   type="text"
                   name="phone"
@@ -226,7 +242,6 @@ const CustomerRegisterForm = () => {
                   </div>
                 ) : null}
               </div>
-             
             </div>
           </div>
           <button
@@ -236,7 +251,6 @@ const CustomerRegisterForm = () => {
             Kayıt Ol
           </button>
         </form>
-
       </div>
 
       <label htmlFor="" className="hover:border-b  flex">
