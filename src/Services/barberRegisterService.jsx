@@ -2,7 +2,7 @@ import axios from "axios";
 import { registerBarberSuccess, registerBarberFailure } from "../Services/actions";
 
 const barberRegisterService = axios.create({
-  baseURL: "https://localhost:7022/api/Barber/create-barber",
+  baseURL: "https://localhost:7022/api/Barber/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -10,7 +10,7 @@ const barberRegisterService = axios.create({
 
 export const registerBarber = (data) => async (dispatch) => {
   try {
-    const response = await barberRegisterService.post("", data);
+    const response = await barberRegisterService.post("create-barber", data);
     dispatch(registerBarberSuccess(response.data));
   } catch (error) {
     dispatch(registerBarberFailure(error));

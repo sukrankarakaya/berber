@@ -27,11 +27,20 @@ const BarberRegisterForm = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Kullanıcı adı zorunludur"),
-      mail: Yup.string()
-        .email("Geçerli bir e-posta adresi girin")
-        .required("E-posta zorunludur"),
+      mail: Yup.string().email("Geçerli bir e-posta adresi girin").required("E-posta zorunludur"),
       taxNo: Yup.string().required("Vergi numarası zorunludur"),
       buildingNo: Yup.string().required("Bina numarası zorunludur"),
+      city: Yup.string().required("Bina numarası zorunludur"),
+      district: Yup.string().required("Bina numarası zorunludur"),
+      street: Yup.string().required("Bina numarası zorunludur"),
+      phone: Yup.string().required("Bina numarası zorunludur"),
+      password: Yup.string().required("Bina numarası zorunludur"),
+      confirmPassword: Yup.string().required("Bina numarası zorunludur"),
+      WorkPlaceName: Yup.string().required("Bina numarası zorunludur"),
+      doorNumber: Yup.string().required("Bina numarası zorunludur"),
+
+
+
     }),
 
     onSubmit: async (value) => {
@@ -294,6 +303,7 @@ const BarberRegisterForm = () => {
           <button
             type="submit"
             className="w-[300px] h-12 rounded-[50px] bg-secondary text-light"
+            
           >
             Kayıt Ol
           </button>
@@ -302,7 +312,7 @@ const BarberRegisterForm = () => {
 
       <label htmlFor="" className="hover:border-b  flex">
         Zaten hesabım var.
-        <Link to="/login">
+        <Link to="/berberlogin">
           <button className=" text-secondary pl-3 "> Giriş Yap</button>
         </Link>
       </label>
