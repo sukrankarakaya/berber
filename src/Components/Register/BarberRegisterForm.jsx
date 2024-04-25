@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { registerBarber } from "../../Services/barberRegisterService"; // Servisten registerBarber'ı içe aktarın
+import { registerBarber } from "../../Store/Barber/BarberRegisterSlice";
+import { getBarber } from "../../Services/Barber/BarberRegisterService";
 
 const BarberRegisterForm = () => {
   const dispatch = useDispatch();
-  const barberRegistration = useSelector((state) => state.barberRegistration);
-
+  const response = dispatch(getBarber());
   const formik = useFormik({
     initialValues: {
       username: "",
