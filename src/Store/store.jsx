@@ -6,8 +6,9 @@ import customerSlice from './Customer/CustomerRegisterSlice';
 
 export const store = configureStore({
   reducer: {
-    appointments: appointmentSlice,
     customer:customerSlice,
+    appointments: appointmentSlice,
+    
 
 
 

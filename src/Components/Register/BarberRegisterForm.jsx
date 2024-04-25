@@ -43,10 +43,10 @@ const BarberRegisterForm = () => {
 
     }),
 
-    onSubmit: async (value) => {
+    onSubmit:  (value) => {
       try {
-        await dispatch(registerBarber(value));
-        console.log("Berber başarıyla kaydedildi!");
+         dispatch(registerBarber(value));
+        console.log("Berber başarıyla kaydedildi!",response);
       } catch (hata) {
         console.error("Berber kaydedilirken bir hata oluştu:", hata);
       }

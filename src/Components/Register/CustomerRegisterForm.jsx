@@ -3,35 +3,49 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getCustomer ,postCustomer} from "../../Services/Customer/customerRegisterServices";
+import {
+  getCustomer,
+  postCustomer,
+} from "../../Services/Customer/customerRegisterServices";
 
-
+import {
+  getCustomers,
+  registerCustomer,
+} from "../../Store/Customer/CustomerRegisterSlice";
 
 const CustomerRegisterForm = () => {
   // const {data:post, error, isLoading }=useGetPostIdQuery(1)
   //console.log(post , error,isLoading);
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.customer // veya state.customerSlice, reducer'ınıza bağlı olarak
+  );
 
   const dispatch = useDispatch();
-
-  const [data, setData] = useState("");
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
+    const response = dispatch(getCustomers());
 
-        const response = await getCustomer(); // dispatch(getCustomer()) değil
-        setData(response.data);
-        console.log("Customers fetched:", response);
-      } catch (error) {
-        console.error("hata", error);
-      }
-    };
-    fetchData();
+    response.then((action) => {
+      const users = action.payload; // payload'daki kullanıcı verilerine erişmek
+      console.log(users); // Tüm kullanıcı verilerini konsola yazdır
+    });
   }, []);
-  
 
+  // useEffect(() => {
+
+  //   // const fetchData = async () => {
+  //   //   try {
+
+  //   //     const response = await getCustomer(); // dispatch(getCustomer()) değil
+  //   //     setData(response.data);
+  //   //     console.log("Customers fetched:", response);
+  //   //   } catch (error) {
+  //   //     console.error("hata", error);
+  //   //   }
+  //   // };
+  //   // fetchData();
+  // }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -47,9 +61,7 @@ const CustomerRegisterForm = () => {
     validationSchema: Yup.object({
       userName: Yup.string().required("Kullanıcı adı gerekli"),
       phone: Yup.string().required("Telefon numarası gerekli"),
-      mail: Yup.string()
-        .email("Geçersiz mail adresi")
-        .required("mail gerekli"),
+      mail: Yup.string().email("Geçersiz mail adresi").required("mail gerekli"),
       password: Yup.string().required("Şifre gerekli"),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref("password"), null], "Şifreler eşleşmiyor")
@@ -59,19 +71,27 @@ const CustomerRegisterForm = () => {
       street: Yup.string().required("Sokak/Cadde gerekli"),
     }),
     onSubmit: async (values) => {
-     
-      // alert(JSON.stringify(formData, null, 2));
-      
+      // alert(JSON.stringify(values, null, 2));
+      // console.log(values);
+
+      // try {
+      //   const response = await postCustomer(values);
+      //   console.log("Customer created:", response);
+      //   // Success message to the user
+      // } catch (error) {
+      //   console.error("Error creating customer:", error);
+      //   // Error message to the user
+      // }
+
       try {
-        const response = await postCustomer(values);
-        console.log("Customer created:", response);
-        // Success message to the user
+        // submit işlemi
+        dispatch(registerCustomer(values));
+        // Yönlendirme işlemi
+        window.location.href = "/login"; // window.location.href ile yönlendirme
       } catch (error) {
         console.error("Error creating customer:", error);
-        // Error message to the user
       }
     },
-    
   });
 
   // console.log("dirty", formik.dirty, "errors", formik.errors, "isValid", formik.isValid)
