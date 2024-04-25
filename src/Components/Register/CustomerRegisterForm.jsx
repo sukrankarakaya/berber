@@ -23,29 +23,15 @@ const CustomerRegisterForm = () => {
   );
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    const response = dispatch(getCustomers());
-
-    response.then((action) => {
-      const users = action.payload; // payload'daki kullanıcı verilerine erişmek
-      console.log(users); // Tüm kullanıcı verilerini konsola yazdır
-    });
-  }, []);
-
   // useEffect(() => {
+  //   const response = dispatch(getCustomers());
 
-  //   // const fetchData = async () => {
-  //   //   try {
-
-  //   //     const response = await getCustomer(); // dispatch(getCustomer()) değil
-  //   //     setData(response.data);
-  //   //     console.log("Customers fetched:", response);
-  //   //   } catch (error) {
-  //   //     console.error("hata", error);
-  //   //   }
-  //   // };
-  //   // fetchData();
+  //   response.then((action) => {
+  //     const users = action.payload; // payload'daki kullanıcı verilerine erişmek
+  //     console.log(users); // Tüm kullanıcı verilerini konsola yazdır
+  //   });
   // }, []);
+
 
   const formik = useFormik({
     initialValues: {

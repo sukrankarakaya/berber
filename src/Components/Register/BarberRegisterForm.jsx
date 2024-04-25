@@ -1,15 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { registerBarber } from "../../Store/Barber/BarberRegisterSlice";
-import { getBarber } from "../../Services/Barber/BarberRegisterService";
+import { getBarber, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
+import { Navigate } from "react-router-dom";
+
+
+ 
+
+
 
 const BarberRegisterForm = () => {
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.barber // veya state.customerSlice, reducer'ınıza bağlı olarak
+  );
   const dispatch = useDispatch();
-  const response = dispatch(getBarber());
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const response = dispatch(getBarber());
+
+    response.then((action) => {
+      const users = action.payload; // payload'daki kullanıcı verilerine erişmek
+      console.log(users); // Tüm kullanıcı verilerini konsola yazdır
+    });
+  }, []);
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -46,7 +63,8 @@ const BarberRegisterForm = () => {
     onSubmit:  (value) => {
       try {
          dispatch(registerBarber(value));
-        console.log("Berber başarıyla kaydedildi!",response);
+        console.log("Berber başarıyla kaydedildi!");
+        navigate("/login");
       } catch (hata) {
         console.error("Berber kaydedilirken bir hata oluştu:", hata);
       }
