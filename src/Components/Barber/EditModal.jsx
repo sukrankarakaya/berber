@@ -1,5 +1,9 @@
 // EditProfileModal.js
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {getEmploy,registerEmploy} from '../../Store/Barber/EmployeRegisterSlice';
+import { CiEdit } from 'react-icons/ci';
+
 
 const EditProfileModal = ({
   isOpen,
@@ -7,26 +11,13 @@ const EditProfileModal = ({
   userDetails,
   updateUserDetails,
 }) => {
-  const [editedDetails, setEditedDetails] = useState(userDetails);
+  const dispatch = useDispatch();
+  const [editedDetails, setEditedDetails] = useState(userDetails || {}); // Kullanıcı detayları tanımlı değilse boş bir nesneyle başlatın
 
   const handleInputChange = (e) => {
     if (e.target.type === 'file') {
-      // Dosya seçiciden gelen dosya bilgisini al
-      const file = e.target.files[0];
-      // Dosyayı okumak için FileReader kullan
-      const reader = new FileReader();
-      // Dosya okunduğunda yapılacak işlemi belirle
-      reader.onloadend = () => {
-        // FileReader'dan gelen veriyi state'e ayarla
-        setEditedDetails({
-          ...editedDetails,
-          photo: reader.result,
-        });
-      };
-      // Dosyayı oku
-      reader.readAsDataURL(file);
+      // Dosya işleme mantığı
     } else {
-      // Dosya seçiciden başka bir inputtan gelen değerleri al
       setEditedDetails({
         ...editedDetails,
         [e.target.name]: e.target.value,
@@ -36,25 +27,27 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Güncellenmiş detayları kontrol et
-    if (editedDetails.name.trim() === "" || editedDetails.surname.trim() === "") {
+    if (!editedDetails.name || !editedDetails.surname) { // İsim ve soyisim alanlarının boş veya tanımsız olup olmadığını kontrol edin
       alert("Lütfen isim ve soyisim alanlarını doldurun.");
     } else {
-      // Güncellenmiş detayları ana bileşene ileterek kullanıcı bilgilerini güncelle
-      updateUserDetails(editedDetails);
-      onClose();
-      // Başarılı güncelleme mesajını göster
-      alert("Bilgileriniz başarıyla güncellendi.");
+      dispatch(registerEmploy(editedDetails))
+        .then((response) => {
+          console.log("Kullanıcı detayları başarıyla kaydedildi:", response);
+          onClose();
+          alert("Bilgileriniz başarıyla güncellendi.");
+        })
+        .catch((error) => {
+          console.error("Kullanıcı detayları kaydedilirken bir hata oluştu:", error);
+          alert("Bilgileriniz güncellenirken bir hata oluştu.");
+        });
     }
   };
-  
 
   if (!isOpen) {
     return null;
   }
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-65 overflow-y-auto h-full w-full">
+    <div className="fixed inset-0 bg-black bg-opacity-65 overflow-y-auto h-full w-full z-20">
       <div className="relative top-36 mx-auto p-5 border border-secondary w-[500px] shadow-2xl rounded-md bg-white">
         <div className="mt-3 text-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -91,6 +84,12 @@ const EditProfileModal = ({
                 className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
               >
                 Güncelle
+              </button>
+              <button
+                type="submit"
+                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
+              >
+                Kaydet
               </button>
               <button
                 onClick={onClose}

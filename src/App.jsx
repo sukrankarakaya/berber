@@ -12,6 +12,8 @@ import ProfileCustomer from "./Components/Customer/ProfileCustomer";
 import Dashboard from "./Layout/Dashboard";
 import HomePageCard from "./Components/Customer/HomePageCard";
 import BerberLoginForm from "./Components/Login/BerberLoginForm";
+import SettingsBarber from "./Components/Barber/SettingsBarber";
+import BarberProfile from "./Components/Barber/BarberProfile";
 
 
 
@@ -22,6 +24,8 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/homeberber" element={<HomeBarber />} />
+        <Route path="/profil" element={<BarberProfile />} />
+        <Route path="/ayarlar" element={<SettingsBarber />} />
         <Route path="/login" element={<LoginModal />} />
         <Route path="/berberlogin" element={<BerberLoginForm />} />
         <Route path="/register" element={<RegisterModal />} />

@@ -18,8 +18,8 @@ const Navbar = () => {
         <div className="flex items-center px-1">
           <Logo />
         </div>
-        <div className="flex items-center flex-grow  justify-end"> {/* Değişiklik burada */}
-          <div className=" "> {/* Değişiklik burada */}
+        <div className="flex items-center flex-grow  justify-end"> 
+          <div className=" "> 
             <Location/>
           </div>
         </div>
