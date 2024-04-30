@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
 import { getBarber, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
-import { Navigate } from "react-router-dom";
+
 
 
  

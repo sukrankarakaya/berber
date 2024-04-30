@@ -5,7 +5,7 @@ import { PiMapPinLineThin } from "react-icons/pi";
 import { Button, Modal, Box } from "@mui/material";
 import { CiCircleRemove } from "react-icons/ci";
 import { InputSwitch } from 'primereact/inputswitch';
-import { DataTable } from 'primereact/datatable';
+import Switch from '@mui/material/Switch';
 
 
 
@@ -13,6 +13,7 @@ import { DataTable } from 'primereact/datatable';
 const BarberDetails = () => {
     const [metaKey, setMetaKey] = useState(false);
     const [selectedCell, setselectedCell] = useState(null);
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
   const [isNameModalOpen, setIsNameModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
@@ -80,7 +81,7 @@ const BarberDetails = () => {
   return (
     <div className="bg-light">
       <div className="flex flex-col pt-24 px-44">
-        <div className="w-[1050px] bg-white border-2 border-slate-200 rounded-lg p-3">
+        <div className="w-[1050px] h-auto bg-white  border-slate-200 rounded-top-lg p-3">
           <h1 className="text-2xl font-bold">
             {barberName}
             <button onClick={openNameModal}><CiEdit size={20} /></button>
@@ -118,36 +119,39 @@ const BarberDetails = () => {
                 </div>
                 {/* açma */}
                 <div>
-                    <label className="text-xl w-full font-bold border-b border-secondary flex flex-row">
-                                    Çalışma Saatleri
-                                    <InputSwitch className="ml-4" checked={metaKey} onChange={(e) => setMetaKey(e.value)} />
-                                </label>
-                                <div className="flex flex-row items-center gap-2">
-                                    <table className="w-[590px]">
-                                        <tbody>
-                                            {workingHours.map(({ day, hours }, index) => (
-                                                <tr key={index} className=" ">
-                                                    <td className="w-44 p-1 border-b border-secondary">
-                                                        {day}
-                                                    </td>
-                                                    <td className="w-44 p-1 border-b border-secondary">
-                                                        {metaKey ? (
-                                                            <input
-                                                                type="text"
-                                                                value={hours}
-                                                                onChange={(e) => handleHoursChange(index, e.target.value)}
-                                                                className="w-full border rounded-md px-3 py-2 mb-4"
-                                                            />
-                                                        ) : (
-                                                            hours
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                    </div>
-                    </div>       
+      {/* İkinci switch */}
+      <div>
+        <label className="text-xl w-full font-bold border-b border-secondary flex flex-row">
+          Çalışma Saatleri
+          <Switch {...label} className="ml-4" defaultChecked={metaKey} onChange={(e) => setMetaKey(e.target.checked)} />
+        </label>
+        <div className="flex flex-row items-center gap-2">
+          <table className="w-[590px]">
+            <tbody>
+              {workingHours.map(({ day, hours }, index) => (
+                <tr key={index} className=" ">
+                  <td className="w-44 p-1 border-b border-secondary">
+                    {day}
+                  </td>
+                  <td className="w-44  border-b border-secondary">
+                    {metaKey ? (
+                      <input
+                        type="text"
+                        value={hours}
+                        onChange={(e) => handleHoursChange(index, e.target.value)}
+                        className="w-full  rounded-md p-1"
+                      />
+                    ) : (
+                      hours
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>     
                 {/* açma-son */}
             </div>
             </div>

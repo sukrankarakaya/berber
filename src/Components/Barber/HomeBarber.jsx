@@ -4,7 +4,9 @@ import Navbar from "./Navbar";
 import Footer from "../Footer";
 import Berberdashboard from './Barberdashboard';
 
+
 const HomeBarber = () => {
+   
   return (
     <div className="bg-light">
       <div>

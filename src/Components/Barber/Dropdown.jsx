@@ -74,6 +74,8 @@ const Icon = ({ userId }) => {
             <Link to="/profil"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</p></Link>
             {/* <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</p></Link> */}
             <Link to="/ayarlar"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</p></Link>
+            <Link to="/yorumlar"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Yorumlar</p></Link>
+
 
             <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
           </div>

@@ -1,25 +1,30 @@
 import axios from "axios";
+import { store } from "../Store/store"; // Redux store'umuza erişim sağlayacağız
+const baseURL = "https://localhost:7022/api";
 
 const apiService = axios.create({
-  baseURL: "https://localhost:7022/api",
+  baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },
-
 });
 
+// apiService.interceptors.request.use(
+//   (config) => {
+//     const token = store.getState().barberLogin.userToken;
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
+
 const postData = async ({ url, data = null, config = {} }) => {
-  // eslint-disable-next-line no-useless-catch
   try {
-    const response = await apiService({
-      url,
-      method: "POST",
-      data,
-      ...config,
-    });
+    const response = await apiService.post(url, data, config);
     return response.data;
   } catch (error) {
-
     console.error("Error posting data:", error.message);
     throw error;
   }
