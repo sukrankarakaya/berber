@@ -1,22 +1,28 @@
-import React from 'react'
-import cities from "../mock/city.json"
-const CitySelect = () => {
+import React from 'react';
+import cities from '../mock/city.json';
+
+const CitySelect = ({ onSelect }) => {
+  const handleSelectChange = (event) => {
+    const selectedCity = event.target.value;
+    onSelect(selectedCity); // Call the onSelect callback with the selected city
+  };
+
   return (
     <div>
-        
-        <select
+      <select
         id="small"
-        className="block w-full p-2  text-sm border border-secondary rounded-lg outline-none "
+        className="block w-full p-2 text-sm border border-secondary-200 rounded-lg outline-none"
+        onChange={handleSelectChange}
       >
-        <option className="">Seçiniz</option>
+        <option value="">Seçiniz</option>
         {cities.map((city) => (
-          <option className="" value={city.name}>
+          <option key={city.id} value={city.name}>
             {city.name}
           </option>
         ))}
       </select>
     </div>
-  )
-}
+  );
+};
 
-export default CitySelect
+export default CitySelect;

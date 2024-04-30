@@ -46,11 +46,12 @@ const Icon = ({ userId }) => {
   return (
     <div className="relative">
       <button
-        className="flex items-center text-sm pe-1 pr-4 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+        className="flex items-center text-sm pe-1 pr-4 font-medium text-white rounded-full hover:text-gray-100 md:me-0  focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
         type="button"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" />
+        {/* <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" /> */}
+        <img src="../../../public/Image/user.jpg " alt=""  className='w-10 h-10 me-2 rounded-full'/>
         <span>{userData?.name || 'Şükran'}</span>
         <svg
           className="w-2.5 h-2.5 ms-3"
@@ -70,11 +71,11 @@ const Icon = ({ userId }) => {
       </button> 
       {isOpen && (
         <div ref={dropdownRef} className="absolute z-10 mt-2 w-32  bg-white rounded-md shadow-lg">
-         <Link to="/profile"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Profilim</p></Link>
+         <Link to="/profile"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray">Profilim</p></Link>
 
-         <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</p></Link>
-          <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</a>
-          <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
+         <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray">Randevularım</p></Link>
+          <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray">Ayarlar</a>
+          <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray">Çıkış Yap</a>
         </div>
       )}
     </div>

@@ -2,17 +2,20 @@ import React from "react";
 import BarberCard from "./BarberCard";
 import BestBarbers from "./BestBarbers";
 import { RxExternalLink } from "react-icons/rx";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Search from "./Search";
+import { BsArrowRight } from "react-icons/bs";
 
 const HomePageCard = () => {
   return (
 
     <div className="flex flex-col gap-8 py-28 min-h-screen bg-light items-center">
+      <div className=" flex justify-start w-full">
       <Search />
        
-    <div className="felx justify-center items-center w-[1200px]  ">
-      <div className="flex flex-row gap-16">
+      </div>
+    <div className="felx justify-center items-center">
+      <div className="flex flex-row gap-12">
         <div className="flex flex-col gap-4 w-full">
           <label htmlFor="" className="text-2xl">
             En Yakın Berber Dükkanları
@@ -20,7 +23,7 @@ const HomePageCard = () => {
           <BarberCard />
         </div>
       </div>
-      <div className="flex flex-col gap-4 items-start ">
+      <div className="flex flex-col gap-4 items-start w-full py-8 ">
         <label htmlFor="" className="text-2xl">
           En Popüler Berberler
         </label>
@@ -36,10 +39,11 @@ const HomePageCard = () => {
           <BarberCard />
         </div>
       </div>
-      <div className="flex flex-row  p-6  float-end">
+      <div className="flex flex-row  p-6 px-12  float-end">
         <Link to="/home/all">
-          <button className="flex flex-row  justify-center items-center gap-3 text-xl text-slate-50 w-48 h-16 rounded-xl bg-secondary hover:bg-opacity-95 hover:text-slate-100">
-            Hepsini Gör <RxExternalLink fontSize={25} />
+          <button className="bg-transparent text-xl text-gray-700 hover:text-secondary hover:border-b-[1px] hover:border-secondary flex items-center ">
+            Hepsini Gör 
+          <BsArrowRight className=" pl-2 w-7 h-7" />
           </button>
         </Link>
       </div>

@@ -21,7 +21,7 @@ const Konum = () => {
   }, []);
 
   return (
-    <div className="bg-white w-auto p-3 h-10 border border-black rounded-md flex  items-center">
+    <div className="bg-white  p-3 h-10 border border-black rounded-md flex  items-center">
      <img src={location} alt="" />
       <span className="text-black">{userLocation}</span>
     </div>

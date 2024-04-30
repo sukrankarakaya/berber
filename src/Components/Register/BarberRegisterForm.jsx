@@ -20,7 +20,7 @@ const BarberRegisterForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const response = dispatch(getBarber());
+    const response = dispatch(getBarbers());
 
     response.then((action) => {
       const users = action.payload; // payload'daki kullanıcı verilerine erişmek

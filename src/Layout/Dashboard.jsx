@@ -10,12 +10,13 @@ import NavbarCustomer from "../Components/Customer/NavbarCustomer";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col ">
-      <NavbarCustomer/>
-     
-      
-       <Outlet />
-       <Footer/>
+    <div className="flex flex-col bg-light ">
+      <NavbarCustomer />
+
+      <div className=" px-48">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 };
