@@ -1,14 +1,19 @@
-import React from "react";
-import Navbar from "../Barber/Navbar";
-import Footer from "../Footer";
-import { useParams } from "react-router-dom";
-import BestBarbers from "./BestBarbers";
+import React, { useEffect } from "react";
 import { CiPhone } from "react-icons/ci";
 import { PiMapPinLineThin } from "react-icons/pi";
 import ServicesCard from "./ServicesCard";
 import PersonelCard from "./PersonelCard";
-import NavbarCustomer from "./NavbarCustomer";
+import { useParams } from "react-router-dom";
+import { getBarberId } from "../../Store/Barber/BarberRegisterSlice";
+import { useDispatch } from "react-redux";
 const BarberDetails = () => {
+  const { id } = useParams();
+  console.log(id);
+  const dispatch =  useDispatch();
+
+ const barber =dispatch(getBarberId(id))
+  console.log("barber: ",barber);
+
 
   const workingHours = [
     { day: "Pazartesi", hours: "08:30 - 20:00" },
@@ -21,10 +26,10 @@ const BarberDetails = () => {
   ];
   return (
     <div className="bg-light">
-      <div className="flex flex-col pt-24 px-44  ">
+      <div className="flex flex-col pt-24   ">
         <div className="w-[1050px] bg-white border-2 border-slate-200 rounded-lg p-3">
           <h1 className=" text-2xl font-bold">
-            Barberman - Haircut styling & massage
+            {barber}dkjfbvk
           </h1>
 
           <div className="flex flex-crow p-3 gap-4">

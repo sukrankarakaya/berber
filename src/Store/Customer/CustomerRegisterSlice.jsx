@@ -40,6 +40,19 @@ export const getCustomers = createAsyncThunk(
   }
 );
 
+
+export const getBarbers = createAsyncThunk(
+  "barber/getBarbers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("https://localhost:7022/api/Barber/get-barbers");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const customerSlice = createSlice({
   name: "customer",
   initialState: {

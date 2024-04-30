@@ -26,7 +26,7 @@ export const registerBarber = createAsyncThunk(
     }
   }
 );
-export const getBarber = createAsyncThunk(
+export const getBarbers = createAsyncThunk(
     "Barber/get-barbers",
     async (_, { rejectWithValue }) => {
       try {
@@ -37,7 +37,20 @@ export const getBarber = createAsyncThunk(
       }
     }
   );
+
+  export const getBarberId = createAsyncThunk(
+    "Barber/get-barber",
+    async (barberId, { rejectWithValue }) => {
+      try {
+        const response = await axios.get(`${baseURL}/get-barber/${barberId}`);
+        return response.data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
   
+
   const barberSlice = createSlice({
     name: "barber",
     initialState: {
@@ -47,7 +60,14 @@ export const getBarber = createAsyncThunk(
       error: null,
       success: false,
     },
-    reducers: {},
+    reducers: {
+
+      setInputValue: (state, action) => {
+        state.inputValue = action.payload;
+      },
+
+
+    },
     extraReducers: (builder) => {
       builder
         // register user
@@ -65,4 +85,7 @@ export const getBarber = createAsyncThunk(
         });
     },
   });
+
+  
+export const { setInputValue } = barberSlice.actions;
   export default barberSlice.reducer;

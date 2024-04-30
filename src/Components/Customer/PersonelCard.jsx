@@ -7,7 +7,7 @@ const PersonelCard = () => {
       {personals.map((person, id) => (
         <div
           key={person.id}
-          className="flex flex-col gap-4  w-56 h-56 border border-secondary rounded-md items-center hover:border-2 hover:bg-slate-20  "
+          className="flex flex-col gap-4  w-56 h-56 bg-light-200 rounded-md items-center  hover:bg-slate-20  "
         >
           <img
             src={person.photo}

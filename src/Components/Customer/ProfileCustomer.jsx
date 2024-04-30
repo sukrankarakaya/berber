@@ -29,19 +29,19 @@ const ProfileCustomer = () => {
   };
 
   return (
-    <div className="flex flex-col gap-2 bg-light">
-      <NavbarCustomer />
-
-      <div className=" flex flex-row mt-16 px-28 py-12 gap-16">
-        <div className=" flex flex-col w-.5/3  h-96 items-center p-5  border border-secondary rounded-lg  ">
+    <div className="flex flex-col gap-2 bg-light ">
+      <div className=" flex flex-row mt-16  py-12 gap-16">
+        <div className=" flex flex-col w-1/3  h-96 items-center p-5  border border-secondary rounded-lg  ">
           <div className="flex ">
             <img src={user} alt="" className=" w-44 h-44 rounded-full" />
-            <button
+          <div className=" flex items-end justify-end">
+              <button
               htmlFor=""
-              className="absolute top-[270px] left-[300px] bg-secondary text-white rounded-full p-1"
+              className="absolute mx-5 bg-secondary text-white rounded-full p-1"
             >
               <CiEdit size={20} />
             </button>
+          </div>
           </div>
 
           <div className="flex flex-col items-center gap-2 p-5">
@@ -73,7 +73,7 @@ const ProfileCustomer = () => {
             <p className=" text-lg  ">İlçe </p>
             <p className=" text-lg  ">Sokak </p>
           </div>
-          <div className="flex flex-row justify-end">
+          <div className="flex flex-row justify-end p-5">
             <button
               onClick={toggleModal}
               htmlFor=""
@@ -126,7 +126,6 @@ const ProfileCustomer = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
