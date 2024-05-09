@@ -10,10 +10,10 @@ const HomePageCard = () => {
   return (
 
     <div className="flex flex-col gap-8 py-28 min-h-screen bg-light items-center">
-      <div className=" flex justify-start w-full">
+      {/* <div className=" flex justify-start w-full">
       <Search />
        
-      </div>
+      </div> */}
     <div className="felx justify-center items-center">
       <div className="flex flex-row gap-12">
         <div className="flex flex-col gap-4 w-full">

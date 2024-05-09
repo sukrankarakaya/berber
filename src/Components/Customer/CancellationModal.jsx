@@ -24,12 +24,13 @@ const CancellationModal = ({id, isOpen,  onClose}) => {
       <div className="w-96 bg-white p-8 rounded-md">
         <h2 className="text-2xl font-bold mb-4">Randevuyu İptal Etmek İstiyor musunuz?</h2>
         <div className="flex justify-between">
+            <button className="w-20 h-10 bg-gray text-black  hover:bg-opacity-75  rounded-md" onClick={handleClose}>
+            Vazgeç
+          </button>
           <button className="w-20 h-10 bg-secondary text-white rounded-md mr-4 hover:bg-opacity-95 " onClick={handleCancel}>
             İptal Et
           </button>
-          <button className="w-20 h-10 bg-gray-300 text-black bg-gray border border-secondary hover:bg-opacity-75 hover:border-2 rounded-md" onClick={handleClose}>
-            Vazgeç
-          </button>
+        
         </div>
       </div>
     </div>

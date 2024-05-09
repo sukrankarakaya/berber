@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,6 +7,8 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import bestBarbers from "../../mock/bestbarbers.json";
 import barber2 from "/public/Image/barber2.jpg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getBarbers } from "../../Store/Barber/BarberRegisterSlice";
 
 const BestBarbers = () => {
   const settings = {
@@ -28,6 +30,19 @@ const BestBarbers = () => {
     ]
   };
 
+  const [barbers, setBarbers] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBarbers()).then((action) => {
+      const data = action.payload;
+      setBarbers(data);
+     
+
+    });
+  }, [dispatch]);
+  console.log("Best :",barbers);
   return (
   
     <div className="w-full h-full overflow-hidden relative   ">
@@ -70,19 +85,18 @@ const BestBarbers = () => {
 
       `}
     </style>
-  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5  bg-slate-50 border-2 border-slate-200 rounded-xl">
-
-      {bestBarbers.map((barber) => (
-        <Link to={`/${barber.id}`} key={barber.id} className="bg-transparent">
-           
-        <div key={barber.id} className="flex  flex-row  h-[450px]    text-gray-700 rounded-xl">
+    {barbers.length > 0 ? (
+  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5 bg-slate-50 border-2 border-slate-200 rounded-xl">
+    {barbers.map((barber) => (
+      <Link  to={`/home/${barber.id}`}key={barber.id} className="bg-transparent">
+        <div key={barber.id} className="flex flex-row h-[450px] text-gray-700 rounded-xl">
           <div className="flex flex-col gap-4 p-8">
-            <img src={barber2} alt={barber.name} className="h-72 w-[500px] rounded-xl" />
+            <img src={barber2} alt={barber.id} className="h-72 w-[500px] rounded-xl" />
             <div className="flex flex-col gap-3 px-3">
-              <h1 className="font-bold text-xl">{barber.name}</h1>
+              <h1 className="font-bold text-xl">{barber.workPlaceName}</h1>
               <div className="flex items-center gap-1">
                 <FaMapMarkerAlt />
-                <span>{barber.location}</span>
+                <span>{barber.city}</span>
               </div>
               <div className="flex items-center gap-1">
                 <BsFillStarFill className="text-yellow-600" />
@@ -91,9 +105,13 @@ const BestBarbers = () => {
             </div>
           </div>
         </div>
-        </Link>
-      ))}
-    </Slider>
+      </Link>
+    ))}
+  </Slider>
+) : (
+  <p>Barber bulunamadı.</p>
+)}
+
     </div>
   );
 };

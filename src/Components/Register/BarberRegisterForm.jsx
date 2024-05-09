@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { getBarber, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
+import {  getBarbers, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
 
 
 

@@ -13,7 +13,7 @@ const AppointmentCard = ({ appointment }) => {
   return (
     <div className="">
       <div key={id}
-        className="flex flex-row p-3 w-[550px] h-80  border border-secondary rounded-md hover:bg-gray "
+        className="flex flex-row p-3 w-[540px] h-80  border border-secondary rounded-md hover:bg-gray "
       >
         <div className="w-1/2 h-full p-1 rounded-md">
           <img

@@ -14,7 +14,7 @@ const BerberLoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { user, token } = await dispatch(loginAsync({ userName, password }));
+      const { user, token } =  dispatch(loginAsync({ userName, password }));
       console.log("Logged in successfully:", user);
       console.log("Token:", token);
       navigate("/homeberber");

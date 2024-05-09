@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-
-import {
-  registerCustomer,
-} from "../../Store/Customer/CustomerRegisterSlice";
+import { registerCustomer } from "../../Store/Customer/CustomerRegisterSlice";
 
 const CustomerRegisterForm = () => {
-  // const {data:post, error, isLoading }=useGetPostIdQuery(1)
-  //console.log(post , error,isLoading);
-  const { loading, userInfo, error, success } = useSelector(
-    (state) => state.customer // veya state.customerSlice, reducer'ınıza bağlı olarak
-  );
-
+  
+const navigate =useNavigate()
   const dispatch = useDispatch();
   // useEffect(() => {
   //   const response = dispatch(getCustomers());
@@ -68,7 +60,7 @@ const CustomerRegisterForm = () => {
         // submit işlemi
         dispatch(registerCustomer(values));
         // Yönlendirme işlemi
-        Navigate("/login") // window.location.href ile yönlendirme
+        navigate("/login") // window.location.href ile yönlendirme
       } catch (error) {
         console.error("Error creating customer:", error);
       }

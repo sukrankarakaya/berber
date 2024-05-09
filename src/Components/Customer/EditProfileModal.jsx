@@ -92,6 +92,7 @@ const EditProfileModal = ({
                 onChange={handleInputChange}
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none "
               />
+             
               <input
                 type="text"
                 name="street"
@@ -103,17 +104,17 @@ const EditProfileModal = ({
             </div>
 
             <div className="flex  items-center justify-between  p-2">
-              <button
-                type="submit"
-                className=" w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                Güncelle
-              </button>
+             
               <button
                 onClick={onClose}
                 className=" w-24 p-2 bg-gray text-black rounded border-secondary  hover:bg-opacity-75 hover:border-secondary"
               >
                 İptal
+              </button> <button
+                type="submit"
+                className=" w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
+              >
+                Güncelle
               </button>
             </div>
           </form>

@@ -79,11 +79,13 @@ const EditProfileModal = ({
               className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none"
             />
             <div className="flex justify-between pt-10">
+             
+              
               <button
-                type="submit"
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
+                onClick={onClose}
+                className="w-24 p-2 bg-gray text-black rounded border-secondary hover:bg-opacity-75 hover:border-secondary"
               >
-                Güncelle
+                İptal
               </button>
               <button
                 type="submit"
@@ -92,10 +94,10 @@ const EditProfileModal = ({
                 Kaydet
               </button>
               <button
-                onClick={onClose}
-                className="w-24 p-2 bg-gray text-black rounded border-secondary hover:bg-opacity-75 hover:border-secondary"
+                type="submit"
+                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
               >
-                İptal
+                Güncelle
               </button>
             </div>
           </form>

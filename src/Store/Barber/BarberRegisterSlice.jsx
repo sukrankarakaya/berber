@@ -1,23 +1,26 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 const baseURL = "https://localhost:7022/api/Barber";
 
+// Async thunk for registering a new barber
 export const registerBarber = createAsyncThunk(
-  "Barber/create-barber", // action type string
-  async (userData, { rejectWithValue }) => { // Sadece kullanıcı verilerini alıyoruz
+  "barber/registerBarber",
+  async (userData, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
           "Content-Type": "application/json",
         },
       };
-      await axios.post(
+      const response = await axios.post(
         `${baseURL}/create-barber`,
-        userData, // userData doğrudan axios.post'a gönderiliyor
+        userData,
         config
       );
+      return response.data; // Return data upon successful registration
     } catch (error) {
-      // return custom error message from backend if present
+      // Return custom error message from backend if present
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -26,66 +29,126 @@ export const registerBarber = createAsyncThunk(
     }
   }
 );
+
+// Async thunk for fetching all barbers
 export const getBarbers = createAsyncThunk(
-    "Barber/get-barbers",
-    async (_, { rejectWithValue }) => {
-      try {
-        const response = await axios.get(`${baseURL}/get-barbers`);
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+  "barber/getBarbers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${baseURL}/get-barbers`);
+      return response.data; // Return barber data upon successful fetch
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
 
-  export const getBarberId = createAsyncThunk(
-    "Barber/get-barber",
-    async (barberId, { rejectWithValue }) => {
-      try {
+// Async thunk for fetching a specific barber by ID
+export const getBarberById = createAsyncThunk(
+  "barber/getBarberById",
+  async (barberId, { rejectWithValue }) => {
+    try {
+      // BarberId null değilse axios.get çağrısını yap
+      if (barberId !== null) {
         const response = await axios.get(`${baseURL}/get-barber/${barberId}`);
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error.message);
+        return response.data; // Başarılı veri çekme durumunda barber verisini döndür
+      } else {
+        return null; // BarberId null ise null döndür
       }
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-  );
+  }
+);
+
+const barberSlice = createSlice({
+  name: "barber",
+   initialState : {
+    loading: false,
+    userInfo: null,
+    error: null,
+    success: false,
+    filteredList: [],
+     filters : [
+      { name: 'selectedStars', value: null },
+      { name: 'selectedCity', value: null },
+      { name: 'selectedService', value: null },
+      { name: 'minPrice', value: '' },
+      { name: 'maxPrice', value: '' }
+    ],
+    
+  },
   
-
-  const barberSlice = createSlice({
-    name: "barber",
-    initialState: {
-      loading: false,
-      userInfo: null,
-      userToken: null,
-      error: null,
-      success: false,
+  reducers: {
+    setInputValue: (state, action) => {
+      state.inputValue = action.payload;
     },
-    reducers: {
-
-      setInputValue: (state, action) => {
-        state.inputValue = action.payload;
-      },
-
-
+    setFilterValue: (state, action) => {
+      const { selectedStars, selectedCity, selectedService, minPrice, maxPrice } = action.payload;
+      state.filters = {
+        selectedStars,
+        selectedCity,
+        selectedService,
+        minPrice,
+        maxPrice,
+      };
     },
-    extraReducers: (builder) => {
-      builder
-        // register user
-        .addCase(registerBarber.pending, (state) => {
-          state.loading = true;
-          state.error = null;
-        })
-        .addCase(registerBarber.fulfilled, (state, action) => {
-          state.loading = false;
-          state.success = true; // registration successful
-        })
-        .addCase(registerBarber.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
-        });
+    
+    filterBarbers(state) {
+      const { selectedStars, selectedCity, selectedService, minPrice, maxPrice } = state.filters;
+      state.filteredList = state.list.filter(barber => {
+        const matchesStars = !selectedStars || barber.rating === selectedStars;
+        const matchesCity = !selectedCity || barber.city === selectedCity;
+        const matchesService = !selectedService || barber.service === selectedService;
+        const matchesPriceRange =
+          (minPrice === '' && maxPrice === '') ||
+          (barber.price >= parseFloat(minPrice) && barber.price <= parseFloat(maxPrice));
+        return matchesStars && matchesCity && matchesService && matchesPriceRange;
+      });
     },
-  });
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(registerBarber.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerBarber.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.userInfo = action.payload; // Update user info upon successful registration
+      })
+      .addCase(registerBarber.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload; // Update error state upon registration failure
+      })
+      .addCase(getBarbers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getBarbers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userInfo = action.payload; // Update barber list upon successful fetch
+      })
+      .addCase(getBarbers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload; // Update error state upon fetch failure
+      })
+      .addCase(getBarberById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getBarberById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userInfo = action.payload; // Update barber info upon successful fetch by ID
+      })
+      .addCase(getBarberById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload; // Update error state upon fetch failure by ID
+      });
+  },
+});
 
-  
-export const { setInputValue } = barberSlice.actions;
-  export default barberSlice.reducer;
+export const { setBarbers ,setInputValue, setFilterValue, filterBarbers } = barberSlice.actions;
+
+export default barberSlice.reducer;

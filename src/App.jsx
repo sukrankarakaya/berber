@@ -28,6 +28,8 @@ function App() {
         <Route path="/Profil" element={<BarberProfile />} />
         <Route path="/ayarlar" element={<BarberSettings />} />
         <Route path="/login" element={<LoginModal />} />
+
+        <Route path="home/login" element={<LoginModal />} />
         <Route path="/yorumlar" element={<Appointment />} />
         <Route path="/berberlogin" element={<BerberLoginForm />} />
         <Route path="/register" element={<RegisterModal />} />

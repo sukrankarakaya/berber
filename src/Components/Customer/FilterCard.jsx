@@ -1,34 +1,49 @@
 import React, { useState } from "react";
 import ServicesSelect from "../../Utils/ServicesSelect";
 import CitySelect from "../../Utils/CitySelect";
-import PriceRange from "../../Utils/PriceRange";
 import barbers from "../../mock/allBarber.json";
 import RatingBar from "../../Utils/RatingBar ";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterValue } from "../../Store/Barber/BarberRegisterSlice";
 
 const FilterCard = () => {
   const [selectedStars, setSelectedStars] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
-  const [selectedPriceRange, setSelectedPriceRange] = useState(null);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  
+  const filterList = useSelector((state) => state.barber.filters);
+
+  const dispatch = useDispatch();
 
   const handleApplyFilters = () => {
     // Filtreleme fonksiyonu
-    const filteredBarbers = barbers.filter((barber) => {
-      // İstek üzerine filtrelerin uygulanması
-      const matchesStars = selectedStars ? barber.rating === selectedStars : true;
-      const matchesCity = selectedCity ? barber.city === selectedCity : true;
-      const matchesService = selectedService ? barber.service === selectedService : true;
-      const matchesPriceRange = selectedPriceRange ? barber.priceRange === selectedPriceRange : true;
+    //   const filteredBarbers = barbers.filter((barber) => {
+    //   const matchesStars = selectedStars ? barber.rating === selectedStars : true;
+    //   const matchesCity = selectedCity ? barber.city === selectedCity : true;
+    //   const matchesService = selectedService ? barber.service === selectedService : true;
+    //   const matchesPriceRange =
+    //     (minPrice === '' && maxPrice === '') ||
+    //     (barber.price >= parseFloat(minPrice) && barber.price <= parseFloat(maxPrice));
 
-      return matchesStars && matchesCity && matchesService && matchesPriceRange;
-    });
+    //   return matchesStars && matchesCity && matchesService && matchesPriceRange;
 
-    // Filtrelenmiş berberleri kullanarak işlem yap
-    // console.log(filteredBarbers);
-    console.log(selectedCity,selectedPriceRange,selectedService,selectedStars );
+    // });
+
+    dispatch(
+      setFilterValue({
+        selectedCity,
+        minPrice,
+        maxPrice,
+        selectedService,
+        selectedStars,
+      })
+    );
   };
 
+  // console.log(selectedCity, minPrice, maxPrice, selectedService, selectedStars);
+  // console.log("filterList",filterList);
   return (
     <div className="h-56 w-auto bg-light-200 border-0 flex flex-col rounded-xl px-5 justify-center float-right">
       <h1 className="text-2xl text-secondary font-bold pl-3">Filtrele</h1>
@@ -59,7 +74,24 @@ const FilterCard = () => {
           <label htmlFor="" className="mt-3">
             Fiyat Aralığı
           </label>
-          <PriceRange onSelect={(range) => setSelectedPriceRange(range)} />
+          <div className="flex flex-row justify-center  items-start ">
+            <input
+              type="number"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="w-16 h-9 border border-secondary-200 bg-white rounded-md items-center justify-center text-xl p-1 outline-none"
+              placeholder="Min"
+            />
+
+            <label className=" pb-2 text-2xl  text-secondary ">-</label>
+            <input
+              type="number"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="w-16 h-9 border border-secondary-200 bg-white rounded-md items-center justify-center text-xl p-1 outline-none"
+              placeholder="Max"
+            />
+          </div>
         </div>
       </div>
       <div className="flex flex-row-reverse items-center">
