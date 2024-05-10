@@ -8,7 +8,7 @@ const RegisterModal = () => {
   const [berber, setBerber] = useState(false);
 
   return (
-    <div className="absolute top-0 flex flex-col w-full h-full justify-center items-end bg-black bg-opacity-55 left-0">
+    <div className="absolute top-0 flex flex-col w-full h-full justify-center items-center bg-black bg-opacity-55 left-0">
       <div className="absolute w-full h-screen  bg-custom-bg bg-cover bg-no-repeat bg-center bg-black bg-opacity-55  ">
         <img
           src={WelcomeImg}

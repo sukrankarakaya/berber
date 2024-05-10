@@ -50,6 +50,9 @@ export const loginAsync = createAsyncThunk(
       console.error("Login failed:", error.response.data);
       throw new Error("Incorrect username or password");
     }
+    const response = await axios.post(`https://localhost:7022/api/Auth/register`, { userName, password });
+    //console.log("Server response:", response.data);
+    return response.data;
   }
 );
 

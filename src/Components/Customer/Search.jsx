@@ -16,11 +16,15 @@ const Search = () => {
     const newValue = event.target.value; // Input alanına girilen yeni değer
     dispatch(setInputValue(newValue)); // Redux'taki state'i güncellemek için dispatch kullanarak setInputValue action'ını çağır
     setShowIcon(newValue === ""); // Icon'un gösterilip gösterilmeyeceğini belirle
-    console.log("value", newValue); // Yeni değeri konsola yazdır
   };
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
+
+    // Filtre kapatıldığında tüm berberleri göstermek için inputValue'yi temizle
+    if (isFilterOpen) {
+      dispatch(setInputValue("")); // Redux'taki inputValue'yi temizle
+    }
   };
 
   return (

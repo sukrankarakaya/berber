@@ -7,7 +7,7 @@ import { addAppointment } from "../../Store/appointmentSlice ";
 
 const AppointmentModal = ({ isOpen, onClose, service, barberName }) => {
   if (!isOpen) return null;
-  console.log(service);
+  //console.log(service);
   const handleOutsideClick = (event) => {
     onClose();
   };
@@ -83,7 +83,7 @@ const AppointmentModal = ({ isOpen, onClose, service, barberName }) => {
 
       dispatch(addAppointment(newAppointment));
 
-      console.log(newAppointment);
+      //console.log(newAppointment);
       onClose();
     } else {
       alert('Lütfen bir saat seçin!');

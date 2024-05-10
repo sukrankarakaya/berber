@@ -19,9 +19,9 @@ const AllBarber = () => {
 
     response.then((action) => {
       const users = action.payload; // payload'daki kullanıcı verilerine erişmek
-      console.log(users); // Tüm kullanıcı verilerini konsola yazdır
+      // console.log(users); // Tüm kullanıcı verilerini konsola yazdır
 
-      console.log('Input value:', inputValue);
+      // console.log('Input value:', inputValue);
     });
   }, [inputValue]);
 

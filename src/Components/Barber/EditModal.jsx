@@ -120,12 +120,14 @@ const EditProfileModal = ({
   className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
 />
             <div className="flex justify-between pt-10">
+             
+              
               <button
                 type="button"
                 onClick={handleUpdate}
                 className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
               >
-                Güncelle
+                İptal
               </button>
               <button
   type="submit"
@@ -141,10 +143,10 @@ const EditProfileModal = ({
                 Sil
               </button>
               <button
-                onClick={onClose}
-                className="w-24 p-2 bg-gray text-black rounded border-secondary hover:bg-opacity-75 hover:border-secondary"
+                type="submit"
+                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
               >
-                İptal
+                Güncelle
               </button>
             </div>
           </form>

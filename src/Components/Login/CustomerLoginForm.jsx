@@ -1,25 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, useFormik } from "formik";
 
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowDropup } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import {loginCustomer } from "../../Store/Customer/authSlice";
+import { getCustomers } from "../../Store/Customer/CustomerRegisterSlice";
 
 const CustomerLoginForm = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const customers = dispatch(getCustomers());
+  }, [dispatch]);
+
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   const formik = useFormik({
     initialValues: {
-      username: "",
+      userName: "",
       password: "",
-      
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Kullanıcı adı gerekli"),
+      userName: Yup.string().required("Kullanıcı adı gerekli"),
       password: Yup.string().required("Şifre gerekli"),
-
-      
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      try {
+        const response = dispatch(loginCustomer(values));
+        console.log("Logged in successfully:", response);
+        console.log("Token:", response.data.token);
+        // navigate("/home");
+      } catch (error) {
+        console.error("Login failed:", error.message);
+        setError("Kullanıcı adı veya şifre hatalı");
+      }
     },
   });
   return (
@@ -33,49 +49,48 @@ const CustomerLoginForm = () => {
             <div className="flex flex-col gap-2">
               <input
                 type="text"
-                name="username"
+                name="userName"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.username}
+                value={formik.values.userName}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Kullanıcı Adı"
               />
-              {formik.touched.username && formik.errors.username ? (
+              {formik.touched.userName && formik.errors.userName ? (
                 <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                   <IoMdArrowDropup className=" text-red-500  " />
                   <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                    {formik.errors.username}
+                    {formik.errors.userName}
                   </div>
                 </div>
               ) : null}
             </div>
             <div className="flex flex-col gap-2">
-                <input
-                  type="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
-                  placeholder="Şifre"
-                />{" "}
-                {formik.touched.password && formik.errors.password ? (
-                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
-                    <IoMdArrowDropup className=" text-red-500  " />
-                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.password}
-                    </div>
+              <input
+                type="password"
+                name="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                placeholder="Şifre"
+              />{" "}
+              {formik.touched.password && formik.errors.password ? (
+                <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                  <IoMdArrowDropup className=" text-red-500  " />
+                  <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                    {formik.errors.password}
                   </div>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
+            </div>
 
-              <button
-            type="submit"
-            className="w-[300px] h-12 rounded-[50px] bg-secondary text-light"
-          >
-            Giriş Yap
-          </button>
-
+            <button
+              type="submit"
+              className="w-full h-12 rounded-[50px] bg-secondary text-light"
+            >
+              Giriş Yap
+            </button>
           </form>
         </div>
         <label htmlFor="" className="hover:border-b  flex">
