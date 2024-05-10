@@ -80,7 +80,7 @@ const BarberDetails = () => {
 
   return (
     <div className="bg-light">
-      <div className="flex flex-col pt-24 px-44">
+      <div className="flex flex-col pt-24 ">
         <div className="w-[1050px] h-auto bg-white  border-slate-200 rounded-top-lg p-3">
           <h1 className="text-2xl font-bold">
             {barberName}

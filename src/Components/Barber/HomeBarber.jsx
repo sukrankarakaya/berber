@@ -12,12 +12,13 @@ const HomeBarber = () => {
       <div>
         <Navbar />
       </div>
-      <div className="flex">
+      <div className="flex pt-10">
         <div className="flex-grow">
           <Berberdashboard />
+          
         </div>
       </div>
-      <div className="pt-10">
+      <div className="pt-20">
         <Footer />
       </div>
     </div>

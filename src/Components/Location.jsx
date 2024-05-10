@@ -1,30 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import location from '../assets/location.png';
+import { useSelector, useDispatch } from 'react-redux'; 
+import { getBarberById } from '../Store/Barber/BarberLoginSlice';
 
 const Konum = () => {
   const [userLocation, setUserLocation] = useState('');
+  const barberID = useSelector(state => state.barberLogin.barberID); 
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
-    // Kullanıcının konumunu veritabanından al
-    const fetchUserLocation = async () => {
-      try {
-        // Veritabanından kullanıcının konumunu almak için uygun bir API çağrısı yapılabilir
-        // Bu örnekte rastgele bir konum kullanılıyor
-        const userLocationFromDatabase = 'Antalya/Kepez/Altınova mahallesi';
-        setUserLocation(userLocationFromDatabase);
-      } catch (error) {
-        console.error('Error fetching user location:', error);
-      }
-    };
+    if (barberID) {
+      fetchUserLocation();
+    } else {
+      console.warn('Barber ID is not defined');
+    }
+  }, [barberID, dispatch]);
 
-    fetchUserLocation();
-  }, []);
 
+  const fetchUserLocation = async () => {
+    try {
+      const response = await dispatch(getBarberById(barberID))
+      setUserLocation(response.payload.city +"  "+ response.payload.district+"  "+response.payload.street,response.payload.doorNumber);
+
+      console.log(response)
+    } catch (error) {
+      console.error('Error fetching user location:', error);
+    }
+  };
+  
+  
+  
   return (
-    <div className="flex justify-center"> {/* Değişiklik burada */}
+    <div className="flex justify-center">
       <div className="bg-white w-auto p-3 h-10 border border-black rounded-md flex items-center">
-        <img src={location} alt="" />
         <span className="text-black">{userLocation}</span>
+     
       </div>
     </div>
   );

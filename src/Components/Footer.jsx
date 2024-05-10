@@ -5,56 +5,19 @@ const Footer = () => {
     <div>
       
 
-<footer className="bg-secondary">
-    <div className="mx-auto w-full max-w-screen-xl  py-6 lg:py-8">
+<footer className="bg-secondary bottom-0 w-full   ">
+    <div className="mx-auto w-full max-w-screen-xl  py-2 lg:py-3">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
+          <div className="">
               <a href="https://flowbite.com/" className="flex items-center">
-                
-                  <span className="self-center text-4xl font-semibold whitespace-nowrap text-white">Berber Sepeti</span>
+                  <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">Berber Sepeti</span>
               </a>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 font-extrabold">
-              <div>
-                  <h2 className="mb-6 text-base  text-white uppercase ">Kaynaklar</h2>
-                  <ul className="text-white dark:text-black-400 font-medium">
-                      <li className="mb-4">
-                          <a href="https://flowbite.com/" className="hover:underline">Tailwind CSS</a>
-                      </li>
-                      <li>
-                          <a href="https://tailwindcss.com/" className="hover:underline">C#</a>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <h2 className="mb-6 text-base  text-white uppercase">Bizi Takip Edin</h2>
-                  <ul className="text-white dark:text-black-400 font-medium">
-                      <li className="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" className="hover:underline ">Github</a>
-                      </li>
-                      <li>
-                          <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">Discord</a>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <h2 className="mb-6 text-base text-white uppercase ">Yasal</h2>
-                  <ul className="text-white dark:text-black-400 font-medium">
-                      <li className="mb-4">
-                          <a href="#" className="hover:underline">Gizlilik Politikası</a>
-                      </li>
-                      <li>
-                          <a href="#" className="hover:underline">Şartlar &amp; Koşullar</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
       </div>
-      <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-base text-white sm:text-center dark:text-black-400">© 2024 <a href="https://flowbite.com/" className="hover:underline">BerberSepeti™</a>. Bütün Hakları Saklıdır.
           </span>
-          <div className="flex mt-4 sm:justify-center sm:mt-0">
+          {/* <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a href="#" className="text-white hover:text-black-900 dark:hover:text-white">
                   <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
                         <path fillRule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clipRule="evenodd"/>
@@ -85,11 +48,10 @@ const Footer = () => {
                 </svg>
                   <span className="sr-only">Dribbble account</span>
               </a>
-          </div>
+          </div> */}
       </div>
     </div>
 </footer>
-
     </div>
   )
 }

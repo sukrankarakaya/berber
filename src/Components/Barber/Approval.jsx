@@ -57,7 +57,7 @@ const Approval = () => {
 
   return (
     <div className=''>
-      <div className='border-2 border-black rounded-lg p-4 bg-white w-full'>
+      <div className='border-2 rounded-lg p-4 bg-white w-full'>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2 pt-4"  htmlFor="fullName">

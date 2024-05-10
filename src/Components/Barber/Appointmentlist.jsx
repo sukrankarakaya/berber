@@ -19,7 +19,7 @@ const Randevucard = () => {
     }, []);
 
     return (
-        <div className="p-6 bg-white shadow-md border-2 border-black rounded-md">
+        <div className="p-6 bg-white shadow-md border-2  rounded-md">
             <h1 className="text-xl font-semibold text-gray-800 mb-4">Randevu Listesi</h1>
             <div className="overflow-x-auto">
                 <table className="w-full table-auto">

@@ -4,8 +4,8 @@ const Comment = () => {
   return (
     <div className=''>
        
-<div class=" bg-gray-100 flex items-center justify-center">
-  <div class="px-10 pt-6">
+<div class=" bg-white flex items-center justify-center">
+  <div class="px-10 pt-6 pb-10">
     <div class="bg-white max-w-xl rounded-2xl px-10 py-8 shadow-lg hover:shadow-black transition duration-500">
       <div class="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-white">LOGO</div>
       <div class="mt-4">

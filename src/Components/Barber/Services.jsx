@@ -23,7 +23,7 @@ const Services = () => {
     };
 
     return (
-        <div className='w-[650px] p-6 bg-white border-2 border-black shadow-md rounded-md'>
+        <div className='w-[650px] p-6 bg-white border-2  shadow-md rounded-md'>
             <div className='flex flex-row gap-3'><h1 className='text-xl font-semibold text-gray-800 mb-4'>Hizmetler</h1>
             <button onClick={toggleModal} className="flex right-0  w-8 h-8 bg-secondary text-white rounded-full p-2">
                   <CiEdit size={20} />

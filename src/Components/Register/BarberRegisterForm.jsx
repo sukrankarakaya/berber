@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { getBarber, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
+import { getBarbers, registerBarber } from "../../Store/Barber/BarberRegisterSlice";
 
 
 
@@ -30,31 +30,35 @@ const BarberRegisterForm = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
-      city: "",
-      district: "",
-      street: "",
-      phone: "",
-      mail: "",
-      password: "",
-      confirmPassword: "",
-      WorkPlaceName: "",
-      taxNo: "",
-      doorNumber: "",
-      buildingNo: "",
+    city: "",
+    district: "",
+    street: "",
+    phone: "",
+    mail: "",
+    password: "",
+    confirmPassword: "",
+    WorkPlaceName: "",
+    taxNo: "",
+    doorNumber: "",
+    buildingNo: "",
+    name: "", 
+    lastname: "", 
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Kullanıcı adı zorunludur"),
+      name: Yup.string().required("isim zorunludur"),
+      lastname: Yup.string().required("Soyisim  zorunludur"),
       mail: Yup.string().email("Geçerli bir e-posta adresi girin").required("E-posta zorunludur"),
       taxNo: Yup.string().required("Vergi numarası zorunludur"),
       buildingNo: Yup.string().required("Bina numarası zorunludur"),
-      city: Yup.string().required("Bina numarası zorunludur"),
-      district: Yup.string().required("Bina numarası zorunludur"),
-      street: Yup.string().required("Bina numarası zorunludur"),
-      phone: Yup.string().required("Bina numarası zorunludur"),
-      password: Yup.string().required("Bina numarası zorunludur"),
-      confirmPassword: Yup.string().required("Bina numarası zorunludur"),
-      WorkPlaceName: Yup.string().required("Bina numarası zorunludur"),
-      doorNumber: Yup.string().required("Bina numarası zorunludur"),
+      city: Yup.string().required("Şehir zorunludur"),
+      district: Yup.string().required("İlçe zorunludur"),
+      street: Yup.string().required("Sokak zorunludur"),
+      phone: Yup.string().required("Telefon zorunludur"),
+      password: Yup.string().required("Şifre zorunludur"),
+      confirmPassword: Yup.string().required("Şifre tekrarı zorunludur"),
+      WorkPlaceName: Yup.string().required("Dükkan ismi zorunludur"),
+      doorNumber: Yup.string().required("Kapı numarası zorunludur"),
 
 
 
@@ -119,6 +123,25 @@ const BarberRegisterForm = () => {
                   </div>
                 ) : null}
               </div>
+              <div className=" flex flex-col gap-2">
+              <input
+                  type="text"
+                  name="name"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="isim"
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-600 " />
+                    <div className="absolute h-6 mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.name}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
 
               <div className="flex flex-col gap-2">
                 <input
@@ -130,6 +153,7 @@ const BarberRegisterForm = () => {
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Telefon"
                 />
+  
                 {formik.touched.phone && formik.errors.phone ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-600 " />
@@ -296,7 +320,25 @@ const BarberRegisterForm = () => {
                   </div>
                 ) : null}
               </div>
-
+              <div className=" flex flex-col gap-2">
+              <input
+                  type="text"
+                  name="lastname"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastname}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="Soyisim"
+                />
+                {formik.touched.lastname && formik.errors.lastname ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-600 " />
+                    <div className="absolute h-6 mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.lastname}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -307,6 +349,7 @@ const BarberRegisterForm = () => {
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Kat/Kapı No"
                 />
+               
                 {formik.touched.doorNumber && formik.errors.doorNumber ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />

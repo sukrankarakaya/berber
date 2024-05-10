@@ -7,6 +7,7 @@ import employSlice from '../Store/Barber/EmployeRegisterSlice';
 import barberLoginSlice from './Barber/BarberLoginSlice';
 
 
+
 export const store = configureStore({
   reducer: {
     customer:customerSlice,

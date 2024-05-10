@@ -8,29 +8,22 @@ import Services from './Services';
 import Personelcard from './Personelcard';
 
 const BarberSettings = () => {
-  const [barberData, setBarberData] = useState(null);
+  // const [barberData, setBarberData] = useState(null);
 
-  useEffect(() => {
-    // Bu kısımda veritabanından berber verilerini getirecek bir fonksiyon yazmanız gerekmektedir.
-    // Şu anlık varsayılan olarak mock verileri kullanıyorum.
-    setBarberData(allBarber[0]); 
-  }, []);
+  // useEffect(() => {
+  //   // Bu kısımda veritabanından berber verilerini getirecek bir fonksiyon yazmanız gerekmektedir.
+  //   // Şu anlık varsayılan olarak mock verileri kullanıyorum.
+  //   setBarberData(allBarber[0]); 
+  // }, []);
 
   return (
-    <div className='bg-light min-h-screen w-full flex flex-col'>
+    <div className='bg-light min-h-screen flex flex-col'>
       <Navbar />
-      <div className='pt-24 pb-8 px-4 bg-light'>
-        <div className='bg-white'>
-        {barberData && (
-          <div className=' mx-auto'>
-            <div className='flex flex-row justify-between '>
-              <Personelcard />
-              <Services />
-            </div>
-          </div>
-        )}
+      <div className='flex-grow flex justify-center items-center my-8 bg-white'>
+        <div className='grid grid-cols-1 mt-12 md:grid-cols-2 gap-14'>
+          <Personelcard />
+          <Services />
         </div>
-        
       </div>
       <Footer />
     </div>

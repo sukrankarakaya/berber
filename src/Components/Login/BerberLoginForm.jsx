@@ -1,28 +1,43 @@
 import React, { useState } from "react";
-import { loginAsync } from "../../Store/Barber/BarberLoginSlice";
+import { login, loginAsync, setBarberId } from "../../Store/Barber/BarberLoginSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 const BerberLoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const error = useSelector(state => state.Barber && state.Barber.error); // Değişiklik burada yapıldı
+
+  const barberID = useSelector(state => state.Barber && state.Barber.barberID); // Değişiklik burada yapıldı
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { user, token } = await dispatch(loginAsync({ userName, password }));
-      console.log("Logged in successfully:", user);
-      console.log("Token:", token);
-      navigate("/homeberber");
+      const response = await dispatch(loginAsync({ userName, password }));
+      dispatch(login(response.payload))
+      const { payload } = response;
+      if (payload && payload.token) {
+        console.log(payload.user);
+        console.log("Logged in successfully.");
+        console.log("Token:", payload.token);
+  
+        dispatch(setBarberId(payload.user));
+        console.log(barberID); // payload'dan gelen user değerini barberId olarak saklayın
+         // Yeni barberId'yi yazdırın
+  
+        navigate("/homeberber");
+      } else {
+        alert("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
+      }
     } catch (error) {
       console.error("Login failed:", error.message);
-      setError("Kullanıcı adı veya şifre hatalı");
     }
   };
+
+
+
   
   return (
     <div>

@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
-import personal from "../../mock/personal.json";
+import React, { useState, useEffect } from "react";
 import EditModal from "../Barber/EditModal";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import barber2 from "/public/Image/barber2.jpg";
-import { CiEdit } from 'react-icons/ci';
-
+import { CiEdit } from "react-icons/ci";
+import { useSelector, useDispatch } from "react-redux";
+import { getEmploy } from "../../Store/Barber/EmployeRegisterSlice";
 
 const Personelcard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const employees = useSelector((state) => state.employ.employees);
+  const dispatch = useDispatch();
+  console.log(employees);
+  useEffect(() => {
+    dispatch(getEmploy());
+  }, [dispatch]);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -29,41 +33,56 @@ const Personelcard = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true
-        }
-      }
-    ]
+          dots: true,
+        },
+      },
+    ],
   };
 
+  // Redux store'dan verileri alındığını doğrula
+  if (!Array.isArray(employees)) {
+    return null;
+  }
+
   return (
-    <div className='w-auto h-auto border-2 rounded-xl border-black z-0 '>
-      <div className='flex flex-row justify-between pt-2 bg-slate-50 rounded-t-xl'>
-        <h1 className='pl-4 text-4xl '>
-          personeller
-        </h1>
-        <button onClick={toggleModal} className='px-3 py-3 bg-secondary text-white rounded-full mr-2 '><CiEdit/></button>
+    <div className="w-auto h-auto border-2 rounded-xl border-black z-0 ">
+      <div className="flex flex-row justify-between pt-2 bg-slate-50 rounded-t-xl">
+        <h1 className="pl-4 text-4xl ">Personeller</h1>
+        <button
+          onClick={toggleModal}
+          className="px-3 py-3 bg-secondary text-white rounded-full mr-2 "
+        >
+          <CiEdit />
+        </button>
       </div>
       {isModalOpen && <EditModal isOpen={isModalOpen} onClose={toggleModal} />}
-      <div>
-          <Slider {...settings} className="w-[650px] h-auto flex flex-row pt-4 bg-slate-50 border-2 border-slate-50 rounded-b-xl ">  
-      
-      {/* Map over personal array to render each card */}
-      {personal.map((person, index) => (
-        <div key={index} className="flex flex-row h-[450px] text-gray-700 rounded-xl">
-          <div className="flex flex-col  p-4">
-            <img src={barber2} alt="Barber" className="h-72 w-[550px] rounded-xl" />
-            <div className="flex flex-col px-3">
-              <h1 className="font-bold text-xl">{person.name}</h1>
-
-  
-            </div>
-          </div>
+      {employees.length > 0 && (
+        <div>
+          <Slider
+            {...settings}
+            className=" h-auto flex flex-row pt-4 bg-slate-50 border-2 border-slate-50 rounded-b-xl "
+          >
+            {employees.map((employee, index) => (
+              <div
+                key={index}
+                className="flex flex-row h-[450px] text-gray-700 rounded-xl items-center"
+              >
+                <div className="flex flex-col p-4">
+                  <img
+                    src={`data:image/jpeg;base64,${employee.picture}`}
+                    alt=""
+                    className="w-24 h-24 rounded-full"
+                  />
+                  <h1 className="text-xl font-bold mt-2">
+                    {employee.name} {employee.surname}
+                  </h1>
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
-      ))}
-    </Slider>      
-    </div></div>
-    
-
+      )}
+    </div>
   );
 };
 

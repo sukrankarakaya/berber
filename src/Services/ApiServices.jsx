@@ -9,16 +9,16 @@ const apiService = axios.create({
   },
 });
 
-// apiService.interceptors.request.use(
-//   (config) => {
-//     const token = store.getState().barberLogin.userToken;
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+apiService.interceptors.request.use(
+  (config) => {
+    const token = store.getState().barberLogin.userToken;
+    if (token) {
+      config.headers.Authorization = `Barber ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 const postData = async ({ url, data = null, config = {} }) => {
   try {
@@ -44,10 +44,40 @@ const fetchData = async ({ url, method = "GET", data = null, config = {} }) => {
     throw error;
   }
 };
+const deleteData = async ({ url, method = "DELETE", data = null, config = {} }) => {
+  try {
+    const response = await apiService({
+      url,
+      method,
+      data,
+      ...config,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+};
+const putData = async ({ url, method = "PUT", data = null, config = {} }) => {
+  try {
+    const response = await apiService({
+      url,
+      method,
+      data,
+      ...config,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+    throw error;
+  }
+};
 
 const apiServices = {
   fetchData,
   postData,
+  deleteData,
+  putData,
 };
 
 export default apiServices;
