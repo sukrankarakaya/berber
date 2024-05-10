@@ -19,7 +19,7 @@ const BarberCard = () => {
      
     });
   }, [dispatch]);
-  console.log("barbers:",barbers);
+ // console.log("barbers:",barbers);
 
 
 useEffect(() => {
@@ -27,11 +27,10 @@ useEffect(() => {
     const filtered = barbers.filter((barber) => barber.city.toLowerCase() === location.toLowerCase());
     setFilteredBarbers(filtered);
     
-console.log("filtrelenen:",filteredBarbers);
+//console.log("filtrelenen:",filteredBarbers);
   }
 }, [barbers, location]);
 
-console.log("filtrelenen:",filteredBarbers);
 
 
   return (

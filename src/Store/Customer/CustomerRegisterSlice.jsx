@@ -5,7 +5,7 @@ const baseURL = "https://localhost:7022/api";
 
 // Async thunk to register a customer
 export const registerCustomer = createAsyncThunk(
-  "customer/registerCustomer",
+  "Customer/create-customer",
   async (userData, { rejectWithValue }) => {
     try {
       const config = {
@@ -39,30 +39,12 @@ export const getCustomers = createAsyncThunk(
   }
 );
 
-// // Async thunk to fetch barbers
-// export const getBarbers = createAsyncThunk(
-//   "customer/getBarbers",
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.get(`${baseURL}/Barber/get-barbers`);
-//       return response.data; // Return barber data upon successful fetch
-//     } catch (error) {
-//       if (error.response && error.response.data.message) {
-//         return rejectWithValue(error.response.data.message);
-//       } else {
-//         return rejectWithValue(error.message);
-//       }
-//     }
-//   }
-// );
-
-// Define customer slice with initial state and reducers
 const customerSlice = createSlice({
   name: "customer",
   initialState: {
-    loading: false,
     userInfo: null,
     userToken: null,
+    loading: false,
     error: null,
     success: false,
   },
@@ -96,8 +78,7 @@ const customerSlice = createSlice({
       .addCase(getCustomers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
-    
+      });
   },
 });
 

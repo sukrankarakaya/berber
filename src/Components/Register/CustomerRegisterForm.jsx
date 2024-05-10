@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { registerCustomer } from "../../Store/Customer/CustomerRegisterSlice";
+import FormInput from "../../Utils/FormInput";
 
 const CustomerRegisterForm = () => {
-  
-const navigate =useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   // useEffect(() => {
   //   const response = dispatch(getCustomers());
@@ -19,10 +19,12 @@ const navigate =useNavigate()
   //   });
   // }, []);
 
-
   const formik = useFormik({
     initialValues: {
       userName: "",
+      name: "",
+      lastName: "",
+      age: "",
       city: "",
       district: "",
       street: "",
@@ -30,9 +32,13 @@ const navigate =useNavigate()
       mail: "",
       password: "",
       confirmPassword: "",
+      gender: "",
     },
     validationSchema: Yup.object({
       userName: Yup.string().required("Kullanıcı adı gerekli"),
+      name: Yup.string().required("Adiniz gerekli"),
+      lastName: Yup.string().required("Soyadınız gerekli"),
+      age: Yup.string().required("Yaşınız gerekli"),
       phone: Yup.string().required("Telefon numarası gerekli"),
       mail: Yup.string().email("Geçersiz mail adresi").required("mail gerekli"),
       password: Yup.string().required("Şifre gerekli"),
@@ -44,23 +50,13 @@ const navigate =useNavigate()
       street: Yup.string().required("Sokak/Cadde gerekli"),
     }),
     onSubmit: async (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      // console.log(values);
-
-      // try {
-      //   const response = await postCustomer(values);
-      //   console.log("Customer created:", response);
-      //   // Success message to the user
-      // } catch (error) {
-      //   console.error("Error creating customer:", error);
-      //   // Error message to the user
-      // }
-
+      alert(values)
       try {
         // submit işlemi
         dispatch(registerCustomer(values));
+        console.log(values);
         // Yönlendirme işlemi
-        navigate("/login") // window.location.href ile yönlendirme
+        navigate("/login"); // window.location.href ile yönlendirme
       } catch (error) {
         console.error("Error creating customer:", error);
       }
@@ -74,10 +70,49 @@ const navigate =useNavigate()
       <div className="flex flex-col p-3 ">
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-4 w-full items-center justify-center z-20"
+          className="flex flex-col gap-2 w-full items-center justify-center z-10"
         >
-          <div className="flex flex-row gap-4 py-5">
-            <div className="flex flex-col gap-5">
+          <div className="flex flex-row gap-4 py-1">
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
+                
+                <input
+                  type="text"
+                  name="name"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary-50 border-2 border-secondary bg-transparent"
+                  placeholder="İsim"
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-500  " />
+                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.name}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.lastName}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary-50 border-2 border-secondary bg-transparent"
+                  placeholder="Soyisim"
+                />
+                {formik.touched.lastName && formik.errors.lastName ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-500  " />
+                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.lastName}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -97,7 +132,6 @@ const navigate =useNavigate()
                   </div>
                 ) : null}
               </div>
-
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -117,48 +151,7 @@ const navigate =useNavigate()
                   </div>
                 ) : null}
               </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  type="password"
-                  name="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.password}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
-                  placeholder="Şifre"
-                />{" "}
-                {formik.touched.password && formik.errors.password ? (
-                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
-                    <IoMdArrowDropup className=" text-red-500  " />
-                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.password}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.confirmPassword}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
-                  placeholder="Şifre Tekrar"
-                />
-                {formik.touched.confirmPassword &&
-                formik.errors.confirmPassword ? (
-                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
-                    <IoMdArrowDropup className=" text-red-500  " />
-                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.confirmPassword}
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -178,6 +171,28 @@ const navigate =useNavigate()
                   </div>
                 ) : null}
               </div>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  name="age"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.age}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="Yaş"
+                />
+                {formik.touched.age && formik.errors.age ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-500  " />
+                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.age}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
@@ -235,11 +250,84 @@ const navigate =useNavigate()
                   </div>
                 ) : null}
               </div>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="password"
+                  name="password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="Şifre"
+                />{" "}
+                {formik.touched.password && formik.errors.password ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-500  " />
+                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.password}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.confirmPassword}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="Şifre Tekrar"
+                />
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
+                  <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
+                    <IoMdArrowDropup className=" text-red-500  " />
+                    <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
+                      {formik.errors.confirmPassword}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+
+              <div>
+                <label>Cinsiyet Seçiniz:</label>
+                <div className="flex items-center gap-4">
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="1"
+                      checked={formik.values.gender === "1"}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className="mr-2"
+                    />
+                    Kadın
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="2"
+                      checked={formik.values.gender === "2"}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className="mr-2"
+                    />
+                    Erkek
+                  </label>
+                </div>
+                {formik.touched.gender && formik.errors.gender ? (
+                  <div>{formik.errors.gender}</div>
+                ) : null}
+              </div>
             </div>
           </div>
           <button
             type="submit"
-            className="w-[300px] h-12 rounded-[50px] bg-secondary text-light"
+            className="w-full h-12 rounded-[50px] bg-secondary text-light"
           >
             Kayıt Ol
           </button>

@@ -28,7 +28,7 @@ export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async ({ userName, password }) => {
     const response = await axios.post(`https://localhost:7022/api/Auth/register`, { userName, password });
-    console.log("Server response:", response.data);
+    //console.log("Server response:", response.data);
     return response.data;
   }
 );

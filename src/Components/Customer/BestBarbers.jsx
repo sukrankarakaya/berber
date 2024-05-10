@@ -42,7 +42,6 @@ const BestBarbers = () => {
 
     });
   }, [dispatch]);
-  console.log("Best :",barbers);
   return (
   
     <div className="w-full h-full overflow-hidden relative   ">
