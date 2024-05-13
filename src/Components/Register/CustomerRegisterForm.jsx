@@ -3,9 +3,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoMdArrowDropup } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerCustomer } from "../../Store/Customer/CustomerRegisterSlice";
-import FormInput from "../../Utils/FormInput";
 
 const CustomerRegisterForm = () => {
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ const CustomerRegisterForm = () => {
       mail: "",
       password: "",
       confirmPassword: "",
-      gender: "",
+      gender: false,
     },
     validationSchema: Yup.object({
       userName: Yup.string().required("Kullanıcı adı gerekli"),
@@ -50,20 +49,19 @@ const CustomerRegisterForm = () => {
       street: Yup.string().required("Sokak/Cadde gerekli"),
     }),
     onSubmit: async (values) => {
-      alert(values)
+      const isFemale = values.gender === "true"; // "true" ise true, değilse false
+    
       try {
-        // submit işlemi
-        dispatch(registerCustomer(values));
         console.log(values);
-        // Yönlendirme işlemi
-        navigate("/login"); // window.location.href ile yönlendirme
+        // Kullanıcıyı kaydetmek için dispatch kullanımı (örneğin, Redux'a gönderme)
+        await dispatch(registerCustomer({ ...values, gender: isFemale }));
+    
+        navigate("/login");
       } catch (error) {
-        console.error("Error creating customer:", error);
+        console.error("Kayıt yapılamadı:", error.message);
       }
-    },
+    }
   });
-
-  // console.log("dirty", formik.dirty, "errors", formik.errors, "isValid", formik.isValid)
 
   return (
     <div className="flex flex-col justify-center  items-center gap-3  w-[400px] h-[300px]">
@@ -75,7 +73,6 @@ const CustomerRegisterForm = () => {
           <div className="flex flex-row gap-4 py-1">
             <div className="flex flex-col gap-2">
               <div className="flex flex-col gap-2">
-                
                 <input
                   type="text"
                   name="name"
@@ -298,8 +295,8 @@ const CustomerRegisterForm = () => {
                     <input
                       type="radio"
                       name="gender"
-                      value="1"
-                      checked={formik.values.gender === "1"}
+                      value={true} // 'Kadın' seçeneği için true değeri
+                      checked={formik.values.gender === "true"}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className="mr-2"
@@ -310,8 +307,8 @@ const CustomerRegisterForm = () => {
                     <input
                       type="radio"
                       name="gender"
-                      value="2"
-                      checked={formik.values.gender === "2"}
+                      value={false} // 'Erkek' seçeneği için false değeri
+                      checked={formik.values.gender === "false"}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className="mr-2"

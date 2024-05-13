@@ -7,10 +7,10 @@ import axios from "axios";
 
 const initialState = {
   userName: null,
-  location: "Antalya",
+  location: null,
   isAuthenticated: false,
   userId: null,
-  token: null, // Token alanı eklendi
+  token: null,
   loading: false,
   error: null,
   success: false,
@@ -20,11 +20,15 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // login(state, action) {
-    //   state.userName = action.payload.userName;
-    //   state.isAuthenticated = true;
-    //   state.token = action.payload.token; // Tokeni kaydet
-    // },
+    login(state, action) {
+      state.isAuthenticated = true;
+      state.loading = false; // Set success flag based on payload
+      state.userId = action.payload.user;
+      state.userName = action.payload.userName;
+      state.location = action.payload.city;
+      state.token = action.payload.token; // Set token based on payload
+      state.error = null;
+    },
     logout(state) {
       state.userName = null;
       state.isAuthenticated = false;
@@ -36,26 +40,26 @@ const authSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder
-      .addCase(loginCustomer.pending, (state) => {
-        state.isAuthenticated = false;
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(loginCustomer.fulfilled, (state, action) => {
-        state.isAuthenticated = false;
-        state.loading = false;
-        state.success = action.payload.success; // Set success flag based on payload
-        state.userId = action.payload.user;
-        state.userName = action.payload.userName;
-        state.token = action.payload.token; // Set token based on payload
-        state.error = null;
-      })
-      .addCase(loginCustomer.rejected, (state, action) => {
-        state.isAuthenticated = true;
-        state.loading = false;
-        state.error = action.payload;
-      });
+    builder;
+    // .addCase(loginCustomer.pending, (state) => {
+    //   state.isAuthenticated = false;
+    //   state.loading = true;
+    //   state.error = null;
+    // })
+    // .addCase(loginCustomer.fulfilled, (state, action) => {
+    //   state.isAuthenticated = false;
+    //   state.loading = false;
+    //   state.success = action.payload.success; // Set success flag based on payload
+    //   state.userId = action.payload.user;
+    //   state.userName = action.payload.userName;
+    //   state.token = action.payload.token; // Set token based on payload
+    //   state.error = null;
+    // })
+    // .addCase(loginCustomer.rejected, (state, action) => {
+    //   state.isAuthenticated = true;
+    //   state.loading = false;
+    //   state.error = action.payload;
+    // });
   },
 });
 

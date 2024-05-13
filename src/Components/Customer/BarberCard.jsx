@@ -34,8 +34,10 @@ useEffect(() => {
 
 
   return (
-    <div className="grid grid-cols-2 gap-8 gap-x-0">
-      {filteredBarbers.map((barber) => (
+    <div className="grid grid-cols-2 sm:grid-cols-1 gap-8 gap-x-0">
+      {filteredBarbers.length > 0 ? (
+      <div className="">
+        {filteredBarbers.map((barber) => (
         <Link to={`/home/${barber.id}`} key={barber.id} className="bg-transparent">
           <div className="flex flex-row p-2 rounded-3xl w-[550px] h-36 bg-light-100 text-gray-700 hover:bg-light-300 shadow-lg">
             <div>
@@ -55,6 +57,20 @@ useEffect(() => {
           </div>
         </Link>
       ))}
+      </div>
+    
+    ):
+
+(
+        <div className="flex flex-col items-center justify-center py-20">
+          {/* <img src="../../../public/Image/face5.png" alt="" className="w-40 h-40" /> */}
+          <p className="flex font-bold text-3xl text-secondary ">Maalesef Bulundugunuz Konuma Yakın Berber Bulunamadı!!!</p>
+        </div>
+      )}
+
+
+      
+
     </div>
   );
 };

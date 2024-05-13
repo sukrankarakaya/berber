@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import person from '../../assets/person.png';
+import { useSelector } from 'react-redux';
 
 const Icon = ({ userId }) => {
   const [userData, setUserData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
+
+  const userName = useSelector(state => state.auth.userName); 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -52,7 +55,7 @@ const Icon = ({ userId }) => {
       >
         {/* <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" /> */}
         <img src="../../../public/Image/user.jpg " alt=""  className='w-10 h-10 me-2 rounded-full'/>
-        <span>{userData?.name || 'Şükran'}</span>
+        <span>{userName || 'Kullanıcı'}</span>
         <svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"

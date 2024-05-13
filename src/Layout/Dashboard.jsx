@@ -8,7 +8,9 @@ import Footer from "../Components/Footer";
 import Home from "../Components/Customer/Home";
 import NavbarCustomer from "../Components/Customer/NavbarCustomer";
 
+
 const Dashboard = () => {
+  
   return (
     <div className="flex flex-col bg-light ">
       <NavbarCustomer />

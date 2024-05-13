@@ -27,29 +27,19 @@ export const registerCustomer = createAsyncThunk(
 );
 
 // Async thunk to fetch customers
-export const getCustomers = createAsyncThunk(
-  "customer/getCustomers",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`${baseURL}/Customer/get-customers`);
-      return response.data; // Return customer data upon successful fetch
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
-const customerSlice = createSlice({
-  name: "customer",
+
+const customerRegisterSlice = createSlice({
+  name: "customerRegister",
   initialState: {
     userInfo: null,
-    userToken: null,
+    currentUser:null,
     loading: false,
     error: null,
     success: false,
   },
   reducers: {
-    // Additional reducers can be defined here if needed
+ 
   },
   extraReducers: (builder) => {
     builder
@@ -60,26 +50,15 @@ const customerSlice = createSlice({
       })
       .addCase(registerCustomer.fulfilled, (state, action) => {
         state.loading = false;
+        state.currentUser=action.payload;
         state.success = action.payload.success; // Set success flag based on payload
       })
       .addCase(registerCustomer.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      // Reducer for pending action of getCustomers
-      .addCase(getCustomers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getCustomers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.userInfo = action.payload; // Update user info with fetched customers
-      })
-      .addCase(getCustomers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+
   },
 });
 
-export default customerSlice.reducer;
+export default customerRegisterSlice.reducer;

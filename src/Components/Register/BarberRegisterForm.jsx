@@ -21,7 +21,6 @@ const BarberRegisterForm = () => {
 
   useEffect(() => {
     const response = dispatch(getBarbers());
-
     response.then((action) => {
       const users = action.payload; // payload'daki kullanıcı verilerine erişmek
       console.log(users); // Tüm kullanıcı verilerini konsola yazdır
@@ -59,8 +58,6 @@ const BarberRegisterForm = () => {
       confirmPassword: Yup.string().required("Şifre tekrarı zorunludur"),
       WorkPlaceName: Yup.string().required("Dükkan ismi zorunludur"),
       doorNumber: Yup.string().required("Kapı numarası zorunludur"),
-
-
 
     }),
 

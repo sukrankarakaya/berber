@@ -31,14 +31,14 @@ const HomePageCard = () => {
           <BestBarbers />
         </div>
       </div>
-      <div className="flex flex-row gap-16">
+      {/* <div className="flex flex-row gap-16">
         <div className="flex flex-col gap-4 w-full left-0">
           <label htmlFor="" className="text-2xl">
             Berberler
           </label>
           <BarberCard />
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-row  p-6 px-12  float-end">
         <Link to="/home/all">
           <button className="bg-transparent text-xl text-gray-700 hover:text-secondary hover:border-b-[1px] hover:border-secondary flex items-center ">

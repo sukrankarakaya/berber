@@ -5,18 +5,13 @@ import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowDropup } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import {loginCustomer } from "../../Store/Customer/authSlice";
-import { getCustomers } from "../../Store/Customer/CustomerRegisterSlice";
+import {login, loginCustomer } from "../../Store/Customer/authSlice";
 
 const CustomerLoginForm = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const customers = dispatch(getCustomers());
-  }, [dispatch]);
-
+  
+const dispatch= useDispatch();
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-
+ 
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -26,15 +21,20 @@ const CustomerLoginForm = () => {
       userName: Yup.string().required("Kullanıcı adı gerekli"),
       password: Yup.string().required("Şifre gerekli"),
     }),
-    onSubmit: (values) => {
+    onSubmit:async(values) => {
       try {
-        const response = dispatch(loginCustomer(values));
-        console.log("Logged in successfully:", response);
-        console.log("Token:", response.data.token);
-        // navigate("/home");
+        const response = await dispatch(loginCustomer(values));
+        dispatch(login(response.payload))
+        const { payload } = response;
+        if (payload && payload.token) {
+          console.log("Token:", payload.token);
+  
+          navigate("/home");
+        } else {
+          alert("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
+        }
       } catch (error) {
         console.error("Login failed:", error.message);
-        setError("Kullanıcı adı veya şifre hatalı");
       }
     },
   });
@@ -74,7 +74,7 @@ const CustomerLoginForm = () => {
                 value={formik.values.password}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Şifre"
-              />{" "}
+              />
               {formik.touched.password && formik.errors.password ? (
                 <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                   <IoMdArrowDropup className=" text-red-500  " />
