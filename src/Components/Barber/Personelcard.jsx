@@ -40,9 +40,10 @@ const Personelcard = () => {
   };
 
   // Redux store'dan verileri alındığını doğrula
-  if (!Array.isArray(employees)) {
-    return null;
+  if (!Array.isArray(employees) || employees.length === 0) {
+    return null; // veya başka bir uygun durum
   }
+  console.log(employees[0].employeeUrl)
 
   return (
     <div className="w-auto h-auto border-2 rounded-xl border-black z-0 ">
@@ -69,7 +70,7 @@ const Personelcard = () => {
               >
                 <div className="flex flex-col p-4">
                   <img
-                    src={`data:image/jpeg;base64,${employee.picture}`}
+                    src={employee.employeeUrl}
                     alt=""
                     className="w-24 h-24 rounded-full"
                   />

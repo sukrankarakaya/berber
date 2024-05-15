@@ -10,6 +10,7 @@ import CustomerRegisterSlice from './Customer/CustomerRegisterSlice';
 
 
 
+
 export const store = configureStore({
   reducer: {
     customerRegister: CustomerRegisterSlice,
@@ -19,5 +20,6 @@ export const store = configureStore({
     barber:barberSlice,
     barberLogin: barberLoginSlice, 
     employ:employSlice,
+
   },
 });

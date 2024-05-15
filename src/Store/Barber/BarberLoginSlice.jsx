@@ -1,77 +1,80 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-  barberID: null,
+  userName: null,
+  location: null,
   isAuthenticated: false,
+  userId: null,
   token: null,
+  loading: false,
   error: null,
-  barberdata: null,
+  success: false,
+  barber: null,
 };
 
-export const BarberLoginSlice = createSlice({
-  name: 'barberLogin',
+const baseURL = "https://localhost:7022/api/Barber";
+
+const barberLoginSlice = createSlice({
+  name: "barberLogin",
   initialState,
   reducers: {
     login(state, action) {
-      const { token, user } = action.payload;
       state.isAuthenticated = true;
-      state.token = token;
-      state.barberID = user;
+      state.loading = false;
+      state.userId = action.payload.user;
+      state.userName = action.payload.userName;
+      // state.location = action.payload.city + "/" + action.payload.district + "/" +action.payload.street;
+      state.location = action.payload.city + "/" + action.payload.district ;
+
+      state.token = action.payload.token;
       state.error = null;
     },
     logout(state) {
+      state.userName = null;
       state.isAuthenticated = false;
       state.token = null;
-      state.barberID = null;
+      state.loading = false;
       state.error = null;
+      state.success = false;
+      state.barber = null;
     },
-    setError(state, action) {
-      state.error = action.payload;
-    },
-    setBarberId(state, action) {
-      state.barberID = action.payload;
+    setBarber(state, action) {
+      state.barber = action.payload;
     },
   },
 });
 
-export const loginAsync = createAsyncThunk(
-  'BarberLoginSlice/loginAsync',
-  async ({ userName, password }) => {
-    try {
-      const response = await axios.post(`https://localhost:7022/api/Barber/login`, { userName, password });
-      if (response.status === 200) {
-        const { token, user } = response.data;
-        return { token, user };
-      } else {
-        throw new Error("Invalid response received from the server");
-      }
-    } catch (error) {
-      console.error("Login failed:", error.response.data);
-      throw new Error("Incorrect username or password");
-    }
-    const response = await axios.post(`https://localhost:7022/api/Auth/register`, { userName, password });
-    //console.log("Server response:", response.data);
+export const { login, logout, setBarber } = barberLoginSlice.actions;
+
+export const loginBarber = createAsyncThunk(
+  "auth/loginAsync",
+  async ({ userName, password }, { dispatch }) => {
+    const response = await axios.post(
+      `${baseURL}/login`,
+      { userName, password }
+    );
+    dispatch(getBarberById(response.data.user));
     return response.data;
   }
 );
 
 export const getBarberById = createAsyncThunk(
-  'BarberLoginSlice/getBarber',
-  async (barberId) => {
+  "barber/getBarberById",
+  async (userId, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.get(`https://localhost:7022/api/Barber/get-barber/${barberId}`);
-      if (response.status === 200) {
+      if (userId !== null) {
+        const response = await axios.get(`${baseURL}/get-barber/${userId}`);
+        dispatch(setBarber(response.data));
+        console.log(response.data); // Berber verilerini konsola yazdır
         return response.data;
       } else {
-        throw new Error("Invalid response received from the server");
+        return null;
       }
     } catch (error) {
-      console.error("Fetching barber failed:", error.response.data);
-      throw new Error("Error fetching barber data");
+      return rejectWithValue(error.message);
     }
   }
 );
 
-export const { login, logout, setError, setBarberData, setBarberId } = BarberLoginSlice.actions; 
-export default BarberLoginSlice.reducer;
+export default barberLoginSlice.reducer;

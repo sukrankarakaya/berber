@@ -83,33 +83,31 @@ const employSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(registerEmploy.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-      state.success = false;
-    })
-    .addCase(registerEmploy.fulfilled, (state, action) => {
-      state.loading = false;
-      state.success = true;
-      state.employees = action.payload.data;
-    })
-    .addCase(registerEmploy.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    })
-    
+      .addCase(registerEmploy.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+      .addCase(registerEmploy.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        state.employees = action.payload.data;
+      })
+      .addCase(registerEmploy.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
       .addCase(getEmploy.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.success = false;
-        
       })
       .addCase(getEmploy.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
         state.employees = action.payload;
       })
-      
       .addCase(getEmploy.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
@@ -118,8 +116,6 @@ const employSlice = createSlice({
         state.loading = true;
         state.error = null;
         state.success = false;
-      
-
       })
       .addCase(deleteEmploy.fulfilled, (state) => {
         state.loading = false;
@@ -127,7 +123,6 @@ const employSlice = createSlice({
       })
       .addCase(deleteEmploy.rejected, (state, action) => {
         state.loading = false;
-        
       })
       .addCase(updateEmploy.pending, (state) => {
         state.loading = true;
@@ -141,8 +136,7 @@ const employSlice = createSlice({
       .addCase(updateEmploy.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
+      });
   },
 });
-
 export default employSlice.reducer;

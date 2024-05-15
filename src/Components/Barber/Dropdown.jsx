@@ -1,31 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import person from '../../assets/person.png';
+import { useSelector } from 'react-redux'; // Redux store'dan veri almak için useSelector'ı kullanın
 
-const Icon = ({ userId }) => {
-  const [userData, setUserData] = useState(null);
+const Icon = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(`your-api-endpoint/${userId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setUserData(data);
-        } else {
-          console.error('Failed to fetch user data');
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, [userId]);
-
+  
+  const userName = useSelector(state => state.barberLogin.userName);
+  const profileImage = useSelector(state => state.barberLogin.profileImage);
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -39,10 +25,6 @@ const Icon = ({ userId }) => {
     };
   }, []);
 
-  const redirectToProfilePage = () => {
-    navigate(`/berberprofil/${userId}`);
-  };
-
   return (
     <div>
       <div className="relative">
@@ -51,8 +33,8 @@ const Icon = ({ userId }) => {
           type="button"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" />
-          <span>{userData?.name || 'EMRE'}</span>
+          <img src={profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-4 rounded-full" />
+          <span>{userName || 'EMRE'}</span>
           <svg
             className="w-2.5 h-2.5 ms-3"
             aria-hidden="true"
@@ -75,7 +57,6 @@ const Icon = ({ userId }) => {
             {/* <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Randevularım</p></Link> */}
             <Link to="/ayarlar"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Ayarlar</p></Link>
             <Link to="/yorumlar"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Yorumlar</p></Link>
-
 
             <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray-400">Çıkış Yap</a>
           </div>

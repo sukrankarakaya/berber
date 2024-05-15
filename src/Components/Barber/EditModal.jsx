@@ -12,23 +12,21 @@ const EditProfileModal = ({
   const dispatch = useDispatch();
   const [editedDetails, setEditedDetails] = useState(userDetails || {
     Name: '',
-  LastName: '',
-  Picture: 'null',
+    LastName: '',
+    EmployeeFile: [], // Buradaki 'null' yerine 'null' olmayan bir başlangıç değeri kullanılmalıdır.
   });
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    
     setFileName(file ? file.name : '');
   };
 
   const handleInputChange = (e) => {
     if (e.target.type === 'file') {
-      
       const file = e.target.files[0];
-      
       setEditedDetails({
         ...editedDetails,
-        Picture: file,
+        EmployeeFile: file,
       });
     } else {
       setEditedDetails({
@@ -40,24 +38,23 @@ const EditProfileModal = ({
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!editedDetails.Name || !editedDetails.LastName) {
-      alert("Lütfen isim ve soyisim alanlarını doldurun.");
+    if (!editedDetails.Name || !editedDetails.LastName || !editedDetails.EmployeeFile) {
+      alert("Lütfen isim, soyisim ve dosya alanlarını doldurun.");
     } else {
       dispatch(registerEmploy(editedDetails))
         .then((response) => {
           console.log("Kullanıcı detayları başarıyla kaydedildi:", response);
           onClose();
-          alert("Bilgileriniz başarıyla güncellendi.");
+          alert("Bilgileriniz başarıyla kaydedildi.");
         })
         .catch((error) => {
           console.error("Kullanıcı detayları kaydedilirken bir hata oluştu:", error);
-          alert("Bilgileriniz güncellenirken bir hata oluştu.");
+          alert("Bilgileriniz kaydedilirken bir hata oluştu.");
         });
     }
   };
   
   const handleDelete = () => {
-    // Silme işlemi için gerekli action creator'ı tetikle
     dispatch(deleteEmploy(editedDetails.id))
       .then(() => {
         console.log("Kullanıcı başarıyla silindi.");
@@ -70,7 +67,6 @@ const EditProfileModal = ({
   };
 
   const handleUpdate = () => {
-    // Güncelleme işlemi için gerekli action creator'ı tetikle
     dispatch(updateEmploy(editedDetails))
       .then(() => {
         console.log("Kullanıcı detayları başarıyla güncellendi.");
@@ -97,44 +93,29 @@ const EditProfileModal = ({
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-3">
             {/* Input alanları buraya gelecek */}
             <input
-  type="text"
-  name="Name" 
-  value={editedDetails.Name} 
-  onChange={handleInputChange}
-  placeholder="İsim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
-<input
-  type="text"
-  name="LastName" 
-  value={editedDetails.LastName} 
-  onChange={handleInputChange}
-  placeholder="Soyisim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
-<input
-  type="file"
-  name="Picture" 
-  onChange={handleInputChange}
-  placeholder="Resim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
+              type="text"
+              name="Name" 
+              value={editedDetails.Name} 
+              onChange={handleInputChange}
+              placeholder="İsim"
+              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            />
+            <input
+              type="text"
+              name="LastName" 
+              value={editedDetails.LastName} 
+              onChange={handleInputChange}
+              placeholder="Soyisim"
+              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            />
+            <input
+              type="file"
+              name="EmployeeFile" 
+              onChange={handleInputChange}
+              placeholder="Resim"
+              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+            />
             <div className="flex justify-between pt-10">
-             
-              
-              <button
-                type="button"
-                onClick={handleUpdate}
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                İptal
-              </button>
-              <button
-  type="submit"
-  className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
->
-  Kaydet
-</button>
               <button
                 type="button"
                 onClick={handleDelete}
@@ -143,10 +124,24 @@ const EditProfileModal = ({
                 Sil
               </button>
               <button
-                type="submit"
+                type="button"
+                onClick={handleUpdate}
                 className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
               >
                 Güncelle
+              </button>
+              <button
+                type="submit"
+                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
+              >
+                Kaydet
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
+              >
+                İptal
               </button>
             </div>
           </form>
