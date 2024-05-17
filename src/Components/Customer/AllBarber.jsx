@@ -28,11 +28,11 @@ const AllBarber = () => {
   return (
     <div>
       <div className="flex flex-col ">
-        <div className="flex flex-col gap-8 py-28 min-h-screen bg-light ">
+        <div className="flex flex-col gap-8 py-28 min-h-screen bg-light  max-sm:px-2">
           <div className=" flex left-0">
             <Search />
           </div>
-          <div className="">
+          <div className=" w-full">
             <AllBarberCard />
           </div>
         </div>

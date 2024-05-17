@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import WelcomeImg from "/public/Image/berber.jpg";
+import WelcomeImgSM from "/public/Image/barber3.jpg";
+
 import { Link } from "react-router-dom";
 import LoginModal from "../Components/Login/LoginModal";
 import RegisterModal from "../Components/Register/RegisterModal";
@@ -7,7 +9,6 @@ import RegisterModal from "../Components/Register/RegisterModal";
 const WelcomePage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showREgisterModal, setShowRegisterModal] = useState(false);
-
 
   const handleLoginClick = () => {
     setShowLoginModal(true);
@@ -25,44 +26,49 @@ const WelcomePage = () => {
     setShowRegisterModal(false);
   };
 
-  
-
   return (
-    <div>
+    <div className="">
       <div className="relative w-full h-screen  bg-custom-bg bg-cover bg-no-repeat bg-center ">
         <img
           src={WelcomeImg}
           alt="Arka Plan Resmi"
-          className="w-full h-screen"
+          className="w-full h-screen  max-sm:hidden"
+        />
+        <img
+          src={WelcomeImgSM}
+          alt="Arka Plan Resmi Küçük Ekran"
+          className="w-full h-screen hidden max-sm:flex"
         />
 
         <div className="  w-full h-screen  bg-transparent top-0 absolute bg-gradient-to-t from-black to-transparent ">
           <div className="flex flex-col  justify-center items-center ">
             <div className=" absolute  flex flex-col  top-72 items-center ">
-              {/* <img src={Logo} alt="" className="w-24 h-24 " /> */}
-              <div className="flex flex-col w-[900px] gap-4 items-center ">
-                <h1 className=" text-5xl  leading-normal text-white">
-                  <Link to="/home">Randevunuzu saniyeler içinde ayırtın.</Link>
+              <div className="flex flex-col w-full gap-8 items-center ">
+                <h1 className=" text-5xl h-20 max-sm:text-3xl  font-extrabold  leading-normal text-white  font-zen">
+                  <Link to="/home">Randevunuzu saniyeler içinde alın.</Link>
                 </h1>
-                <button onClick={handleLoginClick} className=" w-96 h-16 border bg-black text-white rounded-[50px] hover:bg-black bg-opacity-85 ">
+                <button
+                  onClick={handleLoginClick}
+                  className=" w-96 h-16 border bg-black text-white rounded-[50px] hover:bg-black bg-opacity-85 "
+                >
                   Giriş Yap
                 </button>
 
-                <button onClick={handleRegisterClick} className=" w-96 h-16 border border-white  bg-black text-white rounded-[50px] hover:bg-black bg-opacity-75 ">
+                <button
+                  onClick={handleRegisterClick}
+                  className=" w-96 h-16 border border-white  bg-white text-black rounded-[50px] hover:bg-white bg-opacity-75 "
+                >
                   Kayıt Ol
                 </button>
-               
               </div>
-           
             </div>
           </div>
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={handleCloseModal} />}
-      {showREgisterModal && <RegisterModal onClose={handleRegisterCloseModal} />}
-
-
-
+      {showREgisterModal && (
+        <RegisterModal onClose={handleRegisterCloseModal} />
+      )}
     </div>
   );
 };

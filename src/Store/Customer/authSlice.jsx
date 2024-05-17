@@ -8,9 +8,10 @@ import axios from "axios";
 const initialState = {
   userName: null,
   location: null,
-  isAuthenticated: false,
+  locationFull: null,
   userId: null,
-  token: null,
+  token:null,
+  isAuthenticated: false,
   loading: false,
   error: null,
   success: false,
@@ -25,6 +26,12 @@ const authSlice = createSlice({
       state.loading = false; // Set success flag based on payload
       state.userId = action.payload.user;
       state.userName = action.payload.userName;
+      state.locationFull =
+        action.payload.city +
+        ", " +
+        action.payload.district +
+        "/" +
+        action.payload.street;
       state.location = action.payload.city;
       state.token = action.payload.token; // Set token based on payload
       state.error = null;
@@ -34,6 +41,7 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.token = null; // Tokeni temizle
       state.loading = false;
+      state.locationFull = null;
       state.error = null;
       state.success = false;
     },

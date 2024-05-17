@@ -9,14 +9,7 @@ import { registerCustomer } from "../../Store/Customer/CustomerRegisterSlice";
 const CustomerRegisterForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const response = dispatch(getCustomers());
 
-  //   response.then((action) => {
-  //     const users = action.payload; // payload'daki kullanıcı verilerine erişmek
-  //     console.log(users); // Tüm kullanıcı verilerini konsola yazdır
-  //   });
-  // }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -64,8 +57,8 @@ const CustomerRegisterForm = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center  items-center gap-3  w-[400px] h-[300px]">
-      <div className="flex flex-col p-3 ">
+    <div className="flex flex-col justify-center  items-center gap-3  w-[400px] h-[300px] max-sm:w-full ">
+      <div className="flex flex-col p-3  max-sm:ml-8">
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col gap-2 w-full items-center justify-center z-10"

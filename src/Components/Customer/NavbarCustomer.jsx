@@ -13,8 +13,8 @@ const NavbarCustomer= () => {
   };
 
   return (
-    <div className='bg-secondary items-center w-full fixed top-0 z-10 px-10 '>
-      <div className='h-1/5 flex  flex-row justify-between items-center mx-auto px-32  py-3'>
+    <div className='bg-secondary items-center w-full fixed top-0 z-10 px-10 max-sm:px-3 '>
+      <div className='h-1/5 flex  flex-row justify-between items-center mx-auto px-32 max-sm:px-0  py-3'>
         <LogoCustomer/>
         
         <LocationCustomer/>

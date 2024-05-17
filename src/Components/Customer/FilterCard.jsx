@@ -45,10 +45,11 @@ const FilterCard = () => {
   // console.log(selectedCity, minPrice, maxPrice, selectedService, selectedStars);
   // console.log("filterList",filterList);
   return (
-    <div className="h-56 w-auto bg-light-200 border-0 flex flex-col rounded-xl px-5 justify-center float-right">
+    <div className="h-56 max-sm:h-full w-auto bg-light-200 border-0 flex flex-col rounded-xl px-5 justify-center float-right max-sm:pt-5">
+
       <h1 className="text-2xl text-secondary font-bold pl-3">Filtrele</h1>
-      <div className="flex flex-row gap-2">
-        <div className="flex flex-col p-3 gap-1">
+      <div className="flex flex-row  max-sm:flex-col  gap-2">
+        <div className="flex flex-col  p-3 gap-1">
           <label htmlFor="" className="">
             Hizmet
           </label>
@@ -70,11 +71,11 @@ const FilterCard = () => {
             onStarClick={(stars) => setSelectedStars(stars)}
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col  max-sm:p-3 max-sm:gap-4 ">
           <label htmlFor="" className="mt-3">
             Fiyat Aralığı
           </label>
-          <div className="flex flex-row justify-center  items-start ">
+          <div className="flex flex-row justify-center  max-sm:justify-start items-start ">
             <input
               type="number"
               value={minPrice}
@@ -94,9 +95,9 @@ const FilterCard = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row-reverse items-center">
+      <div className="flex flex-row-reverse items-center m-2">
         <button
-          className="flex fex-row w-28 h-12 rounded-xl bg-secondary p-3 items-center justify-center text-white hover:bg-opacity-95"
+          className="flex fex-row w-28 h-12  rounded-xl bg-secondary p-3 items-center justify-center text-white hover:bg-opacity-95"
           onClick={handleApplyFilters}
         >
           Uygula

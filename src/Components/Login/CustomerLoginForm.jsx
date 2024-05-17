@@ -9,7 +9,7 @@ import {login, loginCustomer } from "../../Store/Customer/authSlice";
 
 const CustomerLoginForm = () => {
   
-const dispatch= useDispatch();
+  const dispatch= useDispatch();
   const navigate = useNavigate();
  
   const formik = useFormik({
@@ -28,7 +28,7 @@ const dispatch= useDispatch();
         const { payload } = response;
         if (payload && payload.token) {
           console.log("Token:", payload.token);
-  
+          
           navigate("/home");
         } else {
           alert("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
@@ -38,10 +38,12 @@ const dispatch= useDispatch();
       }
     },
   });
+
+
   return (
     <div>
       <div className="flex flex-col justify-center  items-center   gap-3   w-[400px] h-[300px]">
-        <div className="flex flex-col p-3  ">
+        <div className="flex flex-col p-3 ">
           <form
             onSubmit={formik.handleSubmit}
             className="flex flex-col gap-4 w-full items-center justify-center z-20"
@@ -53,7 +55,7 @@ const dispatch= useDispatch();
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.userName}
-                className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                className="w-full h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Kullanıcı Adı"
               />
               {formik.touched.userName && formik.errors.userName ? (
@@ -72,7 +74,7 @@ const dispatch= useDispatch();
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}
-                className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                className="w-full h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Şifre"
               />
               {formik.touched.password && formik.errors.password ? (
@@ -87,7 +89,7 @@ const dispatch= useDispatch();
 
             <button
               type="submit"
-              className="w-full h-12 rounded-[50px] bg-secondary text-light"
+              className="w-full h-12 rounded-[50px] bg-secondary  text-light"
             >
               Giriş Yap
             </button>

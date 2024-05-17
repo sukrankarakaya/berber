@@ -5,8 +5,8 @@ const Footer = () => {
     <div>
       
 
-<footer className="bg-secondary bottom-0 w-full   ">
-    <div className=" w-full max-w-screen-xl px-4 py-2 lg:py-3">
+<footer className="bg-secondary bottom-0 w-full  px-3  ">
+    <div className="mx-auto w-full max-w-screen-xl  py-2 lg:py-3">
         <div className="md:flex md:justify-between">
           <div className="">
               <a href="https://flowbite.com/" className="flex items-center">

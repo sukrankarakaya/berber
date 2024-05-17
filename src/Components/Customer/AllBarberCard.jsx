@@ -64,20 +64,20 @@ const AllBarberCard = () => {
   };
 
   return (
-    <div className="d-flex flex-col">
+    <div className="d-flex flex-col  ">
       {filteredBarbers.length > 0 ? (
-        <div className="grid grid-cols-2 gap-6 gap-x-4 py-5">
+        <div className="grid grid-cols-2 gap-6 gap-x-4 py-5  max-sm:grid max-sm:grid-cols-1  ">
           {filteredBarbers.slice(0, visibleBarbers).map((barber) => (
             <Link to={`/home/all/${barber.id}`} key={barber.id} className="bg-transparent">
-              <div className="flex flex-row p-2 rounded-3xl w-[550px] h-36 bg-light-100 text-gray-700 hover:bg-light-300 shadow-lg">
+              <div className="flex flex-row p-2 rounded-3xl w-full   h-36  max-sm:h-28 max-sm:rounded-lg  bg-light-100 text-gray-700 hover:bg-light-300 shadow-lg">
                 <div className="">
-                  <img src="../../../public/Image/barber1.jpg" alt="" className="w-32 h-full rounded-xl" />
+                  <img src="../../../public/Image/barber1.jpg" alt="" className="w-32 h-full rounded-xl max-sm:w-24 max-sm:h-24  max-sm:rounded-lg  " />
                 </div>
                 <div className="flex flex-col gap-2 pl-5">
-                  <h1 className="font-bold text-xl">{barber.workPlaceName}</h1>
+                  <h1 className="font-bold text-xl max-sm:text-base ">{barber.workPlaceName}</h1>
                   <div className="flex flex-row gap-1 items-center">
                     <FaMapMarkerAlt />
-                    <p className=" "> {barber.city}</p>
+                    <p className="max-sm:text-sm "> {barber.city}</p>
                   </div>
                   <div className="flex flex-row gap-1 items-center">
                     <BsFillStarFill className="text-yellow-600" />
@@ -91,14 +91,14 @@ const AllBarberCard = () => {
       ) : (
         <div className="flex flex-col items-center justify-center py-20">
           {/* <img src="../../../public/Image/face5.png" alt="" className="w-40 h-40" /> */}
-          <p className="flex font-bold text-6xl text-secondary ">Maalesef Berber Bulunamadı!!!</p>
+          <p className="flex font-bold text-6xl max-sm:text-2xl  text-secondary ">Maalesef Berber Bulunamadı!!!</p>
         </div>
       )}
 
-      <div className="flex justify-end">
+      <div className="flex justify-end  max-sm:justify-end">
         {filteredBarbers.length > visibleBarbers && (
           <button
-            className="bg-transparent text-gray-700 hover:text-secondary hover:border-b-[1px] hover:border-secondary text-right flex items-center my-4 px-8"
+            className="bg-transparent text-gray-700 hover:text-secondary hover:border-b-[1px] hover:border-secondary text-right flex items-center my-4 px-2"
             onClick={() => setVisibleBarbers(visibleBarbers + 6)}
           >
             Daha fazla göster

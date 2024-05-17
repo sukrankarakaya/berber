@@ -85,7 +85,7 @@ const BestBarbers = () => {
       `}
     </style>
     {barbers.length > 0 ? (
-  <Slider {...settings} className="w-[1170px] h-auto flex flex-row p-5 bg-slate-50 border-2 border-slate-200 rounded-xl">
+  <Slider {...settings} className="w-[1170px]  h-auto flex flex-row p-5 bg-slate-50 border-2 border-slate-200 rounded-xl">
     {barbers.map((barber) => (
       <Link  to={`/home/${barber.id}`}key={barber.id} className="bg-transparent">
         <div key={barber.id} className="flex flex-row h-[450px] text-gray-700 rounded-xl">
