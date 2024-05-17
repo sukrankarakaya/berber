@@ -37,20 +37,20 @@ const BarberDetails = () => {
   return (
     <div className="bg-light">
       <div className="flex flex-col pt-24">
-        <div className="w-[1050px] bg-white border-2 border-slate-200 rounded-lg p-3">
+        <div className="w-[1050px] max-sm:w-full bg-white border-2 border-slate-200 rounded-lg p-3">
           <h1 className="text-2xl font-bold">{barber.workPlaceName}</h1>
 
-          <div className="flex flex-crow p-3 gap-4">
+          <div className="flex flex-row max-sm:flex-col p-3 gap-4">
             <div className="flex flex-col p-3 ">
               <img
                 src="../../../public/Image/barber4.jpg"
                 alt=""
-                className="w-96 h-[470px] border border-secondary rounded-xl"
+                className="w-96 h-[470px]  max-sm:h-96  border border-secondary rounded-xl"
               />
             </div>
 
             <div className="flex flex-col">
-              <div className="flex flex-col p-3 w-[590px] gap-4">
+              <div className="flex flex-col p-3 w-[590px] max-sm:w-full gap-4">
                 <label className="text-xl w-full font-bold border-b border-secondary">
                   Telefon
                 </label>
@@ -93,7 +93,7 @@ const BarberDetails = () => {
           </div>
         </div>
 
-        <div className="flex flex-row">
+        <div className="flex flex-row  max-sm:flex-col">
           <div className="flex flex-col p-3">
             <label htmlFor="" className="text-2xl font-bold">
               Hizmetler

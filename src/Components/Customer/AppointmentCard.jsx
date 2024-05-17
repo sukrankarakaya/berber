@@ -13,7 +13,7 @@ const AppointmentCard = ({ appointment }) => {
   return (
     <div className="">
       <div key={id}
-        className="flex flex-row p-3 w-[540px] h-80  border border-secondary rounded-md hover:bg-gray "
+        className="flex flex-row p-3 h-80 max-sm:h-52 bg-light-300 border-0 shadow-xl rounded-md hover:bg-light-200 "
       >
         <div className="w-1/2 h-full p-1 rounded-md">
           <img
@@ -23,31 +23,31 @@ const AppointmentCard = ({ appointment }) => {
           />
         </div>
 
-        <div className="flex flex-col w-1/2 px-3 gap-4 ">
-          <div className="flex flex-row gap-2">
-            <label className="flex flex-row text-lg font-bold gap-2 ">
-              Berber Adı:
+        <div className="flex flex-col w-1/2 px-3 gap-4 max-sm:gap-1 text-lg max-sm:text-sm ">
+          <div className="flex flex-row gap-2-">
+            <label className="flex flex-row text-nowrap  font-bold gap-2 ">
+              Berber Adı: 
             </label>
-            <p className="text-lg font-extralight">{barberName}</p>
+            <p className=" font-extralight">  {barberName}</p>
           </div>
-          <label className="flex flex-row text-lg font-bold gap-2 ">
-            Hizmet: <p className="text-lg font-extralight">{service}</p>
+          <label className="flex flex-row  font-bold gap-2 ">
+            Hizmet: <p className="font-extralight">{service}</p>
           </label>
-          <label className="flex flex-row text-lg font-bold gap-2 ">
-            Tarih: <p className="text-lg font-extralight">{date}</p>
+          <label className="flex flex-row  font-bold gap-2 ">
+            Tarih: <p className="font-extralight">{date}</p>
+          </label>
+   
+          <label className="flex flex-row font-bold gap-2 ">
+            Saat: <p className=" font-extralight">{time}</p>
           </label>
 
-          <label className="flex flex-row text-lg font-bold gap-2 ">
-            Saat: <p className="text-xl font-extralight">{time}</p>
-          </label>
-
-          <label className="flex flex-row text-lg font-bold gap-2 ">
-            Durum: <p className="text-lg font-extralight">{status}</p>
+          <label className="flex flex-row  font-bold gap-2 ">
+            Durum: <p className=" font-extralight">{status}</p>
           </label>
 
           <div className="flex justify-end">
             <button
-              className="flex w-32 h-12 p-3 justify-center  text-xl items-center   bg-secondary text-white rounded-md hover:bg-opacity-95"
+              className="flex w-32 h-12 max-sm:h-9 max-sm:w-24 max-sm:text-sm max-sm:mt-2   justify-center  text-xl items-center   bg-secondary text-white rounded-md hover:bg-opacity-95"
               onClick={() => setIsModalOpen(true)}
             >
               İptal Et

@@ -73,11 +73,11 @@ const BarberRegisterForm = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center  items-center gap-3 mt-8 w-[400px] h-[300px]">
-      <div className="flex flex-col p-3 ">
+    <div className="flex flex-col justify-center  items-center gap-2 mt-5 w-[400px] h-[300px] ">
+      <div className="flex flex-col   max-sm:pl-10">
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col gap-4 w-full items-center justify-center z-20"
+          className="flex flex-col  w-full items-center justify-center z-20"
         >
           <div className="flex flex-row gap-4 py-5">
             <div className="flex flex-col gap-2">
@@ -360,7 +360,7 @@ const BarberRegisterForm = () => {
           </div>
           <button
             type="submit"
-            className="w-[300px] h-12 rounded-[50px] bg-secondary text-light"
+            className="w-full h-12 rounded-[50px] bg-secondary text-light"
             
           >
             Kayıt Ol

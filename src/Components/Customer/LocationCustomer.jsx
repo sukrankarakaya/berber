@@ -4,28 +4,14 @@ import { useSelector } from 'react-redux';
 
 const Konum = () => {
 
-  const location = useSelector(state => state.auth.location); 
+  const locationName = useSelector(state => state.auth.locationFull, ); 
+  
 
-  // useEffect(() => {
-  //   // Kullanıcının konumunu veritabanından al
-  //   const fetchUserLocation = async () => {
-  //     try {
-  //       // Veritabanından kullanıcının konumunu almak için uygun bir API çağrısı yapılabilir
-  //       // Bu örnekte rastgele bir konum kullanılıyor
-  //       const userLocationFromDatabase = 'Antalya/Kepez/Altınova mahallesi';
-  //       setUserLocation(userLocationFromDatabase);
-  //     } catch (error) {
-  //       console.error('Error fetching user location:', error);
-  //     }
-  //   };
-
-  //   fetchUserLocation();
-  // }, []);
 
   return (
-    <div className="bg-white  p-3 h-10 border border-black rounded-md flex  items-center">
+    <div className="bg-white  p-3 h-10 border border-black rounded-md flex  items-center max-sm:hidden">
      <img src={location} alt="" />
-      <span className="text-black">{location}</span>
+      <span className="text-black">{locationName || 'Konumunuz Bulunamadı'}</span>
     </div>
   );
 };

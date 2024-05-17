@@ -20,7 +20,6 @@ const Search = () => {
 
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
-
     // Filtre kapatıldığında tüm berberleri göstermek için inputValue'yi temizle
     if (isFilterOpen) {
       dispatch(setInputValue("")); // Redux'taki inputValue'yi temizle
@@ -43,13 +42,13 @@ const Search = () => {
           <TfiSearch className="absolute top-0 left-0 mt-4 ml-3 text-gray-500" />
         )}
         <button
-          className="w-12 h-12 bg-secondary rounded-lg justify-center items-center"
+          className="w-12 h-12 max-sm:w-10 max-sm:h-10 bg-secondary rounded-lg justify-center items-center "
           onClick={toggleFilter}
         >
           {!isFilterOpen ? (
-            <IoFilter className="w-8 h-8 ml-2 items-center text-white" />
+            <IoFilter className="w-8 h-8 max-sm:w-9  max-sm:h-5  max-sm:px-1 max-sm:ml-0.5  ml-2 items-center text-white" />
           ) : (
-            <IoClose className="w-8 h-8 ml-2 items-center text-white" />
+            <IoClose className="w-8 h-8 max-sm:w-9  max-sm:h-5  max-sm:px-1 max-sm:ml-0.5  ml-2  items-center text-white" />
           )}
         </button>
       </div>

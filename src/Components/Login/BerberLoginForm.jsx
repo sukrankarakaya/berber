@@ -65,7 +65,7 @@ const BerberLoginForm = () => {
               />
             </div>
 
-            <button type="submit" className="w-[300px] h-12 rounded-[50px] bg-secondary text-light">
+            <button type="submit" className="w-full h-12 rounded-[50px]  bg-secondary text-light ">
               Giriş Yap
             </button>
             {error && (

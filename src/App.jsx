@@ -20,7 +20,7 @@ import Appointment from "./Components/Barber/Appointment";
 
 function App() {
   return (
-    <div className="font-quicksand">
+    <div className="font-quicksand ">
       
       <Routes>
         <Route path="/" element={<WelcomePage />} />
@@ -31,7 +31,7 @@ function App() {
 
         <Route path="home/login" element={<LoginModal />} />
         <Route path="/yorumlar" element={<Appointment />} />
-        <Route path="/berberlogin" element={<BerberLoginForm />} />
+        <Route path="/berberlogin" element={<LoginModal />} />
         <Route path="/register" element={<RegisterModal />} />
         <Route path="/" element={<Home />} />
         <Route  element={<Dashboard/>}>

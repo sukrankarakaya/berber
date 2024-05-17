@@ -55,7 +55,7 @@ const Icon = ({ userId }) => {
       >
         {/* <img src={userData?.profileImage || person} alt="Profil Resmi" className="w-8 h-8 me-2 rounded-full" /> */}
         <img src="../../../public/Image/user.jpg " alt=""  className='w-10 h-10 me-2 rounded-full'/>
-        <span>{userName || 'Kullanıcı'}</span>
+        <span className=''>{userName || 'Kullanıcı'}</span>
         <svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
@@ -77,7 +77,7 @@ const Icon = ({ userId }) => {
          <Link to="/profile"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray">Profilim</p></Link>
 
          <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray">Randevularım</p></Link>
-          <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray">Ayarlar</a>
+         
           <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray">Çıkış Yap</a>
         </div>
       )}

@@ -7,7 +7,7 @@ import HomePageCard from "./HomePageCard";
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <NavbarCustomer />
       <Dashboard/>
       <Footer />
