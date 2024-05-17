@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 const BerberLoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
   const error = useSelector(state => state.barberLogin.error);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await dispatch(loginBarber({ userName, password }));
+      const response = await dispatch(loginBarber({ Username, Password }));
       dispatch(login(response.payload))
       const { payload } = response;
       if (payload && payload.token) {
@@ -38,8 +38,8 @@ const BerberLoginForm = () => {
             <div className="flex flex-col gap-2">
               <input
                 type="text"
-                name="username"
-                value={userName}
+                name="Username"
+                value={Username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Kullanıcı Adı"
@@ -48,8 +48,8 @@ const BerberLoginForm = () => {
             <div className="flex flex-col gap-2">
               <input
                 type="password"
-                name="password"
-                value={password}
+                name="Password"
+                value={Password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Şifre"

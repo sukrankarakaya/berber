@@ -7,7 +7,7 @@ const Konum = () => {
   console.log(userLocation)
   return (
     <div className="flex justify-center">
-      <div className="bg-white w-auto p-3 h-10 border border-black rounded-md flex items-center">
+      <div className="bg-white w-auto p-3 h-10 border border-black rounded-md  max-sm:hidden items-center">
         <span className="text-black">{userLocation}</span>
      
       </div>

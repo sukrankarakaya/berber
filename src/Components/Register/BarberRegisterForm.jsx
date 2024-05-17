@@ -28,37 +28,38 @@ const BarberRegisterForm = () => {
   }, []);
   const formik = useFormik({
     initialValues: {
-      username: "",
-    city: "",
-    district: "",
-    street: "",
-    phone: "",
-    mail: "",
-    password: "",
+      UserName: "",
+    City: "",
+    District: "",
+    Street: "",
+    Phone: "",
+    Mail: "",
+    Password: "",
     confirmPassword: "",
     WorkPlaceName: "",
-    taxNo: "",
-    doorNumber: "",
-    buildingNo: "",
-    name: "", 
-    lastname: "", 
+    TaxNo: "",
+    DoorNumber: "",
+    BuildingNo: "",
+    Name: "", 
+    LastName: "",
+    BarberFile:"",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Kullanıcı adı zorunludur"),
-      name: Yup.string().required("isim zorunludur"),
-      lastname: Yup.string().required("Soyisim  zorunludur"),
-      mail: Yup.string().email("Geçerli bir e-posta adresi girin").required("E-posta zorunludur"),
-      taxNo: Yup.string().required("Vergi numarası zorunludur"),
-      buildingNo: Yup.string().required("Bina numarası zorunludur"),
-      city: Yup.string().required("Şehir zorunludur"),
-      district: Yup.string().required("İlçe zorunludur"),
-      street: Yup.string().required("Sokak zorunludur"),
-      phone: Yup.string().required("Telefon zorunludur"),
-      password: Yup.string().required("Şifre zorunludur"),
+      UserName: Yup.string().required("Kullanıcı adı zorunludur"),
+      Name: Yup.string().required("isim zorunludur"),
+      LastName: Yup.string().required("Soyisim  zorunludur"),
+      Mail: Yup.string().email("Geçerli bir e-posta adresi girin").required("E-posta zorunludur"),
+      TaxNo: Yup.string().required("Vergi numarası zorunludur"),
+      BuildingNo: Yup.string().required("Bina numarası zorunludur"),
+      City: Yup.string().required("Şehir zorunludur"),
+      District: Yup.string().required("İlçe zorunludur"),
+      Street: Yup.string().required("Sokak zorunludur"),
+      Phone: Yup.string().required("Telefon zorunludur"),
+      Password: Yup.string().required("Şifre zorunludur"),
       confirmPassword: Yup.string().required("Şifre tekrarı zorunludur"),
       WorkPlaceName: Yup.string().required("Dükkan ismi zorunludur"),
-      doorNumber: Yup.string().required("Kapı numarası zorunludur"),
-
+      DoorNumber: Yup.string().required("Kapı numarası zorunludur"),
+      // BarberFile:Yup.string().required("foto zorunlu")
     }),
 
     onSubmit:  (value) => {
@@ -84,18 +85,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="username"
+                  name="UserName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.username}
+                  value={formik.values.UserName}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Kullanıcı Adı"
                 />
-                {formik.touched.username && formik.errors.username ? (
+                {formik.touched.UserName && formik.errors.UserName ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.username}
+                      {formik.errors.UserName}
                     </div>
                   </div>
                 ) : null}
@@ -123,18 +124,18 @@ const BarberRegisterForm = () => {
               <div className=" flex flex-col gap-2">
               <input
                   type="text"
-                  name="name"
+                  name="Name"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.name}
+                  value={formik.values.Name}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="isim"
                 />
-                {formik.touched.name && formik.errors.name ? (
+                {formik.touched.Name && formik.errors.Name ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-600 " />
                     <div className="absolute h-6 mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.name}
+                      {formik.errors.Name}
                     </div>
                   </div>
                 ) : null}
@@ -143,19 +144,19 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="phone"
+                  name="Phone"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.phone}
+                  value={formik.values.Phone}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Telefon"
                 />
   
-                {formik.touched.phone && formik.errors.phone ? (
+                {formik.touched.Phone && formik.errors.Phone ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-600 " />
                     <div className="absolute h-6 mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.phone}
+                      {formik.errors.Phone}
                     </div>
                   </div>
                 ) : null}
@@ -163,18 +164,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="mail"
+                  name="Mail"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.mail}
+                  value={formik.values.Mail}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="E-Mail"
                 />{" "}
-                {formik.touched.mail && formik.errors.mail ? (
+                {formik.touched.Mail && formik.errors.Mail ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.mail}
+                      {formik.errors.Mail}
                     </div>
                   </div>
                 ) : null}
@@ -182,18 +183,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="password"
-                  name="password"
+                  name="Password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.password}
+                  value={formik.values.Password}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Şifre"
                 />{" "}
-                {formik.touched.password && formik.errors.password ? (
+                {formik.touched.Password && formik.errors.Password ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.password}
+                      {formik.errors.Password}
                     </div>
                   </div>
                 ) : null}
@@ -224,18 +225,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="taxNo"
+                  name="TaxNo"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.taxNo}
+                  value={formik.values.TaxNo}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Vergi Numarası"
                 />
-                {formik.touched.taxNo && formik.errors.taxNo ? (
+                {formik.touched.TaxNo && formik.errors.TaxNo ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.taxNo}
+                      {formik.errors.TaxNo}
                     </div>
                   </div>
                 ) : null}
@@ -244,18 +245,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="city"
+                  name="City"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.city}
+                  value={formik.values.City}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Şehir"
                 />
-                {formik.touched.city && formik.errors.city ? (
+                {formik.touched.City && formik.errors.City ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.city}
+                      {formik.errors.City}
                     </div>
                   </div>
                 ) : null}
@@ -263,18 +264,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="district"
+                  name="District"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.district}
+                  value={formik.values.District}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="İlçe"
                 />
-                {formik.touched.district && formik.errors.district ? (
+                {formik.touched.District && formik.errors.District ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.district}
+                      {formik.errors.District}
                     </div>
                   </div>
                 ) : null}
@@ -282,18 +283,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="street"
+                  name="Street"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.street}
+                  value={formik.values.Street}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Sokak/Cad"
                 />
-                {formik.touched.street && formik.errors.street ? (
+                {formik.touched.Street && formik.errors.Street ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.street}
+                      {formik.errors.Street}
                     </div>
                   </div>
                 ) : null}
@@ -301,18 +302,18 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="buildingNo"
+                  name="BuildingNo"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.buildingNo}
+                  value={formik.values.BuildingNo}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Bina No"
                 />
-                {formik.touched.buildingNo && formik.errors.buildingNo ? (
+                {formik.touched.BuildingNo && formik.errors.BuildingNo ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.buildingNo}
+                      {formik.errors.BuildingNo}
                     </div>
                   </div>
                 ) : null}
@@ -320,18 +321,18 @@ const BarberRegisterForm = () => {
               <div className=" flex flex-col gap-2">
               <input
                   type="text"
-                  name="lastname"
+                  name="LastName"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.lastname}
+                  value={formik.values.LastName}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Soyisim"
                 />
-                {formik.touched.lastname && formik.errors.lastname ? (
+                {formik.touched.LastName && formik.errors.LastName ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-600 " />
                     <div className="absolute h-6 mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.lastname}
+                      {formik.errors.LastName}
                     </div>
                   </div>
                 ) : null}
@@ -339,23 +340,32 @@ const BarberRegisterForm = () => {
               <div className="flex flex-col gap-2">
                 <input
                   type="text"
-                  name="doorNumber"
+                  name="DoorNumber"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.doorNumber}
+                  value={formik.values.DoorNumber}
                   className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                   placeholder="Kat/Kapı No"
                 />
                
-                {formik.touched.doorNumber && formik.errors.doorNumber ? (
+                {formik.touched.DoorNumber && formik.errors.DoorNumber ? (
                   <div className=" flex flex-col absolute w-72 ml-3 mt-8  ">
                     <IoMdArrowDropup className=" text-red-500  " />
                     <div className="absolute h-7  mt-[10px] bg-light border border-red-500 px-3  text-red-500  rounded-md text-sm">
-                      {formik.errors.doorNumber}
+                      {formik.errors.DoorNumber}
                     </div>
                   </div>
                 ) : null}
               </div>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="file"
+                  name="BarberFile"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.BarberFile}
+                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
+                  placeholder="Kat/Kapı No"
+                /></div>
             </div>
           </div>
           <button

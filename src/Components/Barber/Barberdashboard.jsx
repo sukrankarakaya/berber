@@ -11,10 +11,10 @@ const Berberdashboard = () => {
         <Appointmentlist/>
 
       </div>
-      <div className='max-w-screen-xl w-screen mx-auto px-4  h-auto  flex flex-row gap-2  bg-white'>
+      {/* <div className='max-w-screen-xl w-screen mx-auto px-4  h-auto  flex flex-row gap-2  bg-white'>
         <div className='w-fit'> <Timecard/></div> 
        <div className='w-1/2 rounded-lg  '><Approval/></div>
-      </div>
+      </div> */}
      
     </div>
   </div>

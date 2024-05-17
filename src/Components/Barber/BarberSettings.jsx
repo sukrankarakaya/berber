@@ -21,8 +21,8 @@ const BarberSettings = () => {
       <Navbar />
       <div className='flex-grow flex justify-center items-center my-8 bg-white'>
         <div className='grid grid-cols-1 mt-12 md:grid-cols-2 gap-14'>
-          <Personelcard />
-          <Services />
+          {/* <Personelcard />
+          <Services /> */}
         </div>
       </div>
       <Footer />
