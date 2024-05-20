@@ -9,7 +9,7 @@ const Icon = () => {
   const dropdownRef = useRef(null);
 
   
-  const userName = useSelector(state => state.barberLogin.userName);
+  const userName = useSelector(state => state.barberLogin.Username);
   const profileImage = useSelector(state => state.barberLogin.profileImage);
   
   useEffect(() => {

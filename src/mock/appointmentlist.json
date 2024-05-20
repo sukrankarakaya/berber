@@ -1,73 +1,83 @@
+
 [
         {
-          "musteriAdi": "JoDoe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "13:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "JoDoe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "13:00",
+          "CustomerImage": "/Image/user.jpg"
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         },
         {
-          "musteriAdi": "John Doe",
-          "musteriTelefon": "+90 5342768183",
-          "PersonelAdi": "Jane Smith",
-          "randevuSaati": "14:00",
-          "musteriResim": "/path/to/image1.jpg"
+          "CustomerName": "John Doe",
+          "CustomerPhone": "+90 5342768183",
+          "EmployeName": "Jane Smith",
+          "Time": "14:00",
+          "CustomerImage": "/Image/user.jpg"
+
         }
       ]
       

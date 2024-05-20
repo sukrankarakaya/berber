@@ -18,6 +18,7 @@ const BerberLoginForm = () => {
       const { payload } = response;
       if (payload && payload.token) {
         console.log("Token:", payload.token);
+        console.log(Username)
 
         navigate("/homeberber");
       } else {
