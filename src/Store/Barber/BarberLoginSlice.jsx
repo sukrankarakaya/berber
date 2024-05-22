@@ -11,6 +11,8 @@ const initialState = {
   error: null,
   success: false,
   barber: null,
+  employees: [],
+  services: [],
 };
 
 const baseURL = "https://localhost:7022/API/Barber";
@@ -45,6 +47,43 @@ export const getBarberById = createAsyncThunk(
   }
 );
 
+
+export const getBarberEmployees = createAsyncThunk(
+  "barber/getBarberEmployees",
+  async (userId, { rejectWithValue, dispatch }) => {
+    try {
+      if (userId !== null) {
+        const response = await axios.get(`${baseURL}/Get-Barber-With-Employees/${userId}`);
+        dispatch(setBarberEmployees(response.data.employees));
+        return response.data.employees;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getBarberServices = createAsyncThunk(
+  "barber/getBarberServices",
+  async (userId, { rejectWithValue, dispatch }) => {
+    try {
+      if (userId !== null) {
+        const response = await axios.get(`${baseURL}/Get-Barber-With-Services/${userId}`);
+        dispatch(setBarberServices(response.data.services));
+        console.log(response.data.services)
+        return response.data.services;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
 const barberLoginSlice = createSlice({
   name: "barberLogin",
   initialState,
@@ -58,6 +97,8 @@ const barberLoginSlice = createSlice({
       state.token = action.payload.token;
       state.error = null;
       state.barber = action.payload;
+      state.employees = action.payload.employees;
+      state.services = action.payload.services;
     },
     logout(state) {
       state.Username = null;
@@ -67,12 +108,21 @@ const barberLoginSlice = createSlice({
       state.error = null;
       state.success = false;
       state.barber = null;
+      state.employees=null;
+      state.services=null;
     },
     setBarber(state, action) {
       state.barber = action.payload;
+      
     },
+    setBarberEmployees(state, action) {
+      state.employees = action.payload;
+    },
+    setBarberServices(state,action){
+      state.services=action.payload;
+    }
   },
 });
 
-export const { login, logout, setBarber } = barberLoginSlice.actions;
+export const { login, logout, setBarber,setBarberEmployees,setBarberServices } = barberLoginSlice.actions;
 export default barberLoginSlice.reducer;

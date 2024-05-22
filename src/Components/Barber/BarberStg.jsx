@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBarberById } from '../../Store/Barber/BarberLoginSlice';
 import { CiEdit, CiMail, CiPhone } from 'react-icons/ci';
 import { PiMapPinLineThin } from 'react-icons/pi';
-
+import barber1 from '../../../public/Image/barber1.jpg'
 const BarberDetails = () => {
   const dispatch = useDispatch();
   const barber = useSelector(state => state.barberLogin.barber);
@@ -30,7 +30,7 @@ const BarberDetails = () => {
 
   return (
     <div className="bg-light h-auto pt-24">
-      <div className="w-full sm:px-6 max-w-screen-xl mx-auto bg-white border-slate-200 rounded-lg p-6">
+      <div className="w-full sm:px-6 max-w-screen-xl mx-auto bg-white border-slate-200 rounded-t-lg p-6">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
           <h1 className="text-2xl font-bold sm:mb-0">
             {barber ? `${barber.workPlaceName}` : "Yükleniyor..."}
@@ -40,11 +40,12 @@ const BarberDetails = () => {
           </button>
         </div>
         <div className="flex flex-col sm:flex-row gap-6">
-          <div className="flex-shrink-0 w-full sm:w-2/5">
+          <div className="flex-shrink-0  w-full sm:w-2/5">
             <img
-              src={barberPhoto}
+            src={barber1}
+              // src={barberPhoto}
               alt="Barber"
-              className="w-full h-auto border border-secondary rounded-xl"
+              className="w-full h-full border border-secondary rounded-xl"
             />
           </div>
           <div className="flex flex-col gap-4 w-full sm:w-3/5">

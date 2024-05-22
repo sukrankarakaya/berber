@@ -1,154 +1,38 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerEmploy, deleteEmploy, updateEmploy } from '../../Store/Barber/EmployeRegisterSlice';
-import { CiEdit } from 'react-icons/ci';
+import React, { useState } from 'react';
 
-const EditProfileModal = ({
-  isOpen,
-  onClose,
-  userDetails,
-  updateUserDetails,
-}) => {
-  const dispatch = useDispatch();
-  const [editedDetails, setEditedDetails] = useState(userDetails || {
-    Name: '',
-    LastName: '',
-    EmployeeFile: [], // Buradaki 'null' yerine 'null' olmayan bir başlangıç değeri kullanılmalıdır.
-  });
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFileName(file ? file.name : '');
+const EditModal = ({ barber, onSave, onClose }) => {
+  const [editedBarber, setEditedBarber] = useState({ ...barber });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedBarber(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
-
-  const handleInputChange = (e) => {
-    if (e.target.type === 'file') {
-      const file = e.target.files[0];
-      setEditedDetails({
-        ...editedDetails,
-        EmployeeFile: file,
-      });
-    } else {
-      setEditedDetails({
-        ...editedDetails,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!editedDetails.Name || !editedDetails.LastName || !editedDetails.EmployeeFile) {
-      alert("Lütfen isim, soyisim ve dosya alanlarını doldurun.");
-    } else {
-      dispatch(registerEmploy(editedDetails))
-        .then((response) => {
-          console.log("Kullanıcı detayları başarıyla kaydedildi:", response);
-          onClose();
-          alert("Bilgileriniz başarıyla kaydedildi.");
-        })
-        .catch((error) => {
-          console.error("Kullanıcı detayları kaydedilirken bir hata oluştu:", error);
-          alert("Bilgileriniz kaydedilirken bir hata oluştu.");
-        });
-    }
-  };
-  
-  const handleDelete = () => {
-    dispatch(deleteEmploy(editedDetails.id))
-      .then(() => {
-        console.log("Kullanıcı başarıyla silindi.");
-        onClose();
-      })
-      .catch((error) => {
-        console.error("Kullanıcı silinirken bir hata oluştu:", error);
-        alert("Kullanıcı silinirken bir hata oluştu.");
-      });
+    onSave(editedBarber);
+    onClose();
   };
 
-  const handleUpdate = () => {
-    dispatch(updateEmploy(editedDetails))
-      .then(() => {
-        console.log("Kullanıcı detayları başarıyla güncellendi.");
-        onClose();
-        alert("Bilgileriniz başarıyla güncellendi.");
-      })
-      .catch((error) => {
-        console.error("Kullanıcı detayları güncellenirken bir hata oluştu:", error);
-        alert("Bilgileriniz güncellenirken bir hata oluştu.");
-      });
-  };
-
-  if (!isOpen) {
-    return null;
-  }
-  
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-65 overflow-y-auto h-full w-full z-20">
-      <div className="relative top-36 mx-auto p-5 border border-secondary w-[500px] shadow-2xl rounded-md bg-white">
-        <div className="mt-3 text-center">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
-            Bilgilerimi Düzenle
-          </h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-3">
-            {/* Input alanları buraya gelecek */}
-            <input
-              type="text"
-              name="Name" 
-              value={editedDetails.Name} 
-              onChange={handleInputChange}
-              placeholder="İsim"
-              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-            />
-            <input
-              type="text"
-              name="LastName" 
-              value={editedDetails.LastName} 
-              onChange={handleInputChange}
-              placeholder="Soyisim"
-              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-            />
-            <input
-              type="file"
-              name="EmployeeFile" 
-              onChange={handleInputChange}
-              placeholder="Resim"
-              className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-            />
-            <div className="flex justify-between pt-10">
-              <button
-                type="button"
-                onClick={handleDelete}
-                className="w-24 p-2 bg-rose-600 text-white rounded hover:bg-opacity-95"
-              >
-                Sil
-              </button>
-              <button
-                type="button"
-                onClick={handleUpdate}
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                Güncelle
-              </button>
-              <button
-                type="submit"
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                Kaydet
-              </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                İptal
-              </button>
-            </div>
-          </form>
-        </div>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+      <div className="bg-white rounded-lg p-8 w-96">
+        <h2 className="text-2xl font-bold mb-4">Bilgileri Düzenle</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-semibold text-gray-700">İsim</label>
+            <input type="text" id="name" name="name" value={editedBarber.name} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+          </div>
+          {/* Diğer input alanları için aynı yapıyı tekrarlayın */}
+          <div className="flex justify-end">
+            <button type="button" onClick={onClose} className="mr-4 px-4 py-2 bg-gray-300 text-gray-700 rounded-md">İptal</button>
+            <button type="submit" className="px-4 py-2 bg-primary text-white rounded-md">Kaydet</button>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default EditProfileModal;
+export default EditModal;

@@ -90,7 +90,7 @@ const AppointmentCard = () => {
                                     <div className="text-sm text-gray-900">{appointment.EmployeName}</div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${appointment.Status === 'Approved' ? 'bg-green-100 text-green-800' : appointment.Status === 'Rejected' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'}`}>
+                                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${appointment.Status === 'Approved' ? 'bg-green-100 text-green-800' : appointment.Status === 'Rejected' ? 'bg-red-100 text-red-800' : 'bg-yellow-200 text-gray-800'}`}>
                                         {appointment.Status || "Bekleniyor"}
                                     </span>
                                 </td>

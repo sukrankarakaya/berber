@@ -46,7 +46,7 @@ const Personelcard = () => {
   console.log(employees[0].employeeUrl)
 
   return (
-    <div className="w-auto h-auto border-2 rounded-xl border-black z-0 ">
+    <div className="h-fit ">
       <div className="flex flex-row justify-between pt-2 bg-slate-50 rounded-t-xl">
         <h1 className="pl-4 text-4xl ">Personeller</h1>
         <button

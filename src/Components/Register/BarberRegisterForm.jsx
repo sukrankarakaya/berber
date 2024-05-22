@@ -42,7 +42,7 @@ const BarberRegisterForm = () => {
     BuildingNo: "",
     Name: "", 
     LastName: "",
-    BarberFile:"",
+   
     },
     validationSchema: Yup.object({
       UserName: Yup.string().required("Kullanıcı adı zorunludur"),
@@ -59,7 +59,7 @@ const BarberRegisterForm = () => {
       confirmPassword: Yup.string().required("Şifre tekrarı zorunludur"),
       WorkPlaceName: Yup.string().required("Dükkan ismi zorunludur"),
       DoorNumber: Yup.string().required("Kapı numarası zorunludur"),
-      // BarberFile:Yup.string().required("foto zorunlu")
+      
     }),
 
     onSubmit:  (value) => {
@@ -357,15 +357,7 @@ const BarberRegisterForm = () => {
                   </div>
                 ) : null}
               </div>
-              <div className="flex flex-col gap-2">
-                <input
-                  type="file"
-                  name="BarberFile"
-                  onBlur={formik.handleBlur}
-                  value={formik.values.BarberFile}
-                  className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
-                  placeholder="Kat/Kapı No"
-                /></div>
+             
             </div>
           </div>
           <button

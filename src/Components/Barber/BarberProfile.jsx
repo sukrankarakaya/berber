@@ -13,7 +13,7 @@ const BarberProfile = () => {
       <div className="flex justify-around">
         <div className="max-w-screen-xl w-full">
           <BarberStg />
-          <div className="flex flex-row ">
+          <div className="flex flex-row px-4 gap-8 pt-4 bg-white pb-4 rounded-b-lg">
             <Comment />
             <Comment />
           </div>

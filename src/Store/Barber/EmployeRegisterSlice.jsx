@@ -1,7 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = "https://localhost:7022/api/Employee";
+const employInitialState = {
+  employees: null,
+  loading: false,
+  error: null,
+  success: false,
+};
+
+const employBaseURL = "https://localhost:7022/api/Employee";
 
 export const registerEmploy = createAsyncThunk(
   "Employee/create-employees",
@@ -13,7 +20,7 @@ export const registerEmploy = createAsyncThunk(
         },
       };
       const response = await axios.post(
-        `${baseURL}/create-employees`,
+        `${employBaseURL}/create-employees`,
         userData,
         config
       );
@@ -29,23 +36,23 @@ export const registerEmploy = createAsyncThunk(
 );
 
 export const getEmploy = createAsyncThunk(
-  "Employee/get-employees",
-  async (_, { rejectWithValue }) => {
+  "Employee/Get-Employees",
+  async (userId ,{ rejectWithValue }) => {
     try {
-      const response = await axios.get(`${baseURL}/get-employees`);
-      return response.data; // response.data.data değil, sadece response.data
+      const response = await axios.get(`${employBaseURL}/get-employees/${userId}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
 export const deleteEmploy = createAsyncThunk(
   "Employee/delete-employee",
   async (employeeId, { rejectWithValue }) => {
     try {
-      // Silme işlemini gerçekleştir
-      const response = await axios.delete(`${baseURL}/delete-employee/${employeeId}`);
-      return response.data;
+      const response = await axios.delete(`${employBaseURL}/delete-employee/${employeeId}`);
+      return { id: employeeId }; // Silinen çalışan ID'sini döndür
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
@@ -55,11 +62,12 @@ export const deleteEmploy = createAsyncThunk(
     }
   }
 );
+
 export const updateEmploy = createAsyncThunk(
   "Employee/update-employee",
   async (editedDetails, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`${baseURL}/update-employee/${editedDetails.id}`, editedDetails);
+      const response = await axios.put(`${employBaseURL}/update-employee/${editedDetails.id}`, editedDetails);
       return response.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -71,72 +79,62 @@ export const updateEmploy = createAsyncThunk(
   }
 );
 
-
 const employSlice = createSlice({
   name: "employ",
-  initialState: {
-    employees:[],
-    loading: false,
-    error: null,
-    success: false,
-  },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(registerEmploy.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(registerEmploy.fulfilled, (state, action) => {
-        state.loading = false;
-        state.success = true;
-        state.employees = action.payload.data;
-      })
-      .addCase(registerEmploy.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+  initialState: employInitialState,
+  reducers: {
+    login(state, action) {
+      state.loading = false;
+      state.userId = action.payload.user;
+      state.error = null;
+      state.employees = action.payload;
+    },
+    logout(state) {
+ 
+      state.isAuthenticated = false;
 
-      .addCase(getEmploy.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(getEmploy.fulfilled, (state, action) => {
-        state.loading = false;
-        state.success = true;
-        state.employees = action.payload;
-      })
-      .addCase(getEmploy.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-      .addCase(deleteEmploy.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(deleteEmploy.fulfilled, (state) => {
-        state.loading = false;
-        state.success = true;
-      })
-      .addCase(deleteEmploy.rejected, (state, action) => {
-        state.loading = false;
-      })
-      .addCase(updateEmploy.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(updateEmploy.fulfilled, (state) => {
-        state.loading = false;
-        state.success = true;
-      })
-      .addCase(updateEmploy.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      });
+      state.loading = false;
+      state.error = null;
+      state.success = false;
+      state.employees = null;
+    },
+    setEmployees(state, action) {
+      state.employees = action.payload;
+    },
   },
 });
+
+export const { setEmployees,  login, logout,} = employSlice.actions;
+
 export default employSlice.reducer;
+
+// Redux store'da bu işlemleri kullanmak için thunk'ları ve reducer'ları çağırabiliriz
+
+// Örnek kullanımlar:
+
+// Çalışan ekleme işlemi
+// dispatch(registerEmploy(userData)).then((response) => {
+//   if (response.meta.requestStatus === 'fulfilled') {
+//     dispatch(addEmployee(response.payload));
+//   } else {
+//     dispatch(setError(response.payload));
+//   }
+// });
+
+// // Çalışan silme işlemi
+// dispatch(deleteEmploy(employeeId)).then((response) => {
+//   if (response.meta.requestStatus === 'fulfilled') {
+//     dispatch(removeEmployee(response.payload));
+//   } else {
+//     dispatch(setError(response.payload));
+//   }
+// });
+
+// // Çalışan güncelleme işlemi
+// dispatch(updateEmploy(editedDetails)).then((response) => {
+//   if (response.meta.requestStatus === 'fulfilled') {
+//     dispatch(updateEmployee(response.payload));
+//   } else {
+//     dispatch(setError(response.payload));
+//   }
+// });

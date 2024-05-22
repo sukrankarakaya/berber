@@ -13,7 +13,8 @@ export const registerBarber = createAsyncThunk(
         `${baseURL}/Create-Barbers`,
         userData,
         {headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
+
         }}
       );
       return response.data; // Return data upon successful registration

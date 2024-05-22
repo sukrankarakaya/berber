@@ -2,9 +2,9 @@ import React from 'react';
 
 const Comment = () => {
   return (
-    <div className='max-w-screen-xl mx-auto bg-light'>
-      <div className='flex items-center justify-center bg-white'>
-        <div className='bg-white rounded-2xl px-10 py-8 shadow-lg hover:shadow-black transition duration-500'>
+    <div className='max-w-screen-xl mx-auto '>
+      <div className='flex items-center justify-center'>
+        <div className='bg-orange-50 rounded-2xl px-10 py-8 shadow-lg hover:shadow-black transition duration-500'>
           <div className='w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-white'>LOGO</div>
           <div className='mt-4'>
             <h1 className='text-lg text-gray-700 font-semibold hover:underline cursor-pointer'>Product Review</h1>
