@@ -12,7 +12,7 @@ const BarberDetails = () => {
     if (userId) {
       dispatch(getBarberById(userId));
     }
-  }, [dispatch, userId]);
+  }, []);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const BarberDetails = () => {
   const baseURL = "https://localhost:7022";
   const barberPhoto = barber && barber.barberUrl ? baseURL + barber.barberUrl : "";
   console.log(barberPhoto)
-
+  console.log(barber);
   return (
     <div className="bg-light h-auto pt-24">
       <div className="w-full sm:px-6 max-w-screen-xl mx-auto bg-white border-slate-200 rounded-t-lg p-6">
@@ -42,8 +42,8 @@ const BarberDetails = () => {
         <div className="flex flex-col sm:flex-row gap-6">
           <div className="flex-shrink-0  w-full sm:w-2/5">
             <img
-            src={barber1}
-              // src={barberPhoto}
+            // src={barber1}
+               src={barberPhoto}
               alt="Barber"
               className="w-full h-full border border-secondary rounded-xl"
             />

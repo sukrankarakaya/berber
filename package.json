@@ -15,7 +15,7 @@
     "@mui/material": "^5.15.15",
     "@reduxjs/toolkit": "^2.2.4",
     "autogapslider": "^3.3.3",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "classnames": "^2.5.1",
     "cors": "^2.8.5",
     "flowbite-datepicker": "^1.2.6",

@@ -34,9 +34,25 @@ export const getBarberById = createAsyncThunk(
   async (userId, { rejectWithValue, dispatch }) => {
     try {
       if (userId !== null) {
-        const response = await axios.get(`${baseURL}/get-barber/${userId}`);
+        const response = await axios.get(`${baseURL}/Get-Barber/${userId}`);
         dispatch(setBarber(response.data));
-        console.log(response.data); // Berber verilerini konsola yazdır
+        // console.log(response.data); // Berber verilerini konsola yazdır
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const putBarberById = createAsyncThunk(
+  "barber/putBarberById",
+  async ({ userId, formData }, { rejectWithValue, dispatch }) => {
+    try {
+      if (userId !== null) {
+        const response = await axios.put(`/API/Barber/Update-Barber/${userId}`, formData);
+        dispatch(setBarber(response.data));
         return response.data;
       } else {
         return null;
@@ -57,27 +73,11 @@ export const getBarberEmployees = createAsyncThunk(
         dispatch(setBarberEmployees(response.data.employees));
         return response.data.employees;
       } else {
+        console.log("userId null");
         return null;
       }
     } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const getBarberServices = createAsyncThunk(
-  "barber/getBarberServices",
-  async (userId, { rejectWithValue, dispatch }) => {
-    try {
-      if (userId !== null) {
-        const response = await axios.get(`${baseURL}/Get-Barber-With-Services/${userId}`);
-        dispatch(setBarberServices(response.data.services));
-        console.log(response.data.services)
-        return response.data.services;
-      } else {
-        return null;
-      }
-    } catch (error) {
+      console.error("Error fetching barber employees:", error.message);
       return rejectWithValue(error.message);
     }
   }
