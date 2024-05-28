@@ -17,11 +17,11 @@ const Appointment = () => {
   return (
     <div>
       <Navbar />
-      <div style={{ maxWidth: '1200px', margin: '90px auto', padding: '0 20px' }}>
+      <div style={{ maxWidth: '1265px', margin: '80px auto', padding: '0 ' }}>
         {/* Yorumları ekrana yazdır */}
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
           {comments.map((comment) => (
-            <div key={comment.id} style={{ flexBasis: 'calc(33.33% - 20px)', margin: '10px' }}>
+            <div key={comment.id} style={{ flexBasis: 'calc(50% - 20px)', margin: '10px 0', maxWidth: '100%' }}>
               <Comment text={comment.text} />
             </div>
           ))}

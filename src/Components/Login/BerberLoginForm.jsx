@@ -1,44 +1,36 @@
 import React, { useState } from "react";
-import { login, loginAsync, setBarberId } from "../../Store/Barber/BarberLoginSlice";
+import { loginBarber,login  } from "../../Store/Barber/BarberLoginSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const BerberLoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const error = useSelector(state => state.Barber && state.Barber.error); // Değişiklik burada yapıldı
-
-  const barberID = useSelector(state => state.Barber && state.Barber.barberID); // Değişiklik burada yapıldı
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
+  const error = useSelector(state => state.barberLogin.error);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await dispatch(loginAsync({ userName, password }));
+      const response = await dispatch(loginBarber({ Username, Password }));
       dispatch(login(response.payload))
       const { payload } = response;
       if (payload && payload.token) {
-        console.log(payload.user);
-        console.log("Logged in successfully.");
         console.log("Token:", payload.token);
-  
-        dispatch(setBarberId(payload.user));
-        console.log(barberID); // payload'dan gelen user değerini barberId olarak saklayın
-         // Yeni barberId'yi yazdırın
-  
+        console.log(Username)
+
         navigate("/homeberber");
       } else {
-        alert("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
+        throw new Error("KUllanıcı adı veya şifre hatalı...")
       }
     } catch (error) {
       console.error("Login failed:", error.message);
+      alert("KUllanıcı adı veya şifre hatalı... Lütfen tekrar deneyin.");
+
     }
   };
 
-
-
-  
   return (
     <div>
       <div className="flex flex-col justify-center items-center gap-3 w-[400px] h-[300px]">
@@ -47,8 +39,8 @@ const BerberLoginForm = () => {
             <div className="flex flex-col gap-2">
               <input
                 type="text"
-                name="username"
-                value={userName}
+                name="Username"
+                value={Username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Kullanıcı Adı"
@@ -57,8 +49,8 @@ const BerberLoginForm = () => {
             <div className="flex flex-col gap-2">
               <input
                 type="password"
-                name="password"
-                value={password}
+                name="Password"
+                value={Password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-[230px] h-12 rounded-[50px] outline-none p-6 font-light text-secondary border-2 border-secondary bg-transparent"
                 placeholder="Şifre"

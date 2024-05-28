@@ -1,22 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const baseURL = "https://localhost:7022/api/Barber";
+const baseURL = "https://localhost:7022/API/Barber";
 
 // Async thunk for registering a new barber
 export const registerBarber = createAsyncThunk(
   "barber/registerBarber",
   async (userData, { rejectWithValue }) => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+      
       const response = await axios.post(
-        `${baseURL}/create-barber`,
+        `${baseURL}/Create-Barbers`,
         userData,
-        config
+        {headers: {
+          'Content-Type': 'application/json',
+
+        }}
       );
       return response.data; // Return data upon successful registration
     } catch (error) {

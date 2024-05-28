@@ -52,8 +52,8 @@ const Timecard = () => {
 
   return (
   
-    <div className="max-w-max flex flex-col border-2  rounded-lg bg-white">
-      <h5 className="w-full rounded-t-lg text-base font-semibold bg-white md:text-xl text-gray-800  p-6">
+    <div className="max-w-max flex flex-col bg-slate-100  border-2  rounded-lg ">
+      <h5 className="w-full rounded-t-lg text-base font-semibold bg-slate-100 md:text-xl text-gray-800  p-6">
         Saatler
       </h5>
       <div className="grid grid-cols-4 py-5 px-2  gap-2 text-sm ">

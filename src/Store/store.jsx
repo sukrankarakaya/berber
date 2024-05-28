@@ -24,6 +24,7 @@ const persistedReducer = persistReducer(persistConfig, authSlice);
 
 
 
+
 export const store = configureStore({
   reducer: {
     customerRegister: CustomerRegisterSlice,
@@ -34,6 +35,7 @@ export const store = configureStore({
     barberLogin: barberLoginSlice, 
     employ:employSlice,
     persistedReducer,
+
   },
 });
 

@@ -1,77 +1,128 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-  barberID: null,
+  Username: null,
+  location: null,
   isAuthenticated: false,
+  userId: null,
   token: null,
+  loading: false,
   error: null,
-  barberdata: null,
+  success: false,
+  barber: null,
+  employees: [],
+  services: [],
 };
 
-export const BarberLoginSlice = createSlice({
-  name: 'barberLogin',
-  initialState,
-  reducers: {
-    login(state, action) {
-      const { token, user } = action.payload;
-      state.isAuthenticated = true;
-      state.token = token;
-      state.barberID = user;
-      state.error = null;
-    },
-    logout(state) {
-      state.isAuthenticated = false;
-      state.token = null;
-      state.barberID = null;
-      state.error = null;
-    },
-    setError(state, action) {
-      state.error = action.payload;
-    },
-    setBarberId(state, action) {
-      state.barberID = action.payload;
-    },
-  },
-});
+const baseURL = "https://localhost:7022/API/Barber";
 
-export const loginAsync = createAsyncThunk(
-  'BarberLoginSlice/loginAsync',
-  async ({ userName, password }) => {
-    try {
-      const response = await axios.post(`https://localhost:7022/api/Barber/login`, { userName, password });
-      if (response.status === 200) {
-        const { token, user } = response.data;
-        return { token, user };
-      } else {
-        throw new Error("Invalid response received from the server");
-      }
-    } catch (error) {
-      console.error("Login failed:", error.response.data);
-      throw new Error("Incorrect username or password");
-    }
-    const response = await axios.post(`https://localhost:7022/api/Auth/register`, { userName, password });
-    //console.log("Server response:", response.data);
+export const loginBarber = createAsyncThunk(
+  "auth/loginAsync",
+  async ({ Username, Password }, { dispatch }) => {
+    const response = await axios.post(
+      `${baseURL}/Login`,
+      { Username, Password },
+      
+    );
     return response.data;
   }
 );
 
 export const getBarberById = createAsyncThunk(
-  'BarberLoginSlice/getBarber',
-  async (barberId) => {
+  "barber/getBarberById",
+  async (userId, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.get(`https://localhost:7022/api/Barber/get-barber/${barberId}`);
-      if (response.status === 200) {
+      if (userId !== null) {
+        const response = await axios.get(`${baseURL}/Get-Barber/${userId}`);
+        dispatch(setBarber(response.data));
+        // console.log(response.data); // Berber verilerini konsola yazdır
         return response.data;
       } else {
-        throw new Error("Invalid response received from the server");
+        return null;
       }
     } catch (error) {
-      console.error("Fetching barber failed:", error.response.data);
-      throw new Error("Error fetching barber data");
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const putBarberById = createAsyncThunk(
+  "barber/putBarberById",
+  async ({ userId, formData }, { rejectWithValue, dispatch }) => {
+    try {
+      if (userId !== null) {
+        const response = await axios.put(`/API/Barber/Update-Barber/${userId}`, formData);
+        dispatch(setBarber(response.data));
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
 
-export const { login, logout, setError, setBarberData, setBarberId } = BarberLoginSlice.actions; 
-export default BarberLoginSlice.reducer;
+
+export const getBarberEmployees = createAsyncThunk(
+  "barber/getBarberEmployees",
+  async (userId, { rejectWithValue, dispatch }) => {
+    try {
+      if (userId !== null) {
+        const response = await axios.get(`${baseURL}/Get-Barber-With-Employees/${userId}`);
+        dispatch(setBarberEmployees(response.data.employees));
+        return response.data.employees;
+      } else {
+        console.log("userId null");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching barber employees:", error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+const barberLoginSlice = createSlice({
+  name: "barberLogin",
+  initialState,
+  reducers: {
+    login(state, action) {
+      state.isAuthenticated = true;
+      state.loading = false;
+      state.userId = action.payload.user;
+      state.Username = action.payload.userName;
+      state.location = action.payload.city + "/" + action.payload.district;
+      state.token = action.payload.token;
+      state.error = null;
+      state.barber = action.payload;
+      state.employees = action.payload.employees;
+      state.services = action.payload.services;
+    },
+    logout(state) {
+      state.Username = null;
+      state.isAuthenticated = false;
+      state.token = null;
+      state.loading = false;
+      state.error = null;
+      state.success = false;
+      state.barber = null;
+      state.employees=null;
+      state.services=null;
+    },
+    setBarber(state, action) {
+      state.barber = action.payload;
+      
+    },
+    setBarberEmployees(state, action) {
+      state.employees = action.payload;
+    },
+    setBarberServices(state,action){
+      state.services=action.payload;
+    }
+  },
+});
+
+export const { login, logout, setBarber,setBarberEmployees,setBarberServices } = barberLoginSlice.actions;
+export default barberLoginSlice.reducer;

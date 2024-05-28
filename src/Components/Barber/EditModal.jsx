@@ -1,159 +1,138 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerEmploy, deleteEmploy, updateEmploy } from '../../Store/Barber/EmployeRegisterSlice';
-import { CiEdit } from 'react-icons/ci';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { putBarberById, getBarberById } from '../../Store/Barber/BarberLoginSlice';
+import { useDispatch } from 'react-redux';
 
-const EditProfileModal = ({
-  isOpen,
-  onClose,
-  userDetails,
-  updateUserDetails,
-}) => {
-  const dispatch = useDispatch();
-  const [editedDetails, setEditedDetails] = useState(userDetails || {
-    Name: '',
-  LastName: '',
-  Picture: 'null',
-  });
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    
-    setFileName(file ? file.name : '');
+const EditModal = ({ barber, userId, onSave, onClose }) => {
+  const [editedBarber, setEditedBarber] = useState({ ...barber });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const dispatch=useDispatch()
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    const newValue = files ? files[0] : value;
+    setEditedBarber(prevState => ({
+      ...prevState,
+      [name]: newValue
+    }));
   };
 
-  const handleInputChange = (e) => {
-    if (e.target.type === 'file') {
-      
-      const file = e.target.files[0];
-      
-      setEditedDetails({
-        ...editedDetails,
-        Picture: file,
-      });
-    } else {
-      setEditedDetails({
-        ...editedDetails,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
-  
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!editedDetails.Name || !editedDetails.LastName) {
-      alert("Lütfen isim ve soyisim alanlarını doldurun.");
-    } else {
-      dispatch(registerEmploy(editedDetails))
-        .then((response) => {
-          console.log("Kullanıcı detayları başarıyla kaydedildi:", response);
-          onClose();
-          alert("Bilgileriniz başarıyla güncellendi.");
-        })
-        .catch((error) => {
-          console.error("Kullanıcı detayları kaydedilirken bir hata oluştu:", error);
-          alert("Bilgileriniz güncellenirken bir hata oluştu.");
-        });
+    setLoading(true);
+    setError(null);
+
+    try {
+      const formData = new FormData();
+      formData.append('Id', barber.id);
+      formData.append('taxNo', editedBarber.taxNo);
+      formData.append('userName', editedBarber.userName);
+      formData.append('City', editedBarber.city);
+      formData.append('Mail', editedBarber.mail);
+      formData.append('Name', editedBarber.name);
+      formData.append('Phone', editedBarber.phone);
+      formData.append('Street', editedBarber.street);
+      formData.append('District', editedBarber.district);
+      formData.append('LastName', editedBarber.lastName);
+      formData.append('Password', editedBarber.password);
+      formData.append('BuildingNo', editedBarber.buildingNo);
+      formData.append('DoorNumber', editedBarber.doorNumber);
+      formData.append('WorkPlaceName', editedBarber.workPlaceName);
+      formData.append('BarberUrl', editedBarber.barberUrl);
+
+      dispatch(putBarberById(formData))
+      onClose();
+      onSave();
+
+    } catch (error) {
+      setError('Bir hata oluştu. Lütfen tekrar deneyin.');
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
-  
-  const handleDelete = () => {
-    // Silme işlemi için gerekli action creator'ı tetikle
-    dispatch(deleteEmploy(editedDetails.id))
-      .then(() => {
-        console.log("Kullanıcı başarıyla silindi.");
-        onClose();
-      })
-      .catch((error) => {
-        console.error("Kullanıcı silinirken bir hata oluştu:", error);
-        alert("Kullanıcı silinirken bir hata oluştu.");
-      });
-  };
 
-  const handleUpdate = () => {
-    // Güncelleme işlemi için gerekli action creator'ı tetikle
-    dispatch(updateEmploy(editedDetails))
-      .then(() => {
-        console.log("Kullanıcı detayları başarıyla güncellendi.");
-        onClose();
-        alert("Bilgileriniz başarıyla güncellendi.");
-      })
-      .catch((error) => {
-        console.error("Kullanıcı detayları güncellenirken bir hata oluştu:", error);
-        alert("Bilgileriniz güncellenirken bir hata oluştu.");
-      });
-  };
-
-  if (!isOpen) {
-    return null;
-  }
-  
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-65 overflow-y-auto h-full w-full z-20">
-      <div className="relative top-36 mx-auto p-5 border border-secondary w-[500px] shadow-2xl rounded-md bg-white">
-        <div className="mt-3 text-center">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
-            Bilgilerimi Düzenle
-          </h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-3">
-            {/* Input alanları buraya gelecek */}
-            <input
-  type="text"
-  name="Name" 
-  value={editedDetails.Name} 
-  onChange={handleInputChange}
-  placeholder="İsim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
-<input
-  type="text"
-  name="LastName" 
-  value={editedDetails.LastName} 
-  onChange={handleInputChange}
-  placeholder="Soyisim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
-<input
-  type="file"
-  name="Picture" 
-  onChange={handleInputChange}
-  placeholder="Resim"
-  className="border-black border-2 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-/>
-            <div className="flex justify-between pt-10">
-             
-              
-              <button
-                type="button"
-                onClick={handleUpdate}
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                İptal
-              </button>
-              <button
-  type="submit"
-  className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
->
-  Kaydet
-</button>
-              <button
-                type="button"
-                onClick={handleDelete}
-                className="w-24 p-2 bg-rose-600 text-white rounded hover:bg-opacity-95"
-              >
-                Sil
-              </button>
-              <button
-                type="submit"
-                className="w-24 p-2 bg-secondary text-white rounded hover:bg-opacity-95"
-              >
-                Güncelle
-              </button>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+      <div className="bg-white rounded-lg p-8 w-96">
+        <h2 className="text-2xl font-bold mb-4">Bilgileri Düzenle</h2>
+        <form onSubmit={handleSubmit}>
+        <div className='flex flex-row gap-10'>
+            <div>
+              <div className="mb-4">
+                <label htmlFor="taxNo" className="block text-sm font-semibold text-gray-700">Vergi Numarası</label>
+                <input type="text" id="taxNo" name="taxNo" value={editedBarber.taxNo} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="userName" className="block text-sm font-semibold text-gray-700">Kullanıcı Adı</label>
+                <input type="text" id="userName" name="userName" value={editedBarber.userName} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="workPlaceName" className="block text-sm font-semibold text-gray-700">İşyeri Adı</label>
+                <input type="text" id="workPlaceName" name="workPlaceName" value={editedBarber.workPlaceName} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">İsim</label>
+                <input type="text" id="name" name="name" value={editedBarber.name} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+
+              </div>
+              <div className="mb-4">
+                <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700">Soyisim</label>
+                <input type="text" id="lastName" name="lastName" value={editedBarber.lastName} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">Telefon No</label>
+                <input type="tel" id="phone" name="phone" value={editedBarber.phone} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">Şifre</label>
+                <input type="password" id="password" name="password" value={editedBarber.password} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
             </div>
-          </form>
-        </div>
+            <div>
+              <div className="mb-4">
+                <label htmlFor="mail" className="block text-sm font-semibold text-gray-700">E-mail</label>
+                <input type="email" id="mail" name="mail" value={editedBarber.mail} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="city" className="block text-sm font-semibold text-gray-700">Şehir</label>
+                <input type="text" id="city" name="city" value={editedBarber.city} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="district" className="block text-sm font-semibold text-gray-700">İlçe</label>
+                <input type="text" id="district" name="district" value={editedBarber.district} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="street" className="block text-sm font-semibold text-gray-700">Sokak</label>
+                <input type="text" id="street" name="street" value={editedBarber.street} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="buildingNo" className="block text-sm font-semibold text-gray-700">Bina No</label>
+                <input type="text" id="buildingNo" name="buildingNo" value={editedBarber.buildingNo} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="doorNumber" className="block text-sm font-semibold text-gray-700">Kapı No</label>
+                <input type="text" id="doorNumber" name="doorNumber" value={editedBarber.doorNumber} onChange={handleChange} className="w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" />
+              </div>
+              <div className='mb-4'>
+                <label htmlFor="barberUrl" className='block text-sm font-semibold text-gray-700'>Dükkan İsmi</label>
+                <input type="file" id='barberUrl' name='barberUrl'value={editedBarber.barber} onChange={handleChange} className='w-full border-gray-300 rounded-md mt-1 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50'/>
+
+              </div>
+            </div>
+          </div>
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+          <div className="flex justify-between">
+            <button type="button" onClick={onClose} className="mr-4 px-4 py-2 bg-gray-300 text-gray-700 rounded-md">İptal</button>
+            <button type="submit" className="px-4 py-2 bg-primary text-white rounded-md" disabled={loading}>
+              {loading ? 'Güncelleniyor...' : 'Güncelle'}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default EditProfileModal;
+export default EditModal;
