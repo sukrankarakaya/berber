@@ -2,46 +2,112 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setCustomerDetail } from "../../Store/Customer/CustomerSlice";
 
-const EditProfileModal = ({
-  isOpen,
-  onClose,
-  userDetails,
-  updateUserDetails,
-}) => {
-  const [editedDetails, setEditedDetails] = useState();  
-  const customerId = useSelector((state) => state.auth.userId);
+const EditProfileModal = ({ isOpen, onClose }) => {
+  const [editedDetails, setEditedDetails] = useState({});
+  const customerId = useSelector((state) => state.persistedReducer.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://localhost:7022/api/Customer/get-customer/${customerId}`);
+        const response = await axios.get(
+          `https://localhost:7022/api/Customer/Get-Customer/${customerId}`
+        );
         setEditedDetails(response.data); // fetched data to editedDetails
         console.log(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, [customerId]);
 
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(value);
-    setEditedDetails({
-      ...editedDetails,
-      [name]: value,
-    });
+    // const updatedDetails = { ...editedDetails };
+    
+    // delete updatedDetails.id;
+    // delete updatedDetails.lastName;
+    // delete updatedDetails.age;
+    // delete updatedDetails.gender;
+    // delete updatedDetails.userName;
+    // delete updatedDetails.mail;
+    // delete updatedDetails.password;
+    // delete updatedDetails.phone;
+    // delete updatedDetails.city;
+    // delete updatedDetails.street;
+    // delete updatedDetails.district;
+    // delete updatedDetails.customerUrl;
+
+
+
+
+    // setEditedDetails({
+    //   // ...updatedDetails,
+      
+    //   [name]: value,
+    //   CustomerFile: editedDetails.customerUrl,
+    //   Age:editedDetails.age,
+    //   Id:editedDetails.id,
+    //   LastName:editedDetails.lastName,
+    //   Gender:editedDetails.gender,
+    //   Street:editedDetails.street,
+    //   City:editedDetails.city,
+    //   Name:editedDetails.name,
+    //   Phone:editedDetails.phone,
+    //   District:editedDetails.district,
+    //   UserName:editedDetails.userName,
+    //   Mail:editedDetails.mail,
+    //   Password:editedDetails.password,
+      
+    // });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateUserDetails(editedDetails);
-    onClose();
+    
+
+    try {
+      const formData = new FormData();
+      Object.entries(editedDetails).forEach(([key, value]) => {
+        formData.append("CustomerFile", editedDetails.customerUrl);
+        formData.append("Age", editedDetails.age);
+        formData.append("Id", editedDetails.id);
+        formData.append("LastName", editedDetails.lastName);
+        formData.append("Gender", editedDetails.gender);
+        formData.append("Street", editedDetails.street);
+        formData.append("City", editedDetails.city);
+        formData.append("Name", editedDetails.name);
+        formData.append("District", editedDetails.district);
+        formData.append("UserName", editedDetails.userName);
+        formData.append("Mail", editedDetails.mail);
+        formData.append("Password", editedDetails.password);
+        formData.append("Phone", editedDetails.phone);
+
+
+
+        
+
+
+      });
+
+      await axios.put(
+        `https://localhost:7022/api/Customer/Update-Customer/${customerId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      onClose();
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
   };
 
   if (!isOpen) {
@@ -67,7 +133,7 @@ const EditProfileModal = ({
               />
               <input
                 type="text"
-                name="surname"
+                name="lastName"
                 placeholder="Soyad"
                 value={editedDetails.lastName || ""}
                 onChange={handleInputChange}
@@ -75,7 +141,7 @@ const EditProfileModal = ({
               />
               <input
                 type="text"
-                name="email"
+                name="mail"
                 placeholder="E-posta"
                 value={editedDetails.mail || ""}
                 onChange={handleInputChange}
@@ -90,10 +156,26 @@ const EditProfileModal = ({
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />
               <input
-                type="password"
+                type=""
                 name="password"
                 placeholder="Şifre"
                 value={editedDetails.password || ""}
+                onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+              <input
+                type="text"
+                name="userName"
+                placeholder="Kullanıcı adı"
+                value={editedDetails.userName || ""}
+                onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Kullanıcı adı"
+                value={editedDetails.age || ""}
                 onChange={handleInputChange}
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />
@@ -118,6 +200,13 @@ const EditProfileModal = ({
                 name="street"
                 placeholder="Sokak"
                 value={editedDetails.street || ""}
+                onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+
+              <input
+                type="file"
+                name="customerUrl"
                 onChange={handleInputChange}
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />

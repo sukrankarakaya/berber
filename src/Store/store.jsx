@@ -8,6 +8,20 @@ import authSlice from './Customer/authSlice';
 import CustomerSlice from './Customer/CustomerSlice';
 import CustomerRegisterSlice from './Customer/CustomerRegisterSlice';
 
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+
+const persistedReducer = persistReducer(persistConfig, authSlice);
+
+
 
 
 export const store = configureStore({
@@ -19,5 +33,9 @@ export const store = configureStore({
     barber:barberSlice,
     barberLogin: barberLoginSlice, 
     employ:employSlice,
+    persistedReducer,
   },
 });
+
+
+export const persistor = persistStore(store);
