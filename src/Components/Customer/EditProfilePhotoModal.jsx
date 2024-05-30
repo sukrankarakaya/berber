@@ -9,17 +9,18 @@ const EditProfilePhotoModal = ({ show, onClose, updateUserDetails }) => {
   const customerId = useSelector((state) => state.persistedReducer.userId);
 
   useEffect(() => {
-    const fetchCustomerDetails = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`https://localhost:7022/api/Customer/get-customer/${customerId}`);
+        const response = await axios.get(
+          `https://localhost:7022/api/Customer/Get-Customer/${customerId}`
+        );
         setCustomerDetails(response.data);
-        console.log('Fetched Customer Details:', response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchCustomerDetails();
+    fetchData();
   }, [customerId]);
 
   const handleFileChange = (e) => {
@@ -29,37 +30,34 @@ const EditProfilePhotoModal = ({ show, onClose, updateUserDetails }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedFile) {
-      console.error('No file selected');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('customerUrl', selectedFile);
-
-    // Append other customer details unchanged
-    for (const key in customerDetails) {
-      if (customerDetails.hasOwnProperty(key)) {
-        formData.append(key, customerDetails[key]);
-      }
-    }
-
-    // Debugging: Check FormData contents
-    for (let pair of formData.entries()) {
-      console.log("FormData pair:", pair[0], pair[1]);
-    }
-
     try {
-      const response = await axios.put(`https://localhost:7022/api/Customer/Update-Customer/${customerId}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+      const formData = new FormData();
+      Object.entries(customerDetails).forEach(([key, value]) => {
+        formData.append(key, value);  // Append existing customer details
       });
-      console.log('Response Data:', response.data);
-      updateUserDetails(response.data);
-      onClose();
+
+      if (selectedFile) {
+        formData.append("CustomerFile", selectedFile);  // Append the new file if selected
+      }
+
+      await axios.put(
+        `https://localhost:7022/api/Customer/Update-Customer/${customerId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Optionally, call the parent updateUserDetails function to refresh the parent component state
+      if (updateUserDetails) {
+        updateUserDetails();
+      }
+
+      onClose();  // Close the modal on successful submission
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error updating data:", error);
     }
   };
 

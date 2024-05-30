@@ -48,7 +48,7 @@ const EmployeeEditModal = ({ employee, onClose, refreshEmployeeList }) => {
       if (employeePhotoUrl) {
         formData.append('EmployeeUrl', employeePhotoUrl);
       }
-
+      console.log(formData);
       await axios.put(`${baseURL}/API/Employee/Update-Employees/${employee.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

@@ -9,7 +9,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import { getCustomerId, setCustomerDetail } from "../../Store/Customer/CustomerSlice";
-import EditProfilePhotoModal from "./EdidtProfilePhotoModal";
+import EditProfilePhotoModal from "./EditProfilePhotoModal";
 
 const ProfileCustomer = () => {
   const appointments = useSelector((state) => state.appointments.appointments);
@@ -104,10 +104,9 @@ const ProfileCustomer = () => {
     ${phoneNumber.slice(9, 11)} ${phoneNumber.slice(11)}`;
   };
 
-  const fotoUrl = "https://localhost:7022";
+  const fotoUrl = "https://localhost:7022/";
   const customerFoto = userData && userData.customerUrl ? fotoUrl + userData.customerUrl : "";
   console.log(customerFoto)
-
 
   return (
     <div className="flex flex-col gap-2 bg-light min-h-svh ">
