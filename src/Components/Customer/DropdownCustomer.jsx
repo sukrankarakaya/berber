@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import person from '../../assets/person.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Store/Customer/authSlice';
+import { persistor } from '../../Store/store';
 
 const Icon = ({ userId }) => {
   const [userData, setUserData] = useState(null);
@@ -9,12 +11,24 @@ const Icon = ({ userId }) => {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
-  const userName = useSelector(state => state.auth.userName); 
+  const userName = useSelector(state => state.persistedReducer.userName);
+  const customerId = useSelector(state => state.persistedReducer.userId); 
 
+  console.log("customerıd:",customerId,userName  );
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    persistor.purge(); // Persist edilen verileri temizler
+    navigate(`/login`);
+
+  };
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`your-api-endpoint/${userId}`);
+        const response = await fetch(`your-api-endpoint/${customerId}`);
+        console.log("response",response.data);
         if (response.ok) {
           const data = await response.json();
           setUserData(data);
@@ -27,8 +41,10 @@ const Icon = ({ userId }) => {
     };
 
     fetchUserData();
-  }, [userId]);
+  
+  }, [customerId]);
 
+  // console.log("userData",userData);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -78,7 +94,7 @@ const Icon = ({ userId }) => {
 
          <Link to="/myappointment"> <p className="block px-4 py-2 text-gray-800 hover:bg-gray">Randevularım</p></Link>
          
-          <a href="login" className="block px-4 py-2 text-gray-800 hover:bg-gray">Çıkış Yap</a>
+          <p className="block  text-gray-800 hover:bg-gray" ><button  onClick={handleLogout} className="bg-transparent border-0 w-full ml-0 text-start px-4 py-2">Çıkış Yap</button> </p>
         </div>
       )}
     </div>

@@ -40,6 +40,9 @@ const authSlice = createSlice({
       state.userName = null;
       state.isAuthenticated = false;
       state.token = null; // Tokeni temizle
+      state.userId = null;
+      state.location = null;
+
       state.loading = false;
       state.locationFull = null;
       state.error = null;
@@ -78,8 +81,11 @@ export const loginCustomer = createAsyncThunk(
       `https://localhost:7022/api/Customer/login`,
       { userName, password }
     );
+
     console.log("Server response: Customer Login", response.data);
     return response.data;
+    
+
   }
 );
 

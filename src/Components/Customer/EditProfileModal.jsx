@@ -1,47 +1,68 @@
-// EditProfileModal.js
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setCustomerDetail } from "../../Store/Customer/CustomerSlice";
 
-const EditProfileModal = ({
-  isOpen,
-  onClose,
-  userDetails,
-  updateUserDetails,
-}) => {
-  const [editedDetails, setEditedDetails] = useState();  
-  const customerId = useSelector((state) => state.auth.userId);
+const EditProfileModal = ({ isOpen, onClose }) => {
+  const [editedDetails, setEditedDetails] = useState({});
+  const [file, setFile] = useState(null);  // Dosya için ayrı bir state
+  const customerId = useSelector((state) => state.persistedReducer.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://localhost:7022/api/Customer/get-customer/${customerId}`);
-        setEditedDetails(response.data); // fetched data to editedDetails
-        console.log(response.data);
+        const response = await axios.get(
+          `https://localhost:7022/api/Customer/Get-Customer/${customerId}`
+        );
+        setEditedDetails(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, [customerId]);
 
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(value);
     setEditedDetails({
       ...editedDetails,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);  // Dosyayı state'e kaydedin
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateUserDetails(editedDetails);
-    onClose();
+
+    try {
+      const formData = new FormData();
+      Object.entries(editedDetails).forEach(([key, value]) => {
+        formData.append(key, value);  // Diğer form verilerini ekleyin
+      });
+
+      if (file) {
+        formData.append("CustomerFile", file);  // Dosyayı ekleyin
+      }
+
+      await axios.put(
+        `https://localhost:7022/api/Customer/Update-Customer/${customerId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      onClose();
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
   };
 
   if (!isOpen) {
@@ -67,7 +88,7 @@ const EditProfileModal = ({
               />
               <input
                 type="text"
-                name="surname"
+                name="lastName"
                 placeholder="Soyad"
                 value={editedDetails.lastName || ""}
                 onChange={handleInputChange}
@@ -75,7 +96,7 @@ const EditProfileModal = ({
               />
               <input
                 type="text"
-                name="email"
+                name="mail"
                 placeholder="E-posta"
                 value={editedDetails.mail || ""}
                 onChange={handleInputChange}
@@ -90,10 +111,26 @@ const EditProfileModal = ({
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />
               <input
-                type="password"
+                type=""
                 name="password"
                 placeholder="Şifre"
                 value={editedDetails.password || ""}
+                onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+              <input
+                type="text"
+                name="userName"
+                placeholder="Kullanıcı adı"
+                value={editedDetails.userName || ""}
+                onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="Yaş"
+                value={editedDetails.age || ""}
                 onChange={handleInputChange}
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />
@@ -119,6 +156,12 @@ const EditProfileModal = ({
                 placeholder="Sokak"
                 value={editedDetails.street || ""}
                 onChange={handleInputChange}
+                className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
+              />
+              <input
+                type="file"
+                name="customerUrl"
+                onChange={handleFileChange}  // Dosya değişimini handle eden fonksiyon
                 className="mt-2 p-2 border border-secondary rounded-md focus:border-pri focus:bg-slate-100 outline-none focus:border-red-500 focus:border-1 focus:bg-transparent"
               />
             </div>

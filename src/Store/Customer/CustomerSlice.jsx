@@ -21,7 +21,7 @@ export const getCustomerById = createAsyncThunk(
   "customer/getCustomerById",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${baseURL}/Customer/get-customer/${userId}`);
+      const response = await axios.get(`${baseURL}/Customer/Get-Customer/${userId}`);
       
       return response.data; // Kullanıcı verisini başarılı bir şekilde getir
     } catch (error) {
@@ -41,6 +41,9 @@ export const getCustomerId = createAsyncThunk(
     }
   }
 );
+
+
+
 const customerSlice = createSlice({
   name: "customer",
   initialState: {
@@ -64,9 +67,6 @@ const customerSlice = createSlice({
       state.loading = false;
       state.error = null;
     }
-
-
-
   }, 
   extraReducers: (builder) => {
     // Handle the fulfilled action of getCustomerId

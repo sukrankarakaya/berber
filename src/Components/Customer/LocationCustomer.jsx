@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 
 const Konum = () => {
 
-  const locationName = useSelector(state => state.auth.locationFull, ); 
+  const locationName = useSelector(state => state.persistedReducer.locationFull ); 
   
-
+  useEffect(() => {
+    
+  }, [locationName]);
 
   return (
     <div className="bg-white  p-3 h-10 border border-black rounded-md flex  items-center max-sm:hidden">
