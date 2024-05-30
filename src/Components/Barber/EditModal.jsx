@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { putBarberById, getBarberById } from '../../Store/Barber/BarberLoginSlice';
+import { putBarberById } from '../../Store/Barber/BarberLoginSlice';
 import { useDispatch } from 'react-redux';
 
 const EditModal = ({ barber, userId, onSave, onClose }) => {
@@ -17,7 +17,7 @@ const EditModal = ({ barber, userId, onSave, onClose }) => {
       [name]: newValue
     }));
   };
-
+    
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -39,7 +39,7 @@ const EditModal = ({ barber, userId, onSave, onClose }) => {
       formData.append('BuildingNo', editedBarber.buildingNo);
       formData.append('DoorNumber', editedBarber.doorNumber);
       formData.append('WorkPlaceName', editedBarber.workPlaceName);
-      formData.append('BarberUrl', editedBarber.barberUrl);
+      formData.append('BarberFile', editedBarber.BarberFile);
 
       dispatch(putBarberById(formData))
       onClose();

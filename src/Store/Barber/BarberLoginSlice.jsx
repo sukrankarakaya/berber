@@ -51,7 +51,7 @@ export const putBarberById = createAsyncThunk(
   async ({ userId, formData }, { rejectWithValue, dispatch }) => {
     try {
       if (userId !== null) {
-        const response = await axios.put(`/API/Barber/Update-Barber/${userId}`, formData);
+        const response = await axios.put(`${baseURL}/Update-Barber/`, formData);
         dispatch(setBarber(response.data));
         return response.data;
       } else {
