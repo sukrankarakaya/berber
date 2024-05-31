@@ -6,7 +6,7 @@ import { setCustomerDetail } from "../../Store/Customer/CustomerSlice";
 const EditProfileModal = ({ isOpen, onClose }) => {
   const [editedDetails, setEditedDetails] = useState({});
   const [file, setFile] = useState(null);  // Dosya için ayrı bir state
-  const customerId = useSelector((state) => state.persistedReducer.userId);
+  const customerId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {

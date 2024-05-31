@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const Konum = () => {
 
-  const locationName = useSelector(state => state.persistedReducer.locationFull ); 
+  const locationName = useSelector(state => state.auth.locationFull ); 
   
   useEffect(() => {
     

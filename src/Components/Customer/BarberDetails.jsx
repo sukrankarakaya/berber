@@ -5,7 +5,7 @@ import ServicesCard from "./ServicesCard";
 import PersonelCard from "./PersonelCard";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBarberById } from "../../Store/Barber/BarberRegisterSlice";
+import { getBarberAndEmployeId, getBarberById } from "../../Store/Barber/BarberRegisterSlice";
 
 const BarberDetails = () => {
   const { id } = useParams(); // URL'den gelen `id` parametresini al
@@ -23,17 +23,31 @@ const BarberDetails = () => {
   ];
 
   useEffect(() => {
-    if (id) {
-      dispatch(getBarberById(id)); // `id`'ye göre berber bilgisini Redux store'dan al
-    }
+    const fetchData = async () => {
+      if (id) {
+        try {
+          // const employeeResponse = await dispatch(getBarberAndEmployeId(id)).unwrap();
+          // const employeeList=employeeResponse.employees
+          // console.log('Employe and Barber:', employeeList);
+
+          const barberResponse = await dispatch(getBarberById(id)).unwrap();
+          console.log('Barber:', barberResponse
+          );
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+    };
+
+    fetchData();
   }, [dispatch, id]); // `dispatch` veya `id` değiştiğinde useEffect'i çalıştır
 
-  // Eğer berber bilgisi henüz yüklenmediyse, yükleme mesajını göster
+
   if (!barber) {
     return <div>Yükleniyor...</div>;
+    
   }
 
-  // Berber bilgisi yüklendiğinde, detayları göster
   return (
     <div className="bg-light">
       <div className="flex flex-col pt-24">

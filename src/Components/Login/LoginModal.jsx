@@ -4,6 +4,7 @@ import WelcomeImg from "/public/Image/berber.jpg";
 import classNames from "classnames";
 import CustomerLoginForm from "./CustomerLoginForm";
 import BerberLoginForm from "./BerberLoginForm";
+import { useSelector } from "react-redux";
 const LoginModal = () => {
   const [berber, setBerber] = useState(false);
   return (

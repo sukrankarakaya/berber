@@ -59,6 +59,24 @@ export const getBarberById = createAsyncThunk(
     }
   }
 );
+export const getBarberAndEmployeId = createAsyncThunk(
+  "Barber/Get-Barber-With-Employees",
+  async (barberId, { rejectWithValue }) => {
+    try {
+      if (barberId !== null) {
+        const response = await axios.get(`${baseURL}/Get-Barber-With-Employees/${barberId}`);
+        return response.data; // Başarılı veri çekme durumunda barber verisini döndür
+      } else {
+        return null; 
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+
 
 const barberSlice = createSlice({
   name: "barber",

@@ -1,5 +1,5 @@
 
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import appointmentSlice from './appointmentSlice ';
 import barberSlice from './Barber/BarberRegisterSlice';
 import employSlice from '../Store/Barber/EmployeRegisterSlice';
@@ -18,25 +18,27 @@ const persistConfig = {
   storage,
 };
 
+const reducer =  combineReducers({
+  customerRegister: CustomerRegisterSlice,
+  customer:CustomerSlice,
+  auth:authSlice,
+  appointments: appointmentSlice, 
+  barber:barberSlice,
+  barberLogin: barberLoginSlice, 
+  employ:employSlice,
+})
+ 
 
-const persistedReducer = persistReducer(persistConfig, authSlice);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 
 
 
 
 export const store = configureStore({
-  reducer: {
-    customerRegister: CustomerRegisterSlice,
-    customer:CustomerSlice,
-    auth:authSlice,
-    appointments: appointmentSlice, 
-    barber:barberSlice,
-    barberLogin: barberLoginSlice, 
-    employ:employSlice,
-    persistedReducer,
+  reducer:persistedReducer,
 
-  },
+ 
 });
 
 

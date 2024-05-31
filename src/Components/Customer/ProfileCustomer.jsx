@@ -14,7 +14,7 @@ import EditProfilePhotoModal from "./EditProfilePhotoModal";
 const ProfileCustomer = () => {
   const appointments = useSelector((state) => state.appointments.appointments);
 
-  const customerId = useSelector((state) => state.persistedReducer.userId);
+  const customerId = useSelector((state) => state.auth.userId);
   // const userData = useSelector((state) => state.customer.userDetail);
 
   const [visibleCards, setVisibleCards] = useState(3);
@@ -43,7 +43,7 @@ const ProfileCustomer = () => {
     setUserData(newDetails);
   }, []);
   console.log("id: ", customerId);
-  console.log("customer: ",useSelector((state) => state.persistedReducer.customer));
+  console.log("customer: ",useSelector((state) => state.auth.customer));
 
 
 
@@ -66,6 +66,7 @@ const ProfileCustomer = () => {
     };
 
     fetchData();
+    
   }, [updateUserDetails, customerId]);
 
 

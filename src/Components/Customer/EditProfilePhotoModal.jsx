@@ -6,7 +6,7 @@ import { IoCloseOutline } from "react-icons/io5";
 const EditProfilePhotoModal = ({ show, onClose, updateUserDetails }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [customerDetails, setCustomerDetails] = useState({});
-  const customerId = useSelector((state) => state.persistedReducer.userId);
+  const customerId = useSelector((state) => state.auth.userId);
 
   useEffect(() => {
     const fetchData = async () => {

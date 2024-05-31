@@ -11,8 +11,8 @@ const Icon = ({ userId }) => {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
-  const userName = useSelector(state => state.persistedReducer.userName);
-  const customerId = useSelector(state => state.persistedReducer.userId); 
+  const userName = useSelector(state => state.auth.userName);
+  const customerId = useSelector(state => state.auth.userId); 
 
   console.log("customerıd:",customerId,userName  );
 

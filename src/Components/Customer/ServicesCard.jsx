@@ -4,8 +4,10 @@ import AppointmentModal from "./AppointmentModal";
  
 
 const ServicesCard = () => {
+  
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState({});
+
 
   const handleOpenModal = (service) => {
     setSelectedService(service);
