@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getBarberById, getBarberEmployees } from '../../Store/Barber/BarberLoginSlice';
-import user from "/public/Image/user.jpg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CiEdit } from "react-icons/ci";
 import EditModal from "./EditModal";
 import EmployeeEditModal from "../Barber/employeEditModal";
-import e from "cors";
+
 
 const Employe = () => {
   const dispatch = useDispatch();
@@ -31,11 +30,11 @@ const Employe = () => {
       console.log("Kullanıcı ID alınamadı", userId);
     }
   }, []);
-  // console.log(empPhoto)
+  console.log(barber)
   const baseURL = "https://localhost:7022";
   // const barberPhoto = barber && barber.barberUrl ? baseURL + barber.barberUrl : user;
   // const empPhoto = employees && employees.employeesUrl ? baseURL + employees.employeesUrl : user;
-  console.log =   baseURL + barber.barberUrl ;  
+  const barberPhoto =   baseURL + barber.barberUrl ;  
   const settings = {
     dots: true,
     infinite: false,
@@ -74,7 +73,7 @@ const Employe = () => {
         {/* Berber kartı */}
         <div className="flex flex-col w-[300px] max-w-full sm:w-[300px] h-96 items-center p-5 bg-light-300 shadow-lg rounded-lg">
           <div className="relative">
-            <img src={`${baseURL + barber.barberUrl}`} alt="Berber" className="w-44 h-44 rounded-full" />
+            <img src={`${barberPhoto}`} alt="Berber" className="w-44 h-44 rounded-full" />
             <div className="absolute bottom-0 right-0">
               <button className="bg-secondary text-white rounded-full p-1" onClick={() => handleEditClick(barber)}>
                 <CiEdit size={20} />
